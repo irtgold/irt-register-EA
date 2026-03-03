@@ -6,162 +6,76 @@
     <title>IRT GOLD - ลงทะเบียนรับ EA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1E40AF;
-            --primary-light: #3B82F6;
-            --primary-dark: #1E3A8A;
-            --accent: #0EA5E9;
-            --bg-light: #F8FAFC;
-            --bg-white: #FFFFFF;
-            --bg-card: #FFFFFF;
-            --text-primary: #1E293B;
-            --text-secondary: #64748B;
-            --text-muted: #94A3B8;
-            --border: #E2E8F0;
-            --success: #10B981;
-            --error: #EF4444;
-            --gradient-start: #EFF6FF;
-            --gradient-end: #F8FAFC;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Prompt', 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            min-height: 100vh;
-            color: var(--text-primary);
-        }
-
-        .bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
-        .bg-pattern::before { content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 150%; background: radial-gradient(ellipse, rgba(30, 64, 175, 0.05) 0%, transparent 70%); }
-        .bg-pattern::after { content: ''; position: absolute; bottom: -30%; left: -20%; width: 60%; height: 100%; background: radial-gradient(ellipse, rgba(14, 165, 233, 0.05) 0%, transparent 70%); }
-
-        .floating-shape { position: fixed; border-radius: 50%; background: linear-gradient(135deg, rgba(30, 64, 175, 0.08), rgba(59, 130, 246, 0.05)); z-index: 1; animation: float 20s ease-in-out infinite; }
-        .shape-1 { width: 300px; height: 300px; top: 10%; right: 5%; animation-delay: 0s; }
-        .shape-2 { width: 200px; height: 200px; bottom: 20%; left: 10%; animation-delay: -5s; }
-        .shape-3 { width: 150px; height: 150px; top: 60%; right: 15%; animation-delay: -10s; }
-
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
-
-        .container { position: relative; z-index: 10; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
-
-        .registration-card {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 50px 45px; max-width: 520px; width: 100%;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5);
-            animation: cardEntry 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px);
-        }
-
-        @keyframes cardEntry { to { opacity: 1; transform: translateY(0); } }
-
-        .logo-section { text-align: center; margin-bottom: 35px; }
-        .logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 25px; }
-        .logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3); }
-        .logo-icon svg { width: 28px; height: 28px; fill: white; }
-        .logo-text { font-size: 24px; font-weight: 700; color: var(--text-primary); }
-        .logo-text span { color: var(--primary); }
-        .title { font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
-        .subtitle { color: var(--text-secondary); font-size: 15px; font-weight: 400; }
-
-        .form-group { margin-bottom: 22px; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
-        .form-group:nth-child(1) { animation-delay: 0.1s; }
-        .form-group:nth-child(2) { animation-delay: 0.15s; }
-        .form-group:nth-child(3) { animation-delay: 0.2s; }
-        .form-group:nth-child(4) { animation-delay: 0.25s; }
-        .form-group:nth-child(5) { animation-delay: 0.3s; }
-
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-
-        .form-label { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 10px; transition: color 0.3s ease; }
-        .form-label svg { width: 18px; height: 18px; fill: var(--primary-light); }
-        .form-group:focus-within .form-label { color: var(--primary); }
-        .form-group:focus-within .form-label svg { fill: var(--primary); }
-
-        .form-input {
-            width: 100%; padding: 15px 18px; background: var(--bg-light); border: 2px solid var(--border); border-radius: 12px;
-            font-family: 'Prompt', sans-serif; font-size: 15px; color: var(--text-primary); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); outline: none;
-        }
-        .form-input::placeholder { color: var(--text-muted); }
-        .form-input:hover { border-color: #CBD5E1; background: var(--bg-white); }
-        .form-input:focus { border-color: var(--primary-light); background: var(--bg-white); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
-
-        /* Mode Cards */
-        .mode-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .mode-option { position: relative; }
-        .mode-option input { position: absolute; opacity: 0; width: 0; height: 0; }
-
-        .mode-card {
-            display: flex; flex-direction: column; align-items: center; padding: 22px 14px 18px; background: var(--bg-light);
-            border: 2px solid var(--border); border-radius: 16px; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: center; min-height: 140px; justify-content: center;
-        }
-        .mode-card:hover { border-color: var(--primary-light); background: #F0F7FF; transform: translateY(-2px); }
-        .mode-option input:checked + .mode-card { border-color: var(--primary); background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); box-shadow: 0 4px 20px rgba(30, 64, 175, 0.15); }
-        .mode-option input:checked + .mode-card .mode-name { color: var(--primary); }
-
-        .mode-emoji { font-size: 30px; margin-bottom: 8px; }
-        .mode-name { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-        .mode-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
-        .mode-tag { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 50px; }
-        .mode-tag.safe { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
-        .mode-tag.growth { background: #FFF7ED; color: #EA580C; border: 1px solid #FED7AA; }
-
-        .mode-check { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; background: var(--primary); border-radius: 50%; display: none; align-items: center; justify-content: center; }
-        .mode-check svg { width: 13px; height: 13px; fill: white; }
-        .mode-option input:checked + .mode-card .mode-check { display: flex; }
-
-        .submit-btn {
-            width: 100%; padding: 16px 32px; margin-top: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 16px; font-weight: 600; color: white;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.35s; opacity: 0; transform: translateY(20px);
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); transition: left 0.5s ease; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3); }
-        .submit-btn:hover::before { left: 100%; }
-        .submit-btn:active { transform: translateY(0); }
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
-        .submit-btn.loading { pointer-events: none; }
-        .submit-btn.loading .btn-text { opacity: 0; }
-        .submit-btn .spinner { position: absolute; width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; }
-        .submit-btn.loading .spinner { display: block; }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .message { padding: 16px 18px; border-radius: 12px; margin-top: 20px; display: none; align-items: center; gap: 12px; font-size: 14px; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .message.success { background: #ECFDF5; border: 1px solid #A7F3D0; color: #059669; display: flex; }
-        .message.error { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; display: flex; }
-        .message svg { width: 22px; height: 22px; flex-shrink: 0; }
-
-        .footer { text-align: center; margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--border); }
-        .footer p { color: var(--text-secondary); font-size: 13px; }
-        .footer a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
-        .footer a:hover { color: var(--primary-dark); }
-
-        @media (max-width: 600px) {
-            .registration-card { padding: 35px 25px; border-radius: 20px; }
-            .title { font-size: 24px; }
-            .logo-icon { width: 42px; height: 42px; }
-            .logo-text { font-size: 20px; }
-            .form-input { padding: 14px 16px; }
-            .mode-options { gap: 10px; }
-            .mode-card { padding: 16px 10px 14px; min-height: 125px; }
-            .mode-emoji { font-size: 26px; }
-            .mode-name { font-size: 14px; }
-            .submit-btn { padding: 15px 28px; }
-        }
+        :root{--primary:#1E40AF;--primary-light:#3B82F6;--primary-dark:#1E3A8A;--bg-light:#F8FAFC;--bg-white:#FFF;--bg-card:#FFF;--text-primary:#1E293B;--text-secondary:#64748B;--text-muted:#94A3B8;--border:#E2E8F0}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Prompt',sans-serif;background:linear-gradient(135deg,#EFF6FF,#F8FAFC);min-height:100vh;color:var(--text-primary)}
+        .bg-pattern{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .bg-pattern::before{content:'';position:absolute;top:-50%;right:-20%;width:80%;height:150%;background:radial-gradient(ellipse,rgba(30,64,175,0.05),transparent 70%)}
+        .floating-shape{position:fixed;border-radius:50%;background:linear-gradient(135deg,rgba(30,64,175,0.08),rgba(59,130,246,0.05));z-index:1;animation:float 20s ease-in-out infinite}
+        .shape-1{width:300px;height:300px;top:10%;right:5%}
+        .shape-2{width:200px;height:200px;bottom:20%;left:10%;animation-delay:-5s}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+        .container{position:relative;z-index:10;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+        .registration-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:50px 45px;max-width:520px;width:100%;box-shadow:0 25px 50px -12px rgba(0,0,0,0.08);animation:cardEntry .7s ease forwards;opacity:0;transform:translateY(30px)}
+        @keyframes cardEntry{to{opacity:1;transform:translateY(0)}}
+        .logo-section{text-align:center;margin-bottom:35px}
+        .logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:25px}
+        .logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(30,64,175,0.3)}
+        .logo-icon svg{width:28px;height:28px;fill:white}
+        .logo-text{font-size:24px;font-weight:700}.logo-text span{color:var(--primary)}
+        .title{font-size:28px;font-weight:700;color:var(--primary);margin-bottom:8px}
+        .subtitle{color:var(--text-secondary);font-size:15px}
+        .form-group{margin-bottom:22px;animation:slideUp .5s ease forwards;opacity:0;transform:translateY(20px)}
+        .form-group:nth-child(1){animation-delay:.1s}.form-group:nth-child(2){animation-delay:.15s}.form-group:nth-child(3){animation-delay:.2s}.form-group:nth-child(4){animation-delay:.25s}.form-group:nth-child(5){animation-delay:.3s}
+        @keyframes slideUp{to{opacity:1;transform:translateY(0)}}
+        .form-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--text-secondary);margin-bottom:10px}
+        .form-label svg{width:18px;height:18px;fill:var(--primary-light)}
+        .form-input{width:100%;padding:15px 18px;background:var(--bg-light);border:2px solid var(--border);border-radius:12px;font-family:'Prompt',sans-serif;font-size:15px;color:var(--text-primary);transition:all .3s ease;outline:none}
+        .form-input::placeholder{color:var(--text-muted)}
+        .form-input:hover{border-color:#CBD5E1;background:var(--bg-white)}
+        .form-input:focus{border-color:var(--primary-light);background:var(--bg-white);box-shadow:0 0 0 4px rgba(59,130,246,0.1)}
+        .mode-options{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+        .mode-option{position:relative}
+        .mode-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+        .mode-card{display:flex;flex-direction:column;align-items:center;padding:22px 14px 18px;background:var(--bg-light);border:2px solid var(--border);border-radius:16px;cursor:pointer;transition:all .3s ease;text-align:center;min-height:140px;justify-content:center}
+        .mode-card:hover{border-color:var(--primary-light);background:#F0F7FF;transform:translateY(-2px)}
+        .mode-option input[type="radio"]:checked+.mode-card{border-color:var(--primary);background:linear-gradient(135deg,#EFF6FF,#DBEAFE);box-shadow:0 4px 20px rgba(30,64,175,0.15)}
+        .mode-option input[type="radio"]:checked+.mode-card .mode-name{color:var(--primary)}
+        .mode-emoji{font-size:30px;margin-bottom:8px}
+        .mode-name{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:6px}
+        .mode-desc{font-size:12.5px;color:var(--text-secondary);line-height:1.6}
+        .mode-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:50px}
+        .mode-tag.safe{background:#ECFDF5;color:#059669;border:1px solid #A7F3D0}
+        .mode-tag.growth{background:#FFF7ED;color:#EA580C;border:1px solid #FED7AA}
+        .mode-check{position:absolute;top:10px;right:10px;width:22px;height:22px;background:var(--primary);border-radius:50%;display:none;align-items:center;justify-content:center}
+        .mode-check svg{width:13px;height:13px;fill:white}
+        .mode-option input[type="radio"]:checked+.mode-card .mode-check{display:flex}
+        .submit-btn{width:100%;padding:16px 32px;margin-top:20px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;border-radius:12px;font-family:'Prompt',sans-serif;font-size:16px;font-weight:600;color:white;cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden;animation:slideUp .5s ease forwards;animation-delay:.35s;opacity:0;transform:translateY(20px);display:flex;align-items:center;justify-content:center;gap:8px}
+        .submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(30,64,175,0.3)}
+        .submit-btn:disabled{opacity:0.7;cursor:not-allowed}
+        .submit-btn.loading{pointer-events:none}
+        .submit-btn.loading .btn-text{opacity:0}
+        .submit-btn .spinner{position:absolute;width:24px;height:24px;border:3px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin .8s linear infinite;display:none}
+        .submit-btn.loading .spinner{display:block}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .msg-box{padding:16px 18px;border-radius:12px;margin-top:20px;display:none;align-items:center;gap:12px;font-size:14px}
+        .msg-box.show{display:flex;animation:fadeIn .3s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+        .msg-ok{background:#ECFDF5;border:1px solid #A7F3D0;color:#059669}
+        .msg-err{background:#FEF2F2;border:1px solid #FECACA;color:#DC2626}
+        .msg-box svg{width:22px;height:22px;flex-shrink:0}
+        .footer{text-align:center;margin-top:30px;padding-top:25px;border-top:1px solid var(--border)}
+        .footer p{color:var(--text-secondary);font-size:13px}
+        .footer a{color:var(--primary);text-decoration:none;font-weight:500}
+        @media(max-width:600px){.registration-card{padding:35px 25px;border-radius:20px}.title{font-size:24px}.form-input{padding:14px 16px}.mode-card{padding:16px 10px 14px;min-height:125px}.mode-name{font-size:14px}.submit-btn{padding:15px 28px}}
     </style>
 </head>
 <body>
     <div class="bg-pattern"></div>
     <div class="floating-shape shape-1"></div>
     <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
 
     <div class="container">
         <div class="registration-card">
@@ -176,39 +90,35 @@
                 <p class="subtitle">กรอกข้อมูลเพื่อรับไฟล์ EA IRT GOLD MB V.5.0</p>
             </div>
 
-            <form id="registrationForm">
+            <div id="formArea">
                 <div class="form-group">
                     <label class="form-label">
                         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                         ชื่อ - นามสกุล
                     </label>
-                    <input type="text" class="form-input" name="fullname" placeholder="กรอกชื่อ-นามสกุลของคุณ" required>
+                    <input type="text" class="form-input" id="f_name" placeholder="กรอกชื่อ-นามสกุลของคุณ">
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">
                         <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                         เบอร์โทรศัพท์
                     </label>
-                    <input type="tel" class="form-input" name="phone" placeholder="08X-XXX-XXXX" required>
+                    <input type="tel" class="form-input" id="f_phone" placeholder="08X-XXX-XXXX">
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">
                         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                         อีเมล
                     </label>
-                    <input type="email" class="form-input" name="email" placeholder="example@email.com" required>
+                    <input type="email" class="form-input" id="f_email" placeholder="example@email.com">
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">
                         <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
                         เลขพอร์ต MT5
                     </label>
-                    <input type="text" class="form-input" name="mt5_account" placeholder="เลขบัญชี MT5 ของคุณ" required>
+                    <input type="text" class="form-input" id="f_mt5" placeholder="เลขบัญชี MT5 ของคุณ">
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
@@ -216,11 +126,9 @@
                     </label>
                     <div class="mode-options">
                         <label class="mode-option">
-                            <input type="radio" name="mode" value="โหมด BE (มีกันหน้าทุน)" required>
+                            <input type="radio" name="modeRadio" value="โหมด BE (มีกันหน้าทุน)">
                             <div class="mode-card">
-                                <div class="mode-check">
-                                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                                </div>
+                                <div class="mode-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                                 <div class="mode-emoji">🛡️</div>
                                 <div class="mode-name">โหมด BE</div>
                                 <div class="mode-desc">ชอบปลอดภัย<br>มีกันหน้าทุน</div>
@@ -228,11 +136,9 @@
                             </div>
                         </label>
                         <label class="mode-option">
-                            <input type="radio" name="mode" value="โหมด NONE (ไม่มีกันหน้าทุน)" required>
+                            <input type="radio" name="modeRadio" value="โหมด NONE (ไม่มีกันหน้าทุน)">
                             <div class="mode-card">
-                                <div class="mode-check">
-                                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                                </div>
+                                <div class="mode-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                                 <div class="mode-emoji">🚀</div>
                                 <div class="mode-name">โหมด NONE</div>
                                 <div class="mode-desc">ชอบโตเร็ว<br>ไม่มีกันหน้าทุน</div>
@@ -242,80 +148,91 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">
+                <button type="button" class="submit-btn" id="submitBtn" onclick="doSubmit()">
                     <span class="spinner"></span>
                     <span class="btn-text">ลงทะเบียนรับ EA →</span>
                 </button>
 
-                <div class="message" id="successMessage">
+                <div class="msg-box msg-ok" id="msgOk">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     <span>ลงทะเบียนสำเร็จ! ทีมงานจะติดต่อกลับเร็วๆ นี้ค่ะ</span>
                 </div>
-
-                <div class="message" id="errorMessage">
+                <div class="msg-box msg-err" id="msgErr">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                    <span>เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง</span>
+                    <span>กรุณากรอกข้อมูลให้ครบทุกช่อง</span>
                 </div>
-            </form>
+            </div>
 
             <div class="footer">
-                <p>มีคำถาม? ติดต่อเราได้ที่ <a href="/cdn-cgi/l/email-protection#6e071c1a0901020a5f562e09030f0702400d0103"><span class="__cf_email__" data-cfemail="d1b8a3a5b6bebdb5e0e991b6bcb0b8bdffb2bebc">[email&#160;protected]</span></a></p>
+                <p>มีคำถาม? ติดต่อเราได้ที่ <a href="mailto:irtgold18@gmail.com">irtgold18@gmail.com</a></p>
             </div>
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzb1r45XrmA0zdkJak7mLHwtYOnx52FXTXIclZXxfIJC_8aVbWe4V2yQKVnwznTNWl_og/exec';
+<script>
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbzb1r45XrmA0zdkJak7mLHwtYOnx52FXTXIclZXxfIJC_8aVbWe4V2yQKVnwznTNWl_og/exec';
 
-        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            
-            successMessage.classList.remove('success');
-            errorMessage.classList.remove('error');
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
+function doSubmit() {
+    var name = document.getElementById('f_name').value.trim();
+    var phone = document.getElementById('f_phone').value.trim();
+    var email = document.getElementById('f_email').value.trim();
+    var mt5 = document.getElementById('f_mt5').value.trim();
+    var radios = document.getElementsByName('modeRadio');
+    var pkg = '';
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) { pkg = radios[i].value; break; }
+    }
 
-            const formData = new FormData(this);
-            const data = {
-                fullname: formData.get('fullname'),
-                phone: formData.get('phone'),
-                email: formData.get('email'),
-                mt5_account: formData.get('mt5_account'),
-                package: formData.get('mode'),
-                timestamp: new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-            };
+    document.getElementById('msgOk').classList.remove('show');
+    document.getElementById('msgErr').classList.remove('show');
 
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
+    if (!name || !phone || !email || !mt5 || !pkg) {
+        document.getElementById('msgErr').classList.add('show');
+        return;
+    }
 
-                successMessage.style.display = 'flex';
-                successMessage.classList.add('success');
-                this.reset();
-                
-            } catch (error) {
-                errorMessage.style.display = 'flex';
-                errorMessage.classList.add('error');
-                console.error('Error:', error);
-            } finally {
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-            }
-        });
+    var btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
 
-        document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 10) value = value.slice(0, 10);
-            if (value.length >= 3 && value.length <= 6) {
-                value = value.slice(0, 3) + '-' +
+    var ts = new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' });
+
+    var payload = JSON.stringify({
+        fullname: name,
+        phone: phone,
+        email: email,
+        mt5_account: mt5,
+        package: pkg,
+        timestamp: ts
+    });
+
+    fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: payload
+    }).then(function() {
+        document.getElementById('msgOk').classList.add('show');
+        document.getElementById('f_name').value = '';
+        document.getElementById('f_phone').value = '';
+        document.getElementById('f_email').value = '';
+        document.getElementById('f_mt5').value = '';
+        for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+    }).catch(function() {
+        document.getElementById('msgErr').classList.add('show');
+    }).finally(function() {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+    });
+}
+
+document.getElementById('f_phone').addEventListener('input', function(e) {
+    var v = e.target.value.replace(/\D/g, '');
+    if (v.length > 10) v = v.slice(0, 10);
+    if (v.length >= 3 && v.length <= 6) v = v.slice(0,3) + '-' + v.slice(3);
+    else if (v.length > 6) v = v.slice(0,3) + '-' + v.slice(3,6) + '-' + v.slice(6);
+    e.target.value = v;
+});
+</script>
+</body>
+</html>
