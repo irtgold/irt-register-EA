@@ -259,12 +259,12 @@
             </form>
 
             <div class="footer">
-                <p>มีคำถาม? ติดต่อเราได้ที่ <a href="mailto:irtgold18@gmail.com">irtgold18@gmail.com</a></p>
+                <p>มีคำถาม? ติดต่อเราได้ที่ <a href="/cdn-cgi/l/email-protection#6e071c1a0901020a5f562e09030f0702400d0103"><span class="__cf_email__" data-cfemail="d1b8a3a5b6bebdb5e0e991b6bcb0b8bdffb2bebc">[email&#160;protected]</span></a></p>
             </div>
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzb1r45XrmA0zdkJak7mLHwtYOnx52FXTXIclZXxfIJC_8aVbWe4V2yQKVnwznTNWl_og/exec';
 
         document.getElementById('registrationForm').addEventListener('submit', async function(e) {
@@ -288,7 +288,7 @@
                 phone: formData.get('phone'),
                 email: formData.get('email'),
                 mt5_account: formData.get('mt5_account'),
-                mode: formData.get('mode'),
+                package: formData.get('mode'),
                 timestamp: new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
             };
 
@@ -318,12 +318,4 @@
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 10) value = value.slice(0, 10);
             if (value.length >= 3 && value.length <= 6) {
-                value = value.slice(0, 3) + '-' + value.slice(3);
-            } else if (value.length > 6) {
-                value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
-            }
-            e.target.value = value;
-        });
-    </script>
-</body>
-</html>
+                value = value.slice(0, 3) + '-' +
