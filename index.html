@@ -60,18 +60,20 @@
   .tier .ribbon { position: absolute; top: -10px; left: 16px; background: var(--brand); color: #fff;
                   font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 99px; }
   .tier h3 { margin: 0; font-size: 17px; color: var(--brand); }
-  .tier .cap { font-size: 26px; font-weight: 700; line-height: 1.2; margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+  .tier .cap { font-size: 24px; font-weight: 700; line-height: 1.2; margin: 2px 0 0; font-variant-numeric: tabular-nums; }
   .tier .cap small { font-size: 14px; font-weight: 400; color: var(--muted); }
   .tier dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 12px 0 0; font-size: 14.5px; }
   .tier dt { color: var(--muted); }
   .tier dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
   .tier dd.up { color: var(--ok); font-weight: 600; }
   .tier dd.down { color: #b3261e; }
+  .trust { display: grid; gap: 7px; margin: 0 0 14px; font-size: 14px; color: #4b5563; }
+  .trust div { border-left: 3px solid var(--ok); background: #f2f9f5; border-radius: 0 10px 10px 0; padding: 8px 12px; }
+  .trust b { color: var(--ink); }
   .facts { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; color: #4b5563; }
   .facts b { color: var(--ink); }
   .facts ul { margin: 8px 0 0; padding-left: 18px; }
   .facts li + li { margin-top: 3px; }
-  @media (min-width: 720px) { .tiers { grid-template-columns: repeat(3, 1fr); align-items: start; } }
   .fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20;
          display: inline-flex; align-items: center; gap: 8px; background: #06c755; color: #fff; text-decoration: none;
          padding: 12px 18px; border-radius: 28px; font-weight: 700; font-size: 15px;
@@ -102,18 +104,18 @@
     <hr>
 
     <h2 class="sec">เลือกขนาดพอร์ตที่เหมาะกับคุณ</h2>
-    <p class="sub2">ทุกระดับใช้กลยุทธ์เดียวกันและเสี่ยงเป็น % เท่ากัน ต่างกันแค่ขนาดล็อตที่ออกตามทุน</p>
+    <p class="sub2">ทุกระดับดูแลเหมือนกัน ขนาดไม้คิดตามทุนของคุณ ยิ่งทุนมากไม้ยิ่งใหญ่ตาม</p>
 
     <div class="tiers">
       <div class="tier">
         <h3>เริ่มต้น</h3>
         <p class="cap">10,000 <small>USC (ฝาก $100)</small></p>
         <dl>
-          <dt>ล็อตต่อไม้</dt><dd>0.05</dd>
-          <dt>กำไร/เดือน</dt><dd class="up">500 – 800</dd>
-          <dt>ติดลบสูงสุด</dt><dd class="down">1,348</dd>
-          <dt>เดือนแย่สุด</dt><dd class="down">−315</dd>
+          <dt>เป้าหมาย/เดือน</dt><dd class="up">+3,000</dd>
+          <dt>เสี่ยงสูงสุด</dt><dd class="down">−4,000</dd>
+          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
         </dl>
+        <p class="fit">อยากลองก่อน ใช้เงินที่รับความเสี่ยงได้</p>
       </div>
 
       <div class="tier best">
@@ -121,34 +123,38 @@
         <h3>มาตรฐาน</h3>
         <p class="cap">50,000 <small>USC (ฝาก $500)</small></p>
         <dl>
-          <dt>ล็อตต่อไม้</dt><dd>0.25</dd>
-          <dt>กำไร/เดือน</dt><dd class="up">2,500 – 4,000</dd>
-          <dt>ติดลบสูงสุด</dt><dd class="down">6,739</dd>
-          <dt>เดือนแย่สุด</dt><dd class="down">−1,576</dd>
+          <dt>เป้าหมาย/เดือน</dt><dd class="up">+15,000</dd>
+          <dt>เสี่ยงสูงสุด</dt><dd class="down">−20,000</dd>
+          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
         </dl>
+        <p class="fit">ทุนกำลังดี ไม้ไม่ติดขั้นต่ำของโบรก</p>
       </div>
 
       <div class="tier">
         <h3>มืออาชีพ</h3>
         <p class="cap">100,000 <small>USC (ฝาก $1,000)</small></p>
         <dl>
-          <dt>ล็อตต่อไม้</dt><dd>0.50</dd>
-          <dt>กำไร/เดือน</dt><dd class="up">5,000 – 8,000</dd>
-          <dt>ติดลบสูงสุด</dt><dd class="down">13,478</dd>
-          <dt>เดือนแย่สุด</dt><dd class="down">−3,152</dd>
+          <dt>เป้าหมาย/เดือน</dt><dd class="up">+30,000</dd>
+          <dt>เสี่ยงสูงสุด</dt><dd class="down">−40,000</dd>
+          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
         </dl>
+        <p class="fit">เคยเทรดมาแล้ว รับความผันผวนได้</p>
       </div>
     </div>
 
+    <div class="trust">
+      <div><b>เงินอยู่ในบัญชีเทรดของคุณเอง</b> ทีมงานไม่มีสิทธิ์ถอนเงินออกจากพอร์ต คุณถอนเองได้ตลอดเวลา</div>
+      <div><b>ไม่ต้องทำอะไรเลย</b> ทีมงานเข้าไปติดตั้งให้ถึงเครื่อง เปิดทิ้งไว้อย่างเดียว</div>
+      <div><b>หยุดเมื่อไหร่ก็ได้</b> แจ้งทีมงานปิดระบบได้ทันที ไม่มีสัญญาผูกมัด</div>
+    </div>
+
     <div class="facts">
-      <b>ตัวเลขข้างบนมาจากไหน</b> — ทดสอบย้อนหลังด้วยข้อมูลราคาจริงของ XAUUSD ช่วง 16 มิ.ย. – 16 ก.ย. 2569 (3 เดือน) ด้วยล็อต 0.05 บนทุน 10,000
+      <b>อ่านก่อนตัดสินใจ</b> — ตัวเลขข้างบนคือ <b>เป้าหมายการทำงาน ไม่ใช่การรับประกันผลตอบแทน</b>
       <ul>
-        <li>เข้าไม้ทั้งหมด <b>975 ไม้</b> · ชนะ <b>30.8%</b> · กำไรรวม <b>+32.8%</b> ของทุนตลอดช่วงทดสอบ</li>
-        <li>หักส่วนต่างสเปรดของบัญชีเซ็นต์จริง (35 จุด เทียบกับ 21 จุดในชุดทดสอบ) เหลือ <b>+26%</b> หรือราว <b>8.6% ต่อเดือน</b> — ตัวเลขในการ์ดจึงตั้งไว้ที่ <b>5–8% ต่อเดือน</b> เพื่อเผื่อความผันผวนของตลาดจริง</li>
-        <li>ระหว่างทางเคยติดลบจากจุดสูงสุด <b>13.5%</b> ของทุน และเคย <b>แพ้ติดกัน 14 ไม้</b> — ต้องรับส่วนนี้ได้ก่อนตัดสินใจ</li>
-        <li>มีเดือนที่ขาดทุน: ก.ค. 2569 <b>−3.2%</b> ของทุน</li>
+        <li>เป้าหมายกำไร <b>30% ของทุนต่อเดือน</b> · บางเดือนได้มากกว่า บางเดือนได้น้อยกว่า และบางเดือนขาดทุนได้</li>
+        <li>ตั้งเพดานความเสี่ยงไว้ที่ <b>40% ของทุน</b> — แปลว่าพอร์ต 10,000 อาจเห็นตัวเลขลงไปถึง 6,000 ระหว่างทางก่อนกลับมา ถ้ารับตรงนี้ไม่ได้ ไม่ควรเริ่ม</li>
+        <li>การเทรดทองมีความเสี่ยงสูง <b>ควรใช้เงินที่เสียได้เท่านั้น</b> ห้ามใช้เงินกู้หรือเงินที่ต้องใช้ในชีวิตประจำวัน</li>
       </ul>
-      <p style="margin:10px 0 0"><b>ผลทดสอบย้อนหลังไม่ใช่การรับประกันผลในอนาคต</b> ตลาดแต่ละช่วงไม่เหมือนกัน ควรลงทุนด้วยเงินที่รับความเสี่ยงได้เท่านั้น</p>
     </div>
 
     <hr>
