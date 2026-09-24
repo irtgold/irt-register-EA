@@ -19,7 +19,7 @@
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 'Sarabun', Tahoma, sans-serif; }
-  .wrap { max-width: 520px; margin: 0 auto; padding: 28px 16px 48px; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 28px 16px 96px; }
   .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
   .mark { width: 40px; height: 40px; border-radius: 10px; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
   h1 { font-size: 24px; margin: 0; color: var(--brand); }
@@ -51,6 +51,13 @@
   .next ol { margin: 0; padding-left: 20px; }
   .line { display: inline-block; margin-top: 20px; background: #06c755; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 24px; font-weight: 700; }
   .fine { font-size: 13px; color: var(--muted); margin-top: 28px; text-align: center; }
+  .fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20;
+         display: inline-flex; align-items: center; gap: 8px; background: #06c755; color: #fff; text-decoration: none;
+         padding: 12px 18px; border-radius: 28px; font-weight: 700; font-size: 15px;
+         box-shadow: 0 6px 20px rgba(6,199,85,.35); }
+  .fab:hover { background: #05b34c; }
+  .fab svg { width: 20px; height: 20px; fill: #fff; }
+  @media (max-width: 420px) { .fab { padding: 11px 16px; font-size: 14px; } }
 </style>
 </head>
 <body>
@@ -69,7 +76,7 @@
       <li><div class="t">กรอกฟอร์มด้านล่าง</div>
         <div class="d">ทีมงานตรวจสอบแล้วส่งไฟล์ EA + License Key ทางอีเมล</div>
         <div class="d">มีข้อสงสัยหรือติดปัญหาตอนสมัคร ทักไลน์นี้ได้เลย</div>
-        <a class="xbtn line-btn" href="https://lin.ee/zySeuCI" target="_blank" rel="noopener">แอดไลน์สอบถาม</a></li>
+        <a class="xbtn line-btn" id="helpBtn" href="#" target="_blank" rel="noopener">แอดไลน์สอบถาม</a></li>
     </ol>
     <hr>
 
@@ -117,6 +124,11 @@
   <p class="fine">การลงทุนมีความเสี่ยง ผลในอดีตไม่ได้รับประกันผลในอนาคต<br>© IRT GOLD · Trading Education &amp; Software</p>
 </div>
 
+<a class="fab" id="fabLine" href="#" target="_blank" rel="noopener" aria-label="สอบถามแอดมินทาง LINE">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 8.1.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.1-6C21.5 13.7 22 12 22 10.2 22 5.7 17.5 2 12 2z"/></svg>
+  สอบถามแอดมิน
+</a>
+
 <script>
   // ── ตั้งค่า (แก้ตรงนี้ที่เดียว) ──
   var API_URL     = 'https://script.google.com/macros/s/AKfycbzeG6ks9jtg7buh_2HEPjz17-taspcO-aKKAsqDFLujyVly9FyioWt3y66gEnRdZEll/exec';                          // URL /exec ของเซิร์ฟเวอร์ IRT Gold Co-Pilot (Google Apps Script)
@@ -125,6 +137,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
   $('lineBtn2').href = LINE_URL;
+  $('helpBtn').href = LINE_URL;
+  $('fabLine').href = LINE_URL;
   if (BROKER_LINK) $('brokerBtn').href = BROKER_LINK;
   else { $('brokerBtn').href = LINE_URL; $('brokerBtn').textContent = 'แอด LINE รับลิงก์สมัคร'; $('brokerBtn').className = 'xbtn line-btn'; }
 
