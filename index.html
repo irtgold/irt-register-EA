@@ -51,6 +51,27 @@
   .next ol { margin: 0; padding-left: 20px; }
   .line { display: inline-block; margin-top: 20px; background: #06c755; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 24px; font-weight: 700; }
   .fine { font-size: 13px; color: var(--muted); margin-top: 28px; text-align: center; }
+  h2.sec { font-size: 18px; margin: 26px 0 2px; color: var(--brand); }
+  .sub2 { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+  /* ── การ์ดเลือกขนาดพอร์ต ── */
+  .tiers { display: grid; gap: 12px; margin: 4px 0 22px; }
+  .tier { position: relative; border: 1px solid var(--line); border-radius: 14px; padding: 16px 16px 14px; background: #fff; }
+  .tier.best { border-color: var(--brand); box-shadow: 0 0 0 3px #eef3fa; }
+  .tier .ribbon { position: absolute; top: -10px; left: 16px; background: var(--brand); color: #fff;
+                  font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 99px; }
+  .tier h3 { margin: 0; font-size: 17px; color: var(--brand); }
+  .tier .cap { font-size: 26px; font-weight: 700; line-height: 1.2; margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+  .tier .cap small { font-size: 14px; font-weight: 400; color: var(--muted); }
+  .tier dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 12px 0 0; font-size: 14.5px; }
+  .tier dt { color: var(--muted); }
+  .tier dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .tier dd.up { color: var(--ok); font-weight: 600; }
+  .tier dd.down { color: #b3261e; }
+  .facts { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; color: #4b5563; }
+  .facts b { color: var(--ink); }
+  .facts ul { margin: 8px 0 0; padding-left: 18px; }
+  .facts li + li { margin-top: 3px; }
+  @media (min-width: 720px) { .tiers { grid-template-columns: repeat(3, 1fr); align-items: start; } }
   .fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20;
          display: inline-flex; align-items: center; gap: 8px; background: #06c755; color: #fff; text-decoration: none;
          padding: 12px 18px; border-radius: 28px; font-weight: 700; font-size: 15px;
@@ -78,6 +99,58 @@
         <div class="d">มีข้อสงสัยหรือติดปัญหาตอนสมัคร ทักไลน์นี้ได้เลย</div>
         <a class="xbtn line-btn" id="helpBtn" href="#" target="_blank" rel="noopener">แอดไลน์สอบถาม</a></li>
     </ol>
+    <hr>
+
+    <h2 class="sec">เลือกขนาดพอร์ตที่เหมาะกับคุณ</h2>
+    <p class="sub2">ทุกระดับใช้กลยุทธ์เดียวกันและเสี่ยงเป็น % เท่ากัน ต่างกันแค่ขนาดล็อตที่ออกตามทุน</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <h3>เริ่มต้น</h3>
+        <p class="cap">10,000 <small>USC (ฝาก $100)</small></p>
+        <dl>
+          <dt>ล็อตต่อไม้</dt><dd>0.05</dd>
+          <dt>กำไร/เดือน</dt><dd class="up">500 – 800</dd>
+          <dt>ติดลบสูงสุด</dt><dd class="down">1,348</dd>
+          <dt>เดือนแย่สุด</dt><dd class="down">−315</dd>
+        </dl>
+      </div>
+
+      <div class="tier best">
+        <span class="ribbon">แนะนำ</span>
+        <h3>มาตรฐาน</h3>
+        <p class="cap">50,000 <small>USC (ฝาก $500)</small></p>
+        <dl>
+          <dt>ล็อตต่อไม้</dt><dd>0.25</dd>
+          <dt>กำไร/เดือน</dt><dd class="up">2,500 – 4,000</dd>
+          <dt>ติดลบสูงสุด</dt><dd class="down">6,739</dd>
+          <dt>เดือนแย่สุด</dt><dd class="down">−1,576</dd>
+        </dl>
+      </div>
+
+      <div class="tier">
+        <h3>มืออาชีพ</h3>
+        <p class="cap">100,000 <small>USC (ฝาก $1,000)</small></p>
+        <dl>
+          <dt>ล็อตต่อไม้</dt><dd>0.50</dd>
+          <dt>กำไร/เดือน</dt><dd class="up">5,000 – 8,000</dd>
+          <dt>ติดลบสูงสุด</dt><dd class="down">13,478</dd>
+          <dt>เดือนแย่สุด</dt><dd class="down">−3,152</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="facts">
+      <b>ตัวเลขข้างบนมาจากไหน</b> — ทดสอบย้อนหลังด้วยข้อมูลราคาจริงของ XAUUSD ช่วง 16 มิ.ย. – 16 ก.ย. 2569 (3 เดือน) ด้วยล็อต 0.05 บนทุน 10,000
+      <ul>
+        <li>เข้าไม้ทั้งหมด <b>975 ไม้</b> · ชนะ <b>30.8%</b> · กำไรรวม <b>+32.8%</b> ของทุนตลอดช่วงทดสอบ</li>
+        <li>หักส่วนต่างสเปรดของบัญชีเซ็นต์จริง (35 จุด เทียบกับ 21 จุดในชุดทดสอบ) เหลือ <b>+26%</b> หรือราว <b>8.6% ต่อเดือน</b> — ตัวเลขในการ์ดจึงตั้งไว้ที่ <b>5–8% ต่อเดือน</b> เพื่อเผื่อความผันผวนของตลาดจริง</li>
+        <li>ระหว่างทางเคยติดลบจากจุดสูงสุด <b>13.5%</b> ของทุน และเคย <b>แพ้ติดกัน 14 ไม้</b> — ต้องรับส่วนนี้ได้ก่อนตัดสินใจ</li>
+        <li>มีเดือนที่ขาดทุน: ก.ค. 2569 <b>−3.2%</b> ของทุน</li>
+      </ul>
+      <p style="margin:10px 0 0"><b>ผลทดสอบย้อนหลังไม่ใช่การรับประกันผลในอนาคต</b> ตลาดแต่ละช่วงไม่เหมือนกัน ควรลงทุนด้วยเงินที่รับความเสี่ยงได้เท่านั้น</p>
+    </div>
+
     <hr>
 
     <form id="f" autocomplete="on" novalidate>
