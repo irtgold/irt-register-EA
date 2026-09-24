@@ -44,10 +44,10 @@
   .step li + li { margin-top: 6px; }
 
   figure { margin: 16px 0; }
-  figure img { display: block; width: 100%; max-width: 360px; margin: 0 auto; border: 1px solid var(--line); border-radius: 12px; }
+  figure a { display: block; }
+  figure img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 12px; }
   figcaption { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 8px; }
   .two { display: grid; gap: 14px; }
-  @media (min-width: 560px) { .two { grid-template-columns: 1fr 1fr; } .two figure img { max-width: 100%; } }
 
   .tip, .warn, .stop { border-radius: 0 10px 10px 0; padding: 10px 14px; margin: 14px 0; font-size: 15px; }
   .tip { border-left: 4px solid var(--ok); background: var(--ok-bg); }
@@ -117,8 +117,8 @@
       <li>ติ๊ก <b>ฉันไม่ใช่โปรแกรมอัตโนมัติ</b> และ <b>I agree to the Terms of Use</b> แล้วกด <b>Register</b></li>
     </ol>
     <div class="two">
-      <figure><img src="img/01-register.jpg" alt="หน้าสมัครสมาชิก XCELLA กรอกชื่อ อีเมล เบอร์โทร" loading="lazy" width="560" height="1093"><figcaption>กรอกข้อมูลส่วนบน</figcaption></figure>
-      <figure><img src="img/02-register-btn.jpg" alt="ติ๊ก reCAPTCHA และกดปุ่ม Register" loading="lazy" width="560" height="1093"><figcaption>ติ๊ก 2 ช่องแล้วกด Register</figcaption></figure>
+      <figure><a href="img/01-register.jpg" target="_blank" rel="noopener"><img src="img/01-register.jpg" alt="หน้าสมัครสมาชิก XCELLA กรอกชื่อ อีเมล เบอร์โทร" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กรอกข้อมูลส่วนบน</figcaption></figure>
+      <figure><a href="img/02-register-btn.jpg" target="_blank" rel="noopener"><img src="img/02-register-btn.jpg" alt="ติ๊ก reCAPTCHA และกดปุ่ม Register" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ติ๊ก 2 ช่องแล้วกด Register</figcaption></figure>
     </div>
     <div class="warn"><b>ชื่อผิด = ยืนยันตัวตนไม่ผ่าน</b> ต้องติดต่อโบรกแก้ทีหลัง เสียเวลาหลายวัน ตรวจให้ดีก่อนกด</div>
   </section>
@@ -128,10 +128,10 @@
     <span class="n">2</span><h2>ยืนยันอีเมล</h2>
     <p>หลังกด Register ระบบจะขึ้นว่าส่งอีเมลยืนยันไปแล้ว ให้เปิดกล่องอีเมลหาเมลจาก <b>XCELLA Prime</b> หัวข้อ <i>Confirm Your Registration</i> แล้วกดปุ่ม <b>VERIFY EMAIL</b></p>
     <div class="two">
-      <figure><img src="img/03-verify-sent.jpg" alt="ระบบแจ้งว่าส่งอีเมลยืนยันแล้ว" loading="lazy" width="560" height="1093"><figcaption>ระบบส่งอีเมลให้แล้ว</figcaption></figure>
-      <figure><img src="img/04-verify-mail.jpg" alt="อีเมลจาก XCELLA Prime พร้อมปุ่ม VERIFY EMAIL" loading="lazy" width="560" height="1093"><figcaption>กด VERIFY EMAIL ในอีเมล</figcaption></figure>
+      <figure><a href="img/03-verify-sent.jpg" target="_blank" rel="noopener"><img src="img/03-verify-sent.jpg" alt="ระบบแจ้งว่าส่งอีเมลยืนยันแล้ว" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ระบบส่งอีเมลให้แล้ว</figcaption></figure>
+      <figure><a href="img/04-verify-mail.jpg" target="_blank" rel="noopener"><img src="img/04-verify-mail.jpg" alt="อีเมลจาก XCELLA Prime พร้อมปุ่ม VERIFY EMAIL" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กด VERIFY EMAIL ในอีเมล</figcaption></figure>
     </div>
-    <figure><img src="img/05-verify-ok.jpg" alt="หน้าจอแจ้ง Email Verification Success" loading="lazy" width="560" height="1093"><figcaption>ขึ้นแบบนี้คือยืนยันสำเร็จ กด Back to Signin</figcaption></figure>
+    <figure><a href="img/05-verify-ok.jpg" target="_blank" rel="noopener"><img src="img/05-verify-ok.jpg" alt="หน้าจอแจ้ง Email Verification Success" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ขึ้นแบบนี้คือยืนยันสำเร็จ กด Back to Signin</figcaption></figure>
     <div class="tip"><b>ไม่เจออีเมล?</b> ดูในโฟลเดอร์ Junk หรือ Spam ก่อน ถ้ายังไม่มีให้รอสัก 2-3 นาทีแล้วเช็กใหม่</div>
   </section>
 
@@ -141,8 +141,8 @@
     <p>ใส่ Username กับ Password ที่ตั้งไว้ ติ๊กช่อง <b>ฉันไม่ใช่โปรแกรมอัตโนมัติ</b> แล้วกด <b>Login</b></p>
     <p>ระบบจะส่ง <b>รหัส 6 หลัก</b> ไปที่อีเมล ให้เปิดอีเมลมาดูแล้วนำมากรอกในช่อง <b>Verify Code</b> ภายใน 5 นาที จากนั้นกด <b>Verify</b></p>
     <div class="two">
-      <figure><img src="img/06-login.jpg" alt="หน้าเข้าสู่ระบบ XCELLA" loading="lazy" width="560" height="1093"><figcaption>กรอก Username และ Password</figcaption></figure>
-      <figure><img src="img/07-2fa.jpg" alt="ช่องกรอกรหัสยืนยัน 6 หลัก" loading="lazy" width="560" height="1093"><figcaption>กรอกรหัส 6 หลักจากอีเมล</figcaption></figure>
+      <figure><a href="img/06-login.jpg" target="_blank" rel="noopener"><img src="img/06-login.jpg" alt="หน้าเข้าสู่ระบบ XCELLA" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กรอก Username และ Password</figcaption></figure>
+      <figure><a href="img/07-2fa.jpg" target="_blank" rel="noopener"><img src="img/07-2fa.jpg" alt="ช่องกรอกรหัสยืนยัน 6 หลัก" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กรอกรหัส 6 หลักจากอีเมล</figcaption></figure>
     </div>
     <div class="tip">ขั้นตอนนี้ต้องทำ<b>ทุกครั้งที่ล็อกอิน</b> ไม่ใช่แค่ครั้งแรก เป็นระบบความปลอดภัยของโบรก</div>
   </section>
@@ -151,22 +151,22 @@
   <section class="step" id="s4">
     <span class="n">4</span><h2>ยอมรับเงื่อนไข</h2>
     <p>ครั้งแรกที่เข้าระบบจะมีหน้าเงื่อนไขการใช้บริการขึ้นมา 2 หน้า เลื่อนอ่านจนสุด ติ๊กช่องยอมรับ แล้วกด <b>ถัดไป / Accept</b></p>
-    <figure><img src="img/08-terms.jpg" alt="หน้ายอมรับเงื่อนไขการใช้บริการ" loading="lazy" width="560" height="1093"><figcaption>ติ๊กยอมรับแล้วกดถัดไป</figcaption></figure>
+    <figure><a href="img/08-terms.jpg" target="_blank" rel="noopener"><img src="img/08-terms.jpg" alt="หน้ายอมรับเงื่อนไขการใช้บริการ" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ติ๊กยอมรับแล้วกดถัดไป</figcaption></figure>
   </section>
 
   <!-- 5 -->
   <section class="step" id="s5">
     <span class="n">5</span><h2>ยืนยันตัวตน (KYC)</h2>
     <p>หน้าแรกจะมี 3 ขั้นให้ทำ คือ <b>1 KYC → 2 Deposit → 3 Open Account</b> เริ่มที่ปุ่ม <b>KYCs</b> สีแดง</p>
-    <figure><img src="img/09-dashboard.jpg" alt="หน้า Dashboard แสดง 3 ขั้นตอน" loading="lazy" width="560" height="1093"><figcaption>กดปุ่ม KYCs เพื่อเริ่มยืนยันตัวตน</figcaption></figure>
+    <figure><a href="img/09-dashboard.jpg" target="_blank" rel="noopener"><img src="img/09-dashboard.jpg" alt="หน้า Dashboard แสดง 3 ขั้นตอน" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กดปุ่ม KYCs เพื่อเริ่มยืนยันตัวตน</figcaption></figure>
     <ol>
       <li>กรอก <b>เลขบัตรประชาชน</b> ชื่อ นามสกุล เบอร์โทร อีเมล ที่อยู่ ประเทศ รหัสไปรษณีย์ แล้วกด <b>Save Personal Information</b></li>
       <li>อัปโหลด <b>รูปบัตรประชาชน</b> ในช่อง Document Upload</li>
       <li>กรอกชื่อบัญชี ธนาคาร เลขบัญชี แล้วอัปโหลด <b>รูปสมุดบัญชี</b> ในช่อง Bank Book</li>
     </ol>
     <div class="two">
-      <figure><img src="img/10-kyc-form.jpg" alt="แบบฟอร์มกรอกข้อมูลส่วนตัว KYC" loading="lazy" width="560" height="1093"><figcaption>กรอกข้อมูลตามบัตรประชาชน</figcaption></figure>
-      <figure><img src="img/11-kyc-upload.jpg" alt="อัปโหลดเอกสารและสมุดบัญชีธนาคาร" loading="lazy" width="560" height="1093"><figcaption>อัปโหลดบัตรและสมุดบัญชี</figcaption></figure>
+      <figure><a href="img/10-kyc-form.jpg" target="_blank" rel="noopener"><img src="img/10-kyc-form.jpg" alt="แบบฟอร์มกรอกข้อมูลส่วนตัว KYC" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · กรอกข้อมูลตามบัตรประชาชน</figcaption></figure>
+      <figure><a href="img/11-kyc-upload.jpg" target="_blank" rel="noopener"><img src="img/11-kyc-upload.jpg" alt="อัปโหลดเอกสารและสมุดบัญชีธนาคาร" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · อัปโหลดบัตรและสมุดบัญชี</figcaption></figure>
     </div>
     <div class="warn"><b>ชื่อบัญชีธนาคารต้องเป็นชื่อเดียวกับที่สมัคร</b> โบรกไม่รับเงินฝากจากบัญชีคนอื่น ถ้าไม่ตรงจะฝากเงินไม่ผ่าน</div>
     <div class="tip">ส่งเอกสารแล้วรอทีมงานโบรกตรวจสอบ ระหว่างรอทำขั้นตอนที่ 6 (ฝากเงิน) ต่อได้เลย</div>
@@ -183,8 +183,8 @@
       <dt>เงินเข้าภายใน</dt><dd>ประมาณ 2 นาที</dd>
     </dl>
     <div class="two">
-      <figure><img src="img/12-deposit-info.jpg" alt="หน้าฝากเงินแสดงขั้นต่ำและช่องทาง" loading="lazy" width="560" height="1093"><figcaption>เมนูฝากเงิน</figcaption></figure>
-      <figure><img src="img/13-deposit-pay.jpg" alt="เลือกวิธีจ่ายและใส่จำนวนเงิน" loading="lazy" width="560" height="1093"><figcaption>ใส่จำนวนเงิน ติ๊กยอมรับ แล้วทำรายการ</figcaption></figure>
+      <figure><a href="img/12-deposit-info.jpg" target="_blank" rel="noopener"><img src="img/12-deposit-info.jpg" alt="หน้าฝากเงินแสดงขั้นต่ำและช่องทาง" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · เมนูฝากเงิน</figcaption></figure>
+      <figure><a href="img/13-deposit-pay.jpg" target="_blank" rel="noopener"><img src="img/13-deposit-pay.jpg" alt="เลือกวิธีจ่ายและใส่จำนวนเงิน" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ใส่จำนวนเงิน ติ๊กยอมรับ แล้วทำรายการ</figcaption></figure>
     </div>
     <p>ใส่จำนวนเงินเป็นบาทหรือดอลลาร์ก็ได้ ระบบแปลงให้อัตโนมัติ จากนั้นติ๊ก <b>Agree our Terms</b> แล้วสแกน QR จ่ายเงินตามปกติ</p>
     <div class="warn"><b>ต้องโอนจากบัญชีธนาคารชื่อตัวเองเท่านั้น</b> โอนจากบัญชีคนอื่นโบรกจะไม่รับ และอาจใช้เวลาแก้ไขนาน</div>
@@ -194,15 +194,15 @@
   <section class="step" id="s7">
     <span class="n">7</span><h2>เปิดบัญชีเทรดแบบ CENT</h2>
     <p>ไปที่เมนู <b>Trading Account → Real</b> แล้วเลือกแท็บ <b>CENT</b> จากนั้นกด <b>Open Account</b></p>
-    <figure><img src="img/14-cent-tab.jpg" alt="แท็บ CENT ในหน้าบัญชีเทรด" loading="lazy" width="560" height="1093"><figcaption>ต้องอยู่ที่แท็บ CENT เท่านั้น</figcaption></figure>
+    <figure><a href="img/14-cent-tab.jpg" target="_blank" rel="noopener"><img src="img/14-cent-tab.jpg" alt="แท็บ CENT ในหน้าบัญชีเทรด" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · ต้องอยู่ที่แท็บ CENT เท่านั้น</figcaption></figure>
     <ol>
       <li><b>Account Type</b> เลือก <b>CENT-X</b></li>
       <li><b>Max Leverage</b> เลือก <b>1:500</b></li>
       <li><b>Referral Code</b> เว้นว่างไว้ได้</li>
     </ol>
     <div class="two">
-      <figure><img src="img/15-account-type.jpg" alt="เลือกประเภทบัญชี CENT-X" loading="lazy" width="560" height="1093"><figcaption>เลือก CENT-X</figcaption></figure>
-      <figure><img src="img/16-leverage.jpg" alt="เลือกเลเวอเรจ 1:500" loading="lazy" width="560" height="1093"><figcaption>เลือกเลเวอเรจ 1:500</figcaption></figure>
+      <figure><a href="img/15-account-type.jpg" target="_blank" rel="noopener"><img src="img/15-account-type.jpg" alt="เลือกประเภทบัญชี CENT-X" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · เลือก CENT-X</figcaption></figure>
+      <figure><a href="img/16-leverage.jpg" target="_blank" rel="noopener"><img src="img/16-leverage.jpg" alt="เลือกเลเวอเรจ 1:500" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · เลือกเลเวอเรจ 1:500</figcaption></figure>
     </div>
     <div class="stop"><b>ต้องเป็นบัญชี CENT (CENT-X) เท่านั้น</b> EA ของ IRT GOLD ใช้กับบัญชีประเภทอื่นไม่ได้ ถ้าเปิดผิดประเภทต้องเปิดใหม่</div>
     <div class="warn">ถ้าปุ่มขึ้นเป็น <b>Please KYC</b> สีแดง แปลว่าเอกสารยังตรวจไม่ผ่าน ต้องรอให้ KYC ผ่านก่อนถึงจะเปิดบัญชีได้</div>
@@ -212,7 +212,7 @@
   <section class="step" id="s8">
     <span class="n">8</span><h2>รับเลขพอร์ต MT5</h2>
     <p>กด <b>Send Request</b> เพื่อส่งคำขอเปิดบัญชี รอระบบอนุมัติสักครู่ แล้วบัญชีจะขึ้นมาในหน้าเดียวกัน พร้อม <b>เลขพอร์ต</b> และรหัสผ่านสำหรับเข้า MT5</p>
-    <figure><img src="img/17-send-request.jpg" alt="ส่งคำขอเปิดบัญชีและบัญชี MT5 ที่ได้รับ" loading="lazy" width="560" height="1093"><figcaption>บัญชีที่เปิดสำเร็จจะแสดงเลขพอร์ตและประเภท CENT-X</figcaption></figure>
+    <figure><a href="img/17-send-request.jpg" target="_blank" rel="noopener"><img src="img/17-send-request.jpg" alt="ส่งคำขอเปิดบัญชีและบัญชี MT5 ที่ได้รับ" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · บัญชีที่เปิดสำเร็จจะแสดงเลขพอร์ตและประเภท CENT-X</figcaption></figure>
     <div class="tip"><b>จดเลขพอร์ตไว้</b> ต้องใช้กรอกตอนลงทะเบียนกับ IRT GOLD และใช้ตอนทีมงานติดตั้ง EA ให้</div>
   </section>
 
@@ -221,7 +221,7 @@
     <span class="n">9</span><h2>โอนเงินเข้าพอร์ต</h2>
     <p>เงินที่ฝากเข้ามาจะอยู่ใน <b>Wallet</b> ก่อน ยังเทรดไม่ได้ ต้องโอนเข้าพอร์ต MT5 อีกทอด</p>
     <p>ไปที่ <b>Finance → Internal Transfer</b> เลือก <b>Wallet to MT5</b> → เลือกเลขพอร์ตปลายทาง → ใส่จำนวนเงิน → กด <b>Confirm Now</b></p>
-    <figure><img src="img/18-transfer.jpg" alt="โอนเงินจาก Wallet เข้าพอร์ต MT5" loading="lazy" width="560" height="1093"><figcaption>โอนจาก Wallet เข้าพอร์ต MT5</figcaption></figure>
+    <figure><a href="img/18-transfer.jpg" target="_blank" rel="noopener"><img src="img/18-transfer.jpg" alt="โอนเงินจาก Wallet เข้าพอร์ต MT5" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · โอนจาก Wallet เข้าพอร์ต MT5</figcaption></figure>
     <div class="tip">ยอดในพอร์ต CENT จะแสดงเป็นหน่วย <b>USC</b> — ฝาก $100 จะเห็นเป็น <b>10,000 USC</b> ไม่ใช่เงินเพิ่มนะครับ เป็นแค่หน่วยที่ต่างกัน</div>
     <div class="warn">บัญชีที่มียอด 0 จะถูกโบรกปิดอัตโนมัติใน 90 วัน และบัญชีที่มียอดต่ำกว่า $5 จะถูกปิดใน 12 เดือน</div>
   </section>
