@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>วิธีเช่า VPS สำหรับรัน EA — IRT Gold Co-Pilot</title>
+<meta name="description" content="คู่มือเช่า VPS Forex ทีละขั้นตอน สำหรับรัน IRT Gold Co-Pilot ตลอด 24 ชั่วโมง เริ่มต้น 200 บาทต่อเดือน">
+<meta property="og:title" content="วิธีเช่า VPS สำหรับรัน EA">
+<meta property="og:description" content="8 ขั้นตอน ตั้งแต่สมัคร เลือกแพ็กเกจ จ่ายเงิน จนได้ข้อมูลเข้าเครื่อง พร้อมภาพประกอบ">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --panel: #f7f8fa; --ink: #1f2937; --muted: #6b7280; --line: #e5e7eb;
+    --brand: #1e3a5f; --xc: #5468e7; --ok: #15803d; --ok-bg: #eaf6ef;
+    --warn: #92400e; --warn-bg: #fef3c7; --stop: #b91c1c; --stop-bg: #fef2f2; --line-green: #06c755;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.75 'Sarabun', Tahoma, sans-serif; }
+  .wrap { max-width: 600px; margin: 0 auto; padding: 24px 16px 110px; }
+
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .mark { width: 38px; height: 38px; border-radius: 10px; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 12px; }
+  h1 { font-size: 24px; margin: 14px 0 6px; color: var(--brand); line-height: 1.35; }
+  .lede { color: var(--muted); margin: 0 0 18px; }
+
+  .box { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--panel); margin-bottom: 18px; }
+  .box h2 { font-size: 16px; margin: 0 0 8px; color: var(--brand); }
+  .box ul { margin: 0; padding-left: 20px; }
+  .box li + li { margin-top: 4px; }
+
+  .toc { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin-bottom: 26px; }
+  .toc ol { margin: 6px 0 0; padding-left: 22px; }
+  .toc a { color: var(--brand); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .step { border-top: 2px solid var(--line); padding-top: 22px; margin-top: 30px; }
+  .step > .n { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; font-size: 15px; }
+  .step h2 { display: inline; font-size: 20px; margin: 0 0 0 8px; color: var(--brand); vertical-align: middle; }
+  .step p { margin: 12px 0; }
+  .step ol, .step ul { margin: 12px 0; padding-left: 22px; }
+  .step li + li { margin-top: 6px; }
+
+  figure { margin: 16px 0; }
+  figure a { display: block; }
+  figure img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 12px; }
+  figcaption { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+  .two { display: grid; gap: 14px; }
+
+  .tip, .warn, .stop { border-radius: 0 10px 10px 0; padding: 10px 14px; margin: 14px 0; font-size: 15px; }
+  .tip { border-left: 4px solid var(--ok); background: var(--ok-bg); }
+  .warn { border-left: 4px solid #d97706; background: var(--warn-bg); color: var(--warn); }
+  .stop { border-left: 4px solid var(--stop); background: var(--stop-bg); color: var(--stop); }
+  .tip b, .warn b, .stop b { font-weight: 700; }
+
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 15px; margin: 12px 0; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; font-weight: 600; }
+
+  .btn { display: inline-block; background: var(--xc); color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; }
+  .btn.line { background: var(--line-green); }
+  .btn.navy { background: var(--brand); }
+
+  .done { border: 2px solid var(--brand); border-radius: 14px; padding: 18px; margin-top: 34px; }
+  .done h2 { margin: 0 0 8px; font-size: 19px; color: var(--brand); }
+
+  .fab { position: fixed; right: 14px; bottom: 14px; background: var(--line-green); color: #fff; text-decoration: none;
+         padding: 12px 20px; border-radius: 26px; font-weight: 700; box-shadow: 0 6px 20px rgba(6,199,85,.35); }
+  .fine { font-size: 13px; color: var(--muted); text-align: center; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><div class="mark">IRT</div><b>IRT Gold Co-Pilot</b></div>
+  <h1>วิธีเช่า VPS สำหรับรัน EA</h1>
+  <p class="lede">VPS คือคอมพิวเตอร์ที่เปิดทิ้งไว้ตลอด 24 ชั่วโมงบนอินเทอร์เน็ต ใช้รัน EA แทนคอมที่บ้าน ทำตาม 8 ขั้นตอนนี้ ใช้เวลาประมาณ 10 นาที</p>
+
+  <div class="box">
+    <h2>ทำไมต้องมี VPS</h2>
+    <ul>
+      <li>EA ต้องเปิดค้างไว้ตลอดเวลาถึงจะรับสัญญาณและดูแลไม้ให้ได้</li>
+      <li>ถ้ารันบนคอมที่บ้าน ต้องไม่ปิดเครื่อง ไม่ให้เครื่อง sleep และเน็ตต้องไม่หลุด</li>
+      <li>VPS เปิดตลอด ไฟไม่ดับ เน็ตไม่หลุด และทีมงานเข้าไปติดตั้งให้ได้จากระยะไกล</li>
+    </ul>
+  </div>
+
+  <div class="tip"><b>แพ็กเกจที่พอใช้คือตัวเล็กสุด P1 เดือนละ 200 บาท</b> (RAM 3 GB · 1 CPU · SSD 32 GB · Windows) รัน MT5 หนึ่งตัวพร้อมตัวช่วยอัปเดตของ IRT GOLD ได้สบาย ไม่ต้องซื้อตัวใหญ่กว่านี้</div>
+
+  <div class="toc">
+    <b>8 ขั้นตอน</b>
+    <ol>
+      <li><a href="#v1">สมัครสมาชิก</a></li>
+      <li><a href="#v2">เข้าสู่ระบบ</a></li>
+      <li><a href="#v3">เลือกแพ็กเกจ</a></li>
+      <li><a href="#v4">เลือกรอบชำระเงิน</a></li>
+      <li><a href="#v5">ตรวจตะกร้าสินค้า</a></li>
+      <li><a href="#v6">จ่ายเงิน</a></li>
+      <li><a href="#v7">รอเครื่องพร้อมใช้งาน</a></li>
+      <li><a href="#v8">ส่งข้อมูลเข้าเครื่องให้ทีมงาน</a></li>
+    </ol>
+  </div>
+
+  <section class="step" id="v1">
+    <span class="n">1</span><h2>สมัครสมาชิก</h2>
+    <p>เปิดลิงก์ด้านล่าง แล้วกด <b>สมัครสมาชิก</b> กรอกชื่อ นามสกุล อีเมล เบอร์โทร และตั้งรหัสผ่าน</p>
+    <p><a class="btn" id="vpsBtn" href="#" target="_blank" rel="noopener">เปิดเว็บเช่า VPS</a></p>
+    <figure><a href="img/v01-register.jpg?v=1" target="_blank" rel="noopener"><img src="img/v01-register.jpg?v=1" alt="ฟอร์มสมัครสมาชิก" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · ฟอร์มสมัครสมาชิก</figcaption></figure>
+    <figure><a href="img/v02-terms.jpg?v=1" target="_blank" rel="noopener"><img src="img/v02-terms.jpg?v=1" alt="กรอกรหัสผ่านและติ๊กยอมรับเงื่อนไข" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · กรอกรหัสผ่านและติ๊กยอมรับเงื่อนไข</figcaption></figure>
+    <div class="tip">ใช้อีเมลจริงที่เปิดดูได้ เพราะใบแจ้งหนี้และรหัสผ่านเครื่องจะส่งเข้าอีเมลนี้ · อย่าลืมติ๊กยอมรับเงื่อนไขก่อนกดสมัคร</div>
+  </section>
+
+  <section class="step" id="v2">
+    <span class="n">2</span><h2>เข้าสู่ระบบ</h2>
+    <p>ใส่อีเมลและรหัสผ่านที่เพิ่งตั้งไว้ แล้วกด <b>เข้าสู่ระบบ</b></p>
+    <figure><a href="img/v03-login.jpg?v=1" target="_blank" rel="noopener"><img src="img/v03-login.jpg?v=1" alt="เข้าสู่ระบบด้วยอีเมลที่สมัคร" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · เข้าสู่ระบบด้วยอีเมลที่สมัคร</figcaption></figure>
+  </section>
+
+  <section class="step" id="v3">
+    <span class="n">3</span><h2>เลือกแพ็กเกจ</h2>
+    <p>เข้าเมนู <b>เช่าเซิร์ฟเวอร์ VPS Forex</b> แล้วเลือก <b>VPS Forex P1</b> กด <b>สั่งซื้อเดี๋ยวนี้</b></p>
+    <figure><a href="img/v04-plan.jpg?v=1" target="_blank" rel="noopener"><img src="img/v04-plan.jpg?v=1" alt="แพ็กเกจ P1 เดือนละ 200 บาท" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · แพ็กเกจ P1 เดือนละ 200 บาท</figcaption></figure>
+    <dl class="kv">
+      <dt>รายเดือน</dt><dd>200 บาท</dd>
+      <dt>ราย 1 ปี</dt><dd>1,440 บาท (เฉลี่ยเดือนละ 120 บาท)</dd>
+      <dt>ราย 2 ปี</dt><dd>2,400 บาท (เฉลี่ยเดือนละ 100 บาท)</dd>
+    </dl>
+    <div class="tip">จ่ายรายปีถูกกว่ารายเดือนราว 40% ถ้าตั้งใจใช้ยาวเลือกรายปีคุ้มกว่า</div>
+  </section>
+
+  <section class="step" id="v4">
+    <span class="n">4</span><h2>เลือกรอบชำระเงิน</h2>
+    <p>หน้าถัดมาจะสรุปสเปกเครื่องให้ดู เลื่อนลงมาที่ <b>เลือกรอบชำระเงิน</b> เลือกแบบที่ต้องการ แล้วกดปุ่มด้านล่าง</p>
+    <figure><a href="img/v05-billing.jpg?v=1" target="_blank" rel="noopener"><img src="img/v05-billing.jpg?v=1" alt="สรุปสเปกและเลือกรอบชำระเงิน" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · สรุปสเปกและเลือกรอบชำระเงิน</figcaption></figure>
+  </section>
+
+  <section class="step" id="v5">
+    <span class="n">5</span><h2>ตรวจตะกร้าสินค้า</h2>
+    <p>ตรวจว่ารายการและยอดเงินถูกต้อง ถ้ามีโค้ดส่วนลดใส่ตรงช่อง <b>โค้ดส่วนลด</b> แล้วกด <b>ชำระเงิน</b></p>
+    <figure><a href="img/v06-cart.jpg?v=1" target="_blank" rel="noopener"><img src="img/v06-cart.jpg?v=1" alt="ตะกร้าสินค้า กดชำระเงิน" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · ตะกร้าสินค้า กดชำระเงิน</figcaption></figure>
+  </section>
+
+  <section class="step" id="v6">
+    <span class="n">6</span><h2>จ่ายเงิน</h2>
+    <p>เลือกช่องทาง <b>PromptPay (QR Code)</b> หรือบัตรเครดิต ติ๊กยอมรับเงื่อนไข แล้วกด <b>ดำเนินการสั่งซื้อ</b> จากนั้นสแกนจ่ายตามปกติ</p>
+    <figure><a href="img/v07-paymethod.jpg?v=1" target="_blank" rel="noopener"><img src="img/v07-paymethod.jpg?v=1" alt="เลือก PromptPay แล้วกดดำเนินการสั่งซื้อ" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · เลือก PromptPay แล้วกดดำเนินการสั่งซื้อ</figcaption></figure>
+  </section>
+
+  <section class="step" id="v7">
+    <span class="n">7</span><h2>รอเครื่องพร้อมใช้งาน</h2>
+    <p>หลังจ่ายเงินสำเร็จ ระบบจะสร้างเครื่องให้อัตโนมัติภายใน <b>1-10 นาที</b> เมื่อพร้อมแล้วจะเห็นรายการเครื่องในหน้าสมาชิก ตรงหัวข้อ <b>บริการ/ผลิตภัณฑ์ที่คุณใช้งานอยู่</b></p>
+    <figure><a href="img/v08-service.jpg?v=1" target="_blank" rel="noopener"><img src="img/v08-service.jpg?v=1" alt="เครื่องที่พร้อมใช้งานจะขึ้นในหน้าสมาชิก" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · เครื่องที่พร้อมใช้งานจะขึ้นในหน้าสมาชิก</figcaption></figure>
+  </section>
+
+  <section class="step" id="v8">
+    <span class="n">8</span><h2>ส่งข้อมูลเข้าเครื่องให้ทีมงาน</h2>
+    <p>กดเข้าไปที่ชื่อเครื่อง จะเห็นหน้าจัดการ พร้อมปุ่มเปิด/ปิด/รีสตาร์ทเครื่อง</p>
+    <figure><a href="img/v09-manage.jpg?v=1" target="_blank" rel="noopener"><img src="img/v09-manage.jpg?v=1" alt="หน้าจัดการเครื่อง" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · หน้าจัดการเครื่อง</figcaption></figure>
+    <p>เลื่อนลงมาที่หัวข้อ <b>ข้อมูลเซิร์ฟเวอร์</b> จะมี 3 อย่างที่ทีมงานต้องใช้</p>
+    <figure><a href="img/v10-server.jpg?v=1" target="_blank" rel="noopener"><img src="img/v10-server.jpg?v=1" alt="ข้อมูลเข้าเครื่อง — IP, Username, Password" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · ข้อมูลเข้าเครื่อง — IP, Username, Password</figcaption></figure>
+    <dl class="kv">
+      <dt>IP</dt><dd>เลขเครื่อง เช่น 123.45.67.89:1961</dd>
+      <dt>Username</dt><dd>ปกติเป็น administrator</dd>
+      <dt>Password</dt><dd>กดรูปตาเพื่อดูรหัส</dd>
+    </dl>
+    <div class="stop"><b>ส่ง 3 อย่างนี้ทางไลน์แอดมินเท่านั้น</b> ห้ามโพสต์ในกลุ่มหรือส่งให้คนอื่น เพราะใครมีข้อมูลนี้ก็เข้าเครื่องคุณได้</div>
+    <div class="tip">ส่งแล้วทีมงานจะเข้าไปติดตั้ง MT5 และ EA ให้ทั้งหมด ลูกค้าไม่ต้องทำอะไรต่อ</div>
+  </section>
+
+  <div class="done">
+    <h2>ทำครบแล้ว ขั้นตอนต่อไป</h2>
+    <p>ส่ง <b>IP · Username · Password</b> ของเครื่อง พร้อม <b>เลขพอร์ต MT5</b> ให้ทีมงานทางไลน์ แล้วรอรับการติดตั้งได้เลย</p>
+    <p style="margin-bottom:0">
+      <a class="btn navy" href="./signup.html">คู่มือสมัครบัญชีเทรด</a>
+      &nbsp;
+      <a class="btn line" id="lineBtn" href="#" target="_blank" rel="noopener">สอบถามแอดมิน</a>
+    </p>
+  </div>
+
+  <p class="fine">การลงทุนมีความเสี่ยง ผลในอดีตไม่ได้รับประกันผลในอนาคต<br>© IRT GOLD · Trading Education &amp; Software</p>
+</div>
+
+<a class="fab" id="fabLine" href="#" target="_blank" rel="noopener">สอบถามแอดมิน</a>
+
+<script>
+  var LINE_URL = 'https://lin.ee/sbP01Pa';
+  var VPS_LINK = 'https://client.autovpsforex.com/aff.php?aff=324';
+  var $ = function (id) { return document.getElementById(id); };
+  $('lineBtn').href = LINE_URL;
+  $('fabLine').href = LINE_URL;
+  $('vpsBtn').href = VPS_LINK;
+</script>
+</body>
+</html>
