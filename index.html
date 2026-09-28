@@ -90,6 +90,9 @@
   .fab:hover { background: #05b34c; }
   .fab svg { width: 20px; height: 20px; fill: #fff; }
   @media (max-width: 420px) { .fab { padding: 11px 16px; font-size: 14px; } }
+  .snap { background:#fff7e6; border:2px dashed #f59e0b; border-radius:14px; padding:14px 16px; margin:18px 0; text-align:left; }
+  .snap-h { font-weight:700; color:#b45309; margin-bottom:6px; }
+  .snap p { margin:0; color:#78350f; line-height:1.6; }
 </style>
 </head>
 <body>
@@ -218,6 +221,10 @@
   <div class="done" id="done">
     <div class="big">✓</div>
     <h2>ลงทะเบียนเรียบร้อย</h2>
+    <div class="snap">
+      <div class="snap-h">📸 ขั้นตอนสุดท้าย — แคปหน้าจอนี้ส่งให้แอดมิน</div>
+      <p>กดแคปหน้าจอตอนนี้เลย แล้วส่งรูปทาง LINE แอดมิน ทีมงานจะใช้ <b>รหัสลงทะเบียน</b> นี้ตรวจสอบและอนุมัติให้เร็วขึ้น</p>
+    </div>
     <div>รหัสลงทะเบียนของคุณ</div>
     <div class="code" id="regId"></div>
     <div class="next">
@@ -227,7 +234,7 @@
         <li>ทีมงานติดต่อกลับเพื่อเข้าไปติดตั้ง EA บน VPS ให้</li>
       </ol>
     </div>
-    <a class="line" id="lineBtn2" href="#">ติดต่อแอดมิน LINE</a>
+    <a class="line" id="lineBtn2" href="#">ส่งรูปให้แอดมินทาง LINE</a>
   </div>
 
   <p class="fine">การลงทุนมีความเสี่ยง ผลในอดีตไม่ได้รับประกันผลในอนาคต<br>© IRT GOLD · Trading Education &amp; Software</p>
