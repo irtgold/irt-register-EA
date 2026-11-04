@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IRT Gold Lab V.2.0 — รายงานผล EA ทองคำ</title>
+<!-- #property copyright "IRT GOLD" · สร้างจาก tools/build_lab_report.py · ไฟล์เดียวจบ ไม่พึ่งเว็บหลัก -->
+<meta name="description" content="รายงานผล IRT Gold Lab V.2.0 EA ทองคำ XAUUSD เก็บกำไรรายวันตามเป้า ดูพอร์ตลูกค้าจริงวันนี้และผล Backtest ผลในอดีตไม่รับประกันผลในอนาคต">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IRT GOLD">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="IRT Gold Lab V.2.0 — รายงานผล EA ทองคำ เก็บกำไรวันละนิด">
+<meta property="og:description" content="ดูพอร์ตลูกค้าจริงวันนี้ และผล Backtest · ถึงเป้ากำไรรายวันแล้วหยุด เน้นรันยาว DD ต่ำ">
+<meta property="og:url" content="https://irtgold.github.io/irt-register-EA/lab.html">
+<meta property="og:image" content="https://irtgold.github.io/irt-register-EA/img/og-lab.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Prompt:ital,wght@0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --panel:#ffffff; --soft:#f6f8fb; --line:#e5ebf3;
+  --ink:#13233f; --ink-2:#475569; --ink-3:#7b8798;
+  --gold:#c9a227; --gold-d:#a8841c;
+  --up:#15803d; --up-bg:#effbf2; --dn:#c62828; --dn-bg:#fdf1f1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#ffffff}
+body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.brand{font-family:Prompt,sans-serif;font-weight:800;font-size:19px;letter-spacing:.02em}
+.brand b{color:var(--gold-d)}
+.top .go{font:inherit;font-size:13px;font-weight:700;border:0;border-radius:99px;padding:9px 18px;cursor:pointer;color:#2b2000;background:linear-gradient(135deg,#f3cf55,#c9a227)}
+.hero{text-align:center;padding:40px 0 26px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--ink-3)}
+.hero h1{font-family:Prompt,sans-serif;font-weight:800;font-size:clamp(30px,6vw,56px);line-height:1.15;margin:12px 0 12px}
+.hero h1 em{display:block;font-style:italic;color:var(--gold-d)}
+.hero .lead{max-width:620px;margin:0 auto 22px;color:var(--ink-2);font-size:clamp(15px,1.8vw,17.5px)}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta .ea-btn{height:48px;padding:0 24px;font-size:15px;border-radius:99px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:620px;margin:28px auto 0}
+.chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 8px;box-shadow:0 1px 2px rgba(15,31,61,.05),0 6px 20px rgba(15,31,61,.06)}
+.chip b{display:block;font-family:Prompt,sans-serif;font-size:clamp(20px,4vw,28px);font-weight:800}
+.chip b.up{color:var(--up)}
+.chip span{font-size:12px;color:var(--ink-3)}
+.note{font-size:12px;color:var(--ink-3);max-width:620px;margin:12px auto 0}
+.app{padding:24px 0 10px;border-top:1px solid var(--line);margin-top:6px}
+.foot{margin-top:26px;padding:22px 0 34px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);line-height:1.8}
+.foot p{margin:0 0 8px}
+@media (max-width:560px){.wrap{padding:0 14px}.hero{padding:28px 0 20px}.chips{gap:8px}.chip{padding:10px 4px}}
+/* ===== ชุดแสดงผล IRT LAB (ealab.css) ===== */
+/* IRT GOLD — หน้า IRT LAB · คลาสทั้งหมดขึ้นต้นด้วย ea- (กันชนกับ CSS เดิม) · สีใช้ตัวแปรของ Dashboard จึงตามโหมดสว่าง/มืดเอง */
+#ea-main { --ea-gold-bg: rgba(201,162,39,.14); --ea-shadow: 0 1px 2px rgba(15,31,61,.05), 0 6px 20px rgba(15,31,61,.06); }
+[data-theme="dark"] #ea-main { --ea-shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25); }
+.ea-tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 20px; overflow-x: auto; }
+.ea-tab { font: inherit; font-weight: 700; font-size: 14px; background: none; border: 0; color: var(--ink-3); padding: 10px 14px; border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; display: flex; gap: 8px; align-items: center; }
+.ea-tab.on { color: var(--ink); border-bottom-color: var(--gold); }
+.ea-tab i { font-style: normal; font-size: 11px; background: var(--soft); border: 1px solid var(--line); border-radius: 99px; padding: 0 8px; color: var(--ink-2); }
+.ea-pane { display: none; } .ea-pane.on { display: block; }
+.ea-btn { font: inherit; font-size: 13px; font-weight: 700; border-radius: 10px; padding: 9px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--panel); color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: .15s; }
+.ea-btn:hover { border-color: var(--gold); }
+.ea-btn:disabled { opacity: .45; cursor: not-allowed; }
+.ea-btn.gold { background: linear-gradient(135deg, #f3cf55, #c9a227); border-color: transparent; color: #2b2000; }
+.ea-btn.gold:hover { filter: brightness(1.05); }
+.ea-btn.soft { background: var(--ea-gold-bg); border-color: rgba(201,162,39,.45); color: var(--gold-d); }
+.ea-btn svg { width: 17px; height: 17px; }
+.ea-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--ea-shadow); padding: 18px; position: relative; overflow: hidden; }
+.ea-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.ea-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ea-tt { flex: 1; min-width: 0; }
+.ea-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.ea-ico svg { width: 24px; height: 24px; }
+.ea-ico.g { background: linear-gradient(135deg, #f3cf55, #c9a227); color: #2b2000; }
+.ea-ico.m { background: var(--soft); color: var(--ink-3); border: 1px solid var(--line); }
+.ea-name { font-weight: 800; font-size: 16px; line-height: 1.2; color: var(--ink); }
+.ea-type { font-size: 12px; color: var(--ink-3); }
+.ea-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; border-radius: 99px; padding: 2px 10px; white-space: nowrap; }
+.ea-pill.live { background: var(--up-bg); color: var(--up); }
+.ea-pill.live i { width: 7px; height: 7px; border-radius: 50%; background: var(--up); animation: eaPulse 1.6s infinite; }
+@keyframes eaPulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.55); } 100% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
+.ea-pill.soon { background: var(--ea-gold-bg); color: var(--gold-d); border: 1px solid rgba(201,162,39,.35); }
+.ea-desc { font-size: 13px; color: var(--ink-2); margin: 0 0 12px; min-height: 40px; }
+.ea-kpis, .ea-mk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0 12px; }
+.ea-mk { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 14px 0; }
+.ea-kpi { background: var(--soft); border-radius: 10px; padding: 8px 10px; }
+.ea-kl { font-size: 11px; color: var(--ink-3); }
+.ea-kv { font-weight: 800; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--ink); }
+.ea-kv.up, .up { color: var(--up); } .dn { color: var(--dn); }
+.ea-spark { width: 100%; height: 64px; display: block; }
+.ea-chart { width: 100%; height: 200px; display: block; background: var(--soft); border-radius: 12px; }
+.ea-meta { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+.ea-acts { display: flex; gap: 8px; margin-top: 12px; } .ea-acts .ea-btn { flex: 1; }
+.ea-btn.cta { width: 100%; margin-top: 10px; padding: 11px 14px; font-size: 14px; }
+.ea-featured { border: 1.5px solid var(--gold); }
+.ea-featured::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, #f3cf55, #c9a227); }
+.ea-card.locked .ea-blur { filter: blur(5px); opacity: .55; pointer-events: none; user-select: none; }
+.ea-lock { position: absolute; left: 0; right: 0; bottom: 0; top: 120px; display: grid; place-items: center; text-align: center; padding: 16px; }
+.ea-lk { width: 46px; height: 46px; border-radius: 50%; background: var(--panel); border: 1px solid var(--line); display: grid; place-items: center; margin: 0 auto 8px; box-shadow: var(--ea-shadow); }
+.ea-lk svg { width: 20px; height: 20px; color: var(--gold-d); }
+.ea-lock b { display: block; font-size: 15px; color: var(--ink); } .ea-lock span { font-size: 12px; color: var(--ink-3); }
+/* พอร์ตลูกค้า */
+.ea-asof { font-size: 12.5px; color: var(--ink-3); margin: -4px 0 12px; } .ea-asof b { color: var(--ink-2); }
+.ea-ports { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.ea-pcard { display: flex; flex-direction: column; }
+.ea-phead { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.ea-pname { font-weight: 800; font-size: 18px; color: var(--ink); }
+.ea-pusd { display: block; font-weight: 700; font-size: 14px; color: var(--gold-d); margin-top: 1px; }
+.ea-pusd.inl { display: inline; font-size: 13px; }
+.ea-pmeta { font-size: 12px; color: var(--ink-3); line-height: 1.45; }
+.ea-pcard .ea-pmeta { min-height: 2.9em; }
+.ea-today { margin: 14px 0 4px; padding: 14px; border-radius: 12px; background: var(--up-bg); }
+.ea-tl { font-size: 12px; color: var(--ink-2); display: flex; justify-content: space-between; gap: 8px; }
+.ea-tv { font-weight: 800; font-size: clamp(24px, 2.6vw, 30px); color: var(--up); font-variant-numeric: tabular-nums; line-height: 1.25; white-space: nowrap; }
+.ea-tv em { font-style: normal; font-size: 15px; font-weight: 700; margin-left: 6px; }
+.ea-bar { height: 8px; border-radius: 99px; background: rgba(21,128,61,.15); overflow: hidden; margin-top: 8px; }
+.ea-bar i { display: block; height: 100%; background: var(--up); border-radius: 99px; }
+.ea-st { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--ink-2); margin-top: 8px; min-height: 18px; }
+.ea-st .ok { color: var(--up); font-weight: 700; white-space: nowrap; }
+.ea-grid6 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; margin-top: 10px; }
+.ea-cell { display: flex; flex-direction: column; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.ea-cell > span { font-size: 11.5px; color: var(--ink-3); }
+.ea-cell b { font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); } .ea-cell b.up { color: var(--up); }
+.ea-bottom { margin-top: auto; padding-top: 6px; }
+.ea-bottom .ea-btn.soft { width: 100%; margin-top: 10px; padding: 11px 14px; font-size: 14px; }
+.ea-foot, .ea-note { font-size: 12px; color: var(--ink-3); margin: 16px 0 0; line-height: 1.6; }
+/* หน้าต่างซ้อน */
+.ea-ov { position: fixed; inset: 0; background: rgba(8,15,30,.6); display: none; align-items: flex-start; justify-content: center; padding: 32px 16px; overflow: auto; z-index: 3000; }
+.ea-ov.on { display: flex; }
+.ea-modal { background: var(--panel); color: var(--ink); border-radius: 16px; width: 100%; max-width: 820px; box-shadow: 0 20px 60px rgba(0,0,0,.35); overflow: hidden; }
+.ea-mh { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.ea-mh h3 { margin: 0; font-size: 18px; color: var(--ink); }
+.ea-x { margin-left: auto; font-size: 20px; line-height: 1; padding: 6px 12px; }
+.ea-mb { padding: 18px 20px 22px; }
+.ea-sec { font-weight: 800; margin: 18px 0 6px; font-size: 14px; color: var(--ink); }
+.ea-tw { overflow-x: auto; }
+.ea-modal table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ea-modal th, .ea-modal td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.ea-modal th { color: var(--ink-3); font-weight: 700; font-size: 12px; }
+.ea-modal .r { text-align: right; font-variant-numeric: tabular-nums; }
+.ea-tag { font-size: 11px; font-weight: 800; border-radius: 6px; padding: 1px 7px; }
+.ea-tag.b { background: var(--up-bg); color: var(--up); } .ea-tag.s { background: var(--dn-bg); color: var(--dn); }
+.ea-mbars { display: flex; align-items: flex-end; gap: 6px; height: 120px; margin-top: 8px; }
+.ea-mbars > div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font-size: 10.5px; color: var(--ink-3); }
+.ea-mbars i { display: block; width: 100%; border-radius: 5px 5px 0 0; background: var(--up); }
+.ea-mbars span { font-weight: 800; } .ea-mbars em { font-style: normal; }
+.ea-steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+.ea-steps li { position: relative; padding: 12px 12px 12px 52px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; background: var(--soft); }
+.ea-steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 12px; top: 12px; width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #f3cf55, #c9a227); color: #2b2000; font-weight: 800; display: grid; place-items: center; }
+.ea-steps b { display: block; color: var(--ink); } .ea-steps li > span { display: block; font-size: 13px; color: var(--ink-2); }
+.ea-steps .ea-btn { margin-top: 8px; }
+@media (max-width: 560px) { .ea-card { padding: 16px; } .ea-tv { font-size: 26px; } .ea-modal { border-radius: 14px; } .ea-ov { padding: 16px 10px; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand">IRT <b>GOLD</b> LAB</div><button class="go" type="button" id="go-top">เชื่อมต่อพอร์ตของฉัน</button></div>
+
+  <header class="hero">
+    <span class="eyebrow">IRT LAB</span>
+    <h1>EA ทองคำ<em>เก็บกำไรวันละนิด.</em></h1>
+    <p class="lead">IRT Gold Lab V.2.0 ตั้งเป้ากำไรรายวันไว้ ถึงเป้าแล้วหยุด ไม่โลภ เน้นรันยาว DD ต่ำ ดูแลพอร์ตแทนคุณอัตโนมัติ ดูผลจากพอร์ตลูกค้าจริงและ Backtest ได้ในหน้านี้</p>
+    <div class="cta">
+      <button class="ea-btn gold" type="button" id="go-ports">ดูพอร์ตลูกค้าจริงวันนี้</button>
+      <button class="ea-btn" type="button" id="go-connect">เชื่อมต่อพอร์ตของฉัน</button>
+    </div>
+    <div class="chips">
+      <div class="chip"><b class="up">+110%</b><span>กำไร Backtest ม.ค.–พ.ย. 69</span></div>
+      <div class="chip"><b>24.6%</b><span>DD สูงสุด (Equity)</span></div>
+      <div class="chip"><b>89.8%</b><span>อัตราชนะ</span></div>
+    </div>
+    <p class="note">Backtest 1 ม.ค.–4 พ.ย. 69 · ทุน 200,000 USC (2,000 USD) · เป้า 0.5% ต่อวัน · ราคา Tick จริง 100% · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p>
+  </header>
+
+  <main class="app"><div id="ea-main"></div></main>
+
+  <footer class="foot">
+    <p>สัญญาณคำนวณอัตโนมัติจากอินดิเคเตอร์ IRT GOLD เพื่อประกอบการตัดสินใจ ไม่ใช่คำแนะนำการลงทุน · การเทรดทองคำมีความเสี่ยงสูง ควรบริหารเงินทุนและตั้ง Stop Loss ทุกครั้ง · © IRT GOLD</p>
+    <p>คำเตือนความเสี่ยง: การเทรดทองคำและสินค้าที่มีอัตราทดสูงมีความเสี่ยงสูง อาจสูญเสียเงินทุนทั้งหมด ผล Backtest และผลพอร์ตลูกค้าเป็นข้อมูลในอดีต ไม่รับประกันผลในอนาคต</p>
+  </footer>
+</div>
+
+<script>
+/* IRT GOLD — หน้า IRT LAB (EA) · #property copyright "IRT GOLD"
+   4 พ.ย. 69 ผู้ใช้สั่งเอาตัวอย่างขึ้นเว็บจริง · ข้อมูลพอร์ตลูกค้า = ภาพนิ่งจากหลังบ้าน Co-Pilot (ซ่อนชื่อ/เลขพอร์ต)
+   Backtest = IRT_DailyTarget v1.2 · XAUUSD tick จริง 100% · 1 ม.ค.–4 พ.ย. 69 · ทุน 30,000 USC เป้า 0.5% คิดสัดส่วนเป็น 200,000 USC
+   อัปเดตข้อมูลพอร์ต: แก้ PORTS / UPDATED ด้านล่าง (ต่อไปจะเปลี่ยนเป็นดึงสดจากเซิร์ฟเวอร์) */
+(function () {
+  'use strict';
+  const root = document.getElementById('ea-main');
+  if (!root) return;
+
+  const BT = {"cap": 200000, "net": 219717, "ddEq": 24.6, "ddBal": 9.5, "pf": 1.59, "trades": 945, "win": 89.8, "months": [["ม.ค.", 21147], ["ก.พ.", 20087], ["มี.ค.", 22600], ["เม.ย.", 20580], ["พ.ค.", 21380], ["มิ.ย.", 21927], ["ก.ค.", 24027], ["ส.ค.", 21440], ["ก.ย.", 22227], ["ต.ค.", 22300], ["พ.ย.*", 2007]], "curve": [200000, 201004, 202008, 203010, 204011, 205028, 206030, 207036, 208070, 209071, 210083, 211088, 212093, 213095, 214096, 215100, 216114, 217115, 218117, 219123, 220123, 221150, 222156, 222997, 223999, 225022, 226036, 227044, 228068, 229099, 230102, 231107, 232120, 233163, 234163, 235189, 236190, 237195, 238199, 239203, 240231, 241235, 242250, 243258, 244285, 245288, 246288, 247377, 248387, 249395, 250419, 251426, 252471, 253551, 254556, 255569, 256599, 257653, 258678, 259694, 260706, 261754, 262799, 263832, 264912, 265915, 266966, 267968, 268977, 269987, 270992, 271993, 272996, 274003, 275006, 276030, 277030, 278045, 279048, 280089, 281111, 282116, 283127, 284141, 284411, 285421, 286434, 287457, 288474, 289480, 290486, 291518, 292524, 293566, 294567, 295567, 296573, 297628, 298727, 299730, 300736, 301739, 302740, 303780, 304788, 305789, 306822, 307829, 308863, 309926, 310949, 311966, 312967, 313969, 314972, 315978, 316996, 317997, 319003, 320024, 321038, 321542, 322609, 323611, 324627, 325628, 326636, 327719, 328741, 329762, 330762, 331783, 332837, 333849, 334850, 335882, 336888, 338099, 339108, 340122, 341124, 342129, 343131, 344135, 345150, 346153, 347154, 348166, 349196, 350200, 351742, 352768, 353773, 354773, 355835, 356851, 357854, 358885, 359886, 360934, 361964, 362998, 364001, 365025, 366025, 367065, 368067, 369073, 370082, 371111, 372113, 373183, 374195, 375195, 376206, 377217, 378224, 379325, 380356, 381358, 382358, 383360, 384360, 385774, 386291, 387297, 388303, 389333, 390354, 391364, 392402, 393403, 394407, 395408, 396410, 397420, 398432, 399526, 400529, 401530, 402531, 403532, 404538, 405582, 406607, 407620, 408624, 409634, 410683, 411684, 412686, 413700, 414700, 415701, 416708, 417708, 418713, 419717, 419717]};
+  let UPDATED = '17:38';
+  let UPDATED_DATE = '4 พ.ย. 69';
+  // trades: [เปิด, ปิด, ฝั่ง, lot, ราคาเปิด, ราคาปิด, กำไร USC]
+  const PORTS = [
+    { id: 'p300', acc: '810168', cap: 30000, bal: 30166.88, today: 166.88, target: 150.00, total: 166.88, closedAll: 3, since: '4 พ.ย. 69',
+      trades: [['12:33', '12:34', 'BUY', 0.14, 3967.49, 3970.24, 38.50], ['12:45', '12:46', 'BUY', 0.14, 3983.83, 3986.66, 39.62], ['13:00', '13:00', 'BUY', 0.14, 3996.73, 4003.07, 88.76]] },
+    { id: 'p1000', acc: '810158', cap: 100000, bal: 100853.35, today: 489.15, target: 482.95, total: 679.64, closedAll: 145, since: '7 ต.ค. 69',
+      trades: [['12:30', '12:30', 'BUY', 0.45, 3959.36, 3960.85, 67.05], ['12:45', '12:46', 'BUY', 0.45, 3982.94, 3985.65, 121.95], ['13:00', '13:00', 'BUY', 0.45, 3997.99, 4000.82, 127.35], ['13:15', '13:16', 'BUY', 0.45, 4006.34, 4009.53, 143.55], ['13:30', '13:30', 'BUY', 0.45, 4017.98, 4018.63, 29.25]] },
+    { id: 'p2000', acc: '810144', cap: 200000, bal: 203414.86, today: 1046.50, target: 972.07, total: 3414.86, closedAll: 287, since: '24 ก.ย. 69',
+      trades: [['12:30', '12:30', 'BUY', 0.91, 3959.59, 3963.75, 378.56], ['12:45', '12:46', 'BUY', 0.91, 3982.72, 3985.45, 248.43], ['13:00', '13:00', 'BUY', 0.91, 3997.65, 4002.26, 419.51]] }
+  ];
+  const EAS = [
+    { name: 'IRT Gold Lab V.2.0', type: 'เป้ากำไรรายวัน · XAUUSD', ic: 'target', live: true,
+      desc: 'เก็บกำไรวันละนิดตามเป้า ถึงเป้าแล้วหยุด ไม่โลภ เน้นรันยาว DD ต่ำ ดูแลพอร์ตแทนคุณอัตโนมัติ' },
+    { name: 'IRT Fiber Lab', type: 'คู่เงิน EURUSD · ยูโร/ดอลลาร์', ic: 'bot', seed: 11,
+      desc: 'เทรดคู่ยูโร/ดอลลาร์ คู่เงินที่สภาพคล่องสูงสุดในโลก เน้นเก็บกำไรสั้นตามจังหวะตลาดยุโรป' },
+    { name: 'IRT Cable Lab', type: 'คู่เงิน GBPUSD · ปอนด์/ดอลลาร์', ic: 'grid', seed: 19,
+      desc: 'เทรดคู่ปอนด์/ดอลลาร์ คู่ที่ราคาแกว่งแรง เหมาะกับระบบที่ปิดกำไรเป็นรอบ' },
+    { name: 'IRT Ninja Lab', type: 'คู่เงิน USDJPY · ดอลลาร์/เยน', ic: 'zone', seed: 23,
+      desc: 'เทรดคู่ดอลลาร์/เยน ตามแนวโน้มช่วงเอเชียต่อเนื่องถึงยุโรป' }
+  ];
+  const LINK_SIGNUP = 'https://irtgold.github.io/irt-register-EA/signup.html';
+  const LINK_REGISTER = 'https://irtgold.github.io/irt-register-EA/';
+  const LINK_LINE = 'https://lin.ee/sbP01Pa';
+
+  const IC = {
+    bot: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M2 12v3M22 12v3"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
+    grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/><path d="M7 3v18M17 3v18"/></svg>',
+    zone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="4" rx="1"/><rect x="3" y="15" width="18" height="4" rx="1"/><path d="M4 22L20 2"/></svg>',
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+    plug: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M6 7h12v4a6 6 0 0 1-12 0z"/><path d="M12 17v4"/></svg>'
+  };
+
+  const fmt = (n, d) => Number(n).toLocaleString('en-US', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+  const sgn = (n, d) => (n >= 0 ? '+' : '−') + fmt(Math.abs(n), d);
+  const usd = n => fmt(n / 100) + ' USD';
+  const mask = a => '••••' + a.slice(-3);
+  function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function series(seed, n, drift, vol) { const r = rng(seed); let v = 100; const a = [v]; for (let i = 1; i < n; i++) { v *= 1 + drift + (r() - .5) * vol; a.push(v); } return a; }
+  let gid = 0;
+  function line(a, w, h, pad, big) {
+    pad = pad || 6;
+    const mn = Math.min.apply(null, a), mx = Math.max.apply(null, a), sx = (w - pad * 2) / (a.length - 1), sy = (h - pad * 2) / ((mx - mn) || 1);
+    const pts = a.map((v, i) => [(pad + i * sx).toFixed(1), (h - pad - (v - mn) * sy).toFixed(1)]);
+    const d = 'M' + pts.map(p => p.join(',')).join('L'), up = a[a.length - 1] >= a[0], id = 'eag' + (++gid), c = up ? '#16a34a' : '#e11d48';
+    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="${big ? 'ea-chart' : 'ea-spark'}"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".3"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs><path d="${d}L${pts[pts.length - 1][0]},${h - pad}L${pad},${h - pad}Z" fill="url(#${id})"/><path d="${d}" fill="none" stroke="${c}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>`;
+  }
+  const kpi = (l, v, c) => `<div class="ea-kpi"><div class="ea-kl">${l}</div><div class="ea-kv ${c || ''}">${v}</div></div>`;
+
+  /* ---------- หน้า ---------- */
+  root.innerHTML = `
+    <div class="ea-tabs">
+      <button class="ea-tab on" data-t="ea"><span>EA ทั้งหมด</span><i>4</i></button>
+      <button class="ea-tab" data-t="pt"><span>พอร์ตลูกค้าที่เชื่อมอยู่</span><i>3</i></button>
+    </div>
+    <div class="ea-pane on" id="ea-p-ea"><div class="ea-grid" id="ea-grid"></div></div>
+    <div class="ea-pane" id="ea-p-pt">
+      <div class="ea-asof"><span>ข้อมูลพอร์ต ณ</span> <b id="ea-asof">${UPDATED_DATE} ${UPDATED}</b></div>
+      <div class="ea-ports" id="ea-ports"></div>
+      <p class="ea-foot">พอร์ตลูกค้าจริงที่ใช้ IRT Gold Lab V.2.0 บนบัญชี Cent ของโบรก XCELLA PRIME · ซ่อนชื่อและเลขพอร์ตลูกค้า · 100 USC = 1 USD · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p>
+    </div>`;
+
+  $grid();
+  function $grid() {
+    document.getElementById('ea-grid').innerHTML = EAS.map(e => {
+      const head = (pill) => `<div class="ea-top"><div class="ea-ico ${e.live ? 'g' : 'm'}">${IC[e.ic]}</div><div class="ea-tt"><div class="ea-name">${e.name}</div><div class="ea-type">${e.type}</div></div>${pill}</div>`;
+      if (e.live) {
+        return `<article class="ea-card ea-featured">${head('<span class="ea-pill live"><i></i><span>กำลังทำงาน</span></span>')}
+          <p class="ea-desc">${e.desc}</p>${line(BT.curve, 300, 64)}
+          <div class="ea-kpis">${kpi('กำไร ม.ค.–พ.ย.', '+110%', 'up')}${kpi('DD สูงสุด', '24.6%')}${kpi('ชนะ', '89.8%')}</div>
+          <div class="ea-meta">Backtest 1 ม.ค.–4 พ.ย. 69 · ทุน 200,000 USC (2,000 USD) · เป้า 0.5%/วัน</div>
+          <div class="ea-meta">● เชื่อมพอร์ตลูกค้าอยู่ 3 พอร์ต</div>
+          <div class="ea-acts"><button class="ea-btn" data-act="ports"><span>ดูพอร์ตจริง</span></button><button class="ea-btn" data-act="bt"><span>ดู Backtest</span></button></div>
+          <button class="ea-btn gold cta" data-act="connect">${IC.plug}<span>เชื่อมต่อพอร์ตของฉัน</span></button></article>`;
+      }
+      return `<article class="ea-card locked">${head('<span class="ea-pill soon"><span>เร็ว ๆ นี้</span></span>')}
+        <p class="ea-desc">${e.desc}</p>
+        <div class="ea-blur">${line(series(e.seed, 60, .004, .03), 300, 64)}<div class="ea-kpis">${kpi('กำไร', '+00.0%')}${kpi('DD', '0.0%')}${kpi('ชนะ', '00%')}</div>
+        <div class="ea-acts"><button class="ea-btn" disabled><span>ดูพอร์ตจริง</span></button><button class="ea-btn" disabled><span>ดู Backtest</span></button></div></div>
+        <div class="ea-lock"><div><div class="ea-lk">${IC.lock}</div><b>กำลังทดสอบ</b><span>เปิดให้ดูผลงานเร็ว ๆ นี้ · แจ้งในห้อง Telegram</span></div></div></article>`;
+    }).join('');
+  }
+
+  const cell = (l, v, u, c) => `<div class="ea-cell"><span>${l}</span><b class="${c || ''}">${v}${u ? ' <span>' + u + '</span>' : ''}</b></div>`;
+  function renderPorts() {
+  PORTS.sort((a, b) => a.cap - b.cap);
+  document.getElementById('ea-ports').innerHTML = PORTS.map(p => {
+    const prog = Math.min(100, p.today / p.target * 100), done = p.target > 0 && p.today >= p.target;
+    return `<article class="ea-card ea-pcard">
+      <div class="ea-phead"><div><div class="ea-pname">PORT ${fmt(p.cap)} USC<span class="ea-pusd">(${usd(p.cap)})</span></div>
+        <div class="ea-pmeta"><span>พอร์ตลูกค้าจริง</span> ${mask(p.acc)}<br>IRT Gold Lab V.2.0 · <span>เริ่ม</span> <span>${p.since}</span></div></div>
+        <span class="ea-pill live"><i></i><span>ออนไลน์</span></span></div>
+      <div class="ea-today"><div class="ea-tl"><span>วันนี้ได้กำไรแล้ว</span><span><span>เป้า</span> ${fmt(p.target, 2)} USC</span></div>
+        <div class="ea-tv">${sgn(p.today, 2)}<em>USC</em></div>
+        <div class="ea-bar"><i style="width:${prog}%"></i></div>
+        <div class="ea-st"><span>+${(p.today / p.cap * 100).toFixed(2)}% <span>ของทุน</span></span><span class="ok">${done ? '<span>✓ ครบเป้า · รอวันใหม่</span>' : '<span>กำลังเก็บกำไร</span>'}</span></div></div>
+      <div class="ea-grid6">
+        ${cell('ทุนเริ่ม', fmt(p.cap), 'USC')}${cell('ยอดตอนนี้', fmt(p.bal, 2), 'USC')}
+        ${cell('กำไรตั้งแต่เริ่ม', sgn(p.total, 2), 'USC', 'up')}${cell('ไม้ที่ปิดแล้ว', fmt(p.closedAll), 'ไม้')}
+        ${cell('ไม้วันนี้', p.trades.length, 'ไม้')}${cell('ไม้ที่เปิดอยู่', String(p.basket || 0), 'ไม้')}
+      </div>
+      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button></div>
+      <button class="ea-btn soft" data-act="connect">${IC.plug}<span>อยากได้แบบนี้ · เชื่อมต่อพอร์ตของฉัน</span></button></div></article>`;
+  }).join('');
+  }
+  renderPorts();
+
+  /* ---------- หน้าต่างซ้อน ---------- */
+  let ov = null;
+  function show(html) {
+    if (!ov) {
+      ov = document.createElement('div'); ov.className = 'ea-ov';
+      ov.addEventListener('click', e => { if (e.target === ov) hide(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+      document.body.appendChild(ov);
+    }
+    ov.innerHTML = '<div class="ea-modal">' + html + '</div>'; ov.classList.add('on');
+    ov.querySelectorAll('[data-x]').forEach(b => b.addEventListener('click', hide));
+  }
+  function hide() { if (ov) ov.classList.remove('on'); }
+  const mh = (ico, title, sub) => `<div class="ea-mh"><div class="ea-ico g">${IC[ico]}</div><div><h3>${title}</h3><div class="ea-pmeta">${sub}</div></div><button class="ea-btn ea-x" data-x aria-label="ปิด">×</button></div>`;
+
+  function openPort(id) {
+    const p = PORTS.find(x => x.id === id), prog = Math.min(100, p.today / p.target * 100), wins = p.trades.filter(t => t[6] > 0).length;
+    const pts = [0]; let acc = 0; p.trades.forEach(t => { pts.push(acc); acc += t[6]; pts.push(acc); }); pts.push(acc);
+    show(mh('target', `PORT ${fmt(p.cap)} USC <span class="ea-pusd inl">(${usd(p.cap)})</span>`, `<span>พอร์ตลูกค้าจริง</span> ${mask(p.acc)} · IRT Gold Lab V.2.0 · <span>ดูอย่างเดียว</span> · <span>ข้อมูล ณ</span> ${UPDATED_DATE} ${UPDATED}`) + `<div class="ea-mb">
+      <div class="ea-today" style="margin-top:0"><div class="ea-tl"><span>วันนี้ได้กำไรแล้ว</span><span><span>เป้า</span> ${fmt(p.target, 2)} USC · ${(p.today / p.target * 100).toFixed(0)}%</span></div>
+        <div class="ea-tv">${sgn(p.today, 2)}<em>USC</em></div><div class="ea-bar"><i style="width:${prog}%"></i></div></div>
+      <div class="ea-mk">${kpi('ปิดแล้ววันนี้', sgn(p.today, 2) + ' USC', 'up')}${kpi('ไม้ที่ยังเปิด', (p.basket || 0) + ' <span>ไม้</span>')}${kpi('ไม้วันนี้', p.trades.length + ' <span>ไม้</span>')}${kpi('ชนะ / แพ้', wins + ' / ' + (p.trades.length - wins))}</div>
+      <div class="ea-sec">กำไรสะสมวันนี้ (USC)</div>${line(pts, 800, 180, 10, true)}
+      <div class="ea-sec">ไม้ที่ปิดแล้ววันนี้</div>
+      <div class="ea-tw"><table><tr><th>เปิด</th><th>ปิด</th><th>ฝั่ง</th><th class="r">Lot</th><th class="r">ราคาเปิด → ปิด</th><th class="r">กำไร</th></tr>
+      ${p.trades.slice().reverse().map(t => `<tr><td>${t[0]}</td><td>${t[1]}</td><td><span class="ea-tag ${t[2] === 'BUY' ? 'b' : 's'}">${t[2]}</span></td><td class="r">${t[3].toFixed(2)}</td><td class="r">${t[4].toFixed(2)} → ${t[5].toFixed(2)}</td><td class="r ${t[6] >= 0 ? 'up' : 'dn'}">${sgn(t[6], 2)}</td></tr>`).join('')}</table></div>
+      <p class="ea-note">ครบเป้าแล้ว EA หยุดออกไม้จนถึงวันใหม่ · ข้อมูลจริงจากพอร์ตลูกค้า (ซ่อนชื่อและเลขพอร์ต) · วันนี้ = ตั้งแต่ 22:00 ของเมื่อวาน</p></div>`);
+  }
+
+  function openBT(cap) {
+    cap = cap || BT.cap; const k = cap / BT.cap, net = BT.net * k, mx = Math.max.apply(null, BT.months.map(m => m[1]));
+    show(mh('target', 'Backtest · IRT Gold Lab V.2.0', `<span>ทุน</span> ${fmt(cap)} USC (${usd(cap)}) · <span>เป้า 0.5% ต่อวัน</span> · XAUUSD · <span>1 ม.ค. – 4 พ.ย. 69 · ราคา Tick จริง 100%</span>`) + `<div class="ea-mb">
+      <div class="ea-mk">${kpi('กำไรสุทธิ', sgn(net) + ' USC', 'up')}${kpi('คิดเป็น', '+' + (net / cap * 100).toFixed(0) + '%', 'up')}${kpi('DD สูงสุด (Equity)', BT.ddEq + '%')}${kpi('Profit Factor', BT.pf)}${kpi('จำนวนไม้', fmt(BT.trades))}${kpi('อัตราชนะ', BT.win + '%')}</div>
+      <div class="ea-sec">กราฟยอดเงิน (Balance) รายวัน</div>${line(BT.curve.map(v => v * k), 800, 220, 10, true)}
+      <div class="ea-sec">กำไรรายเดือน (USC)</div>
+      <div class="ea-mbars">${BT.months.map(m => `<div><span class="up">+${fmt(m[1] * k / 1000, 1)}k</span><i style="height:${m[1] / mx * 80}%"></i><em>${m[0]}</em></div>`).join('')}</div>
+      <p class="ea-note">ผลจาก MT5 Strategy Tester จริง (ทดสอบที่ทุน 30,000 USC แล้วคิดตามสัดส่วน) · * พ.ย. = 1–4 พ.ย. · ระหว่างทางเคยมีช่วงขาดทุนลอยสูงสุด ${BT.ddEq}% ของพอร์ต · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p></div>`);
+  }
+
+  function openConnect() {
+    show(mh('plug', 'เชื่อมต่อพอร์ตกับ IRT Gold Lab V.2.0', 'ใช้เวลาประมาณ 5 นาที · ทีมงานติดตั้งให้') + `<div class="ea-mb"><ol class="ea-steps">
+      <li><b>เปิดบัญชี Cent กับ XCELLA PRIME</b><span>ต้องเปิดผ่านลิงก์ของ IRT GOLD เท่านั้น ระบบถึงจะเชื่อมพอร์ตให้ได้ · มีคู่มือ 9 ขั้นตอนพร้อมภาพ</span><a class="ea-btn gold" href="${LINK_SIGNUP}" target="_blank" rel="noopener"><span>เปิดบัญชีผ่านลิงก์ IRT GOLD</span></a></li>
+      <li><b>ฝากเงินเข้าพอร์ต</b><span>แนะนำทุนเริ่มต้นตามแพ็กที่เลือก (เช่น 500 / 1,000 / 2,000 USD)</span></li>
+      <li><b>ลงทะเบียนรับ EA</b><span>กรอกชื่อ เบอร์ XCELLA ID อีเมล เลขพอร์ต MT5 และเงินในพอร์ต ทีมงานอนุมัติแล้วส่งไฟล์ EA + License Key ทางอีเมล</span><a class="ea-btn gold" href="${LINK_REGISTER}" target="_blank" rel="noopener"><span>ไปหน้าลงทะเบียน</span></a></li>
+      <li><b>ติดตั้ง EA แล้วเริ่มทำงาน</b><span>ทีมงานส่งไฟล์ EA พร้อมคู่มือติดตั้งทางอีเมล ติดปัญหาตรงไหนทักทีมงานได้เลย</span></li>
+      <li><b>ทักหา Support EA</b><span>มีคำถามหรืออยากให้ช่วยติดตั้ง ทักทีมงานได้ทาง LINE เลย</span><a class="ea-btn gold" href="${LINK_LINE}" target="_blank" rel="noopener"><span>ทัก LINE Support EA</span></a></li>
+    </ol></div>`);
+  }
+
+  /* ---------- ปุ่ม ---------- */
+  function tab(t) {
+    root.querySelectorAll('.ea-tab').forEach(x => x.classList.toggle('on', x.dataset.t === t));
+    root.querySelectorAll('.ea-pane').forEach(x => x.classList.toggle('on', x.id === 'ea-p-' + t));
+  }
+  const TH_M = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+  const thDate = ms => { const x = new Date(ms + 7 * 3600e3); return x.getUTCDate() + ' ' + TH_M[x.getUTCMonth()] + ' ' + String((x.getUTCFullYear() + 543) % 100); };
+  const hhmm = ms => { const x = new Date(ms + 7 * 3600e3); return String(x.getUTCHours()).padStart(2, '0') + ':' + String(x.getUTCMinutes()).padStart(2, '0'); };
+  // ข้อมูลจาก Admin (Co-Pilot Server ?a=labpub): ภาพนิ่งที่กดเผยแพร่ล่าสุด
+  function setPorts(snap) {
+    if (!snap || !snap.ports || !snap.ports.length) return;
+    PORTS.length = 0;
+    snap.ports.forEach((p, i) => PORTS.push({ id: 'p' + i, acc: String(p.tail), cap: p.cap, bal: p.bal, today: p.today, target: p.target, total: p.total,
+      closedAll: p.closedAll, basket: p.basket || 0, since: thDate(p.reg), trades: p.trades || [] }));
+    UPDATED_DATE = thDate(snap.at); UPDATED = hhmm(snap.at);
+    renderPorts();
+    const b = document.getElementById('ea-asof'); if (b) b.textContent = UPDATED_DATE + ' ' + UPDATED;
+    const tb = root.querySelector('.ea-tab[data-t="pt"] i'); if (tb) tb.textContent = PORTS.length;
+    root.querySelectorAll('.ea-meta').forEach(m => { if (m.textContent.indexOf('เชื่อมพอร์ตลูกค้าอยู่') >= 0) m.textContent = '● เชื่อมพอร์ตลูกค้าอยู่ ' + PORTS.length + ' พอร์ต'; });
+  }
+  window.IRT_EA = { connect: openConnect, tab: tab, setPorts: setPorts };
+  if (location.hash === '#ports') tab('pt');
+  root.addEventListener('click', e => {
+    const tb = e.target.closest('.ea-tab'); if (tb) { tab(tb.dataset.t); return; }
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const a = b.dataset.act;
+    if (a === 'ports') { tab('pt'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    else if (a === 'port') openPort(b.dataset.id);
+    else if (a === 'bt') openBT(Number(b.dataset.cap) || 0);
+    else if (a === 'connect') openConnect();
+  });
+})();
+
+</script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  $('go-top').addEventListener('click', function () { window.IRT_EA.connect(); });
+  $('go-connect').addEventListener('click', function () { window.IRT_EA.connect(); });
+  $('go-ports').addEventListener('click', function () {
+    window.IRT_EA.tab('pt');
+    $('ea-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ตัวเลขพอร์ต: ดึงภาพนิ่งที่ Admin กด "เผยแพร่" ล่าสุดจากเซิร์ฟเวอร์ Co-Pilot · ดึงไม่ได้/ยังไม่เคยเผยแพร่ = ใช้ตัวเลขสำรองที่ฝังในไฟล์
+  var API = 'https://script.google.com/macros/s/AKfycbzeG6ks9jtg7buh_2HEPjz17-taspcO-aKKAsqDFLujyVly9FyioWt3y66gEnRdZEll/exec';
+  function apply(j) { try { if (j && j.ok && j.snap) window.IRT_EA.setPorts(j.snap); } catch (e) {} }
+  function jsonp() {                                   // สำรอง: บางเบราว์เซอร์ในแอปบล็อก fetch ข้ามโดเมน
+    var cb = 'irtLab' + Date.now(), s = document.createElement('script');
+    window[cb] = function (j) { apply(j); try { delete window[cb]; } catch (e) {} s.remove(); };
+    s.src = API + '?a=labpub&callback=' + cb; s.onerror = function () { s.remove(); };
+    document.head.appendChild(s);
+  }
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 9000), ctl = window.AbortController ? new AbortController() : null;
+  if (window.fetch) {
+    fetch(API + '?a=labpub', ctl ? { signal: ctl.signal } : undefined).then(function (r) { return r.json(); })
+      .then(function (j) { clearTimeout(timer); apply(j); }).catch(function () { clearTimeout(timer); jsonp(); });
+  } else jsonp();
+})();
+</script>
+</body>
+</html>
