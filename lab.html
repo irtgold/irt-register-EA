@@ -183,6 +183,7 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
 </div>
 
 <script>
+window.IRT_EA_AUTOFETCH = false;
 /* IRT GOLD — หน้า IRT LAB (EA) · #property copyright "IRT GOLD"
    4 พ.ย. 69 ผู้ใช้สั่งเอาตัวอย่างขึ้นเว็บจริง · ข้อมูลพอร์ตลูกค้า = ภาพนิ่งจากหลังบ้าน Co-Pilot (ซ่อนชื่อ/เลขพอร์ต)
    Backtest = IRT_DailyTarget v1.2 · XAUUSD tick จริง 100% · 1 ม.ค.–4 พ.ย. 69 · ทุน 30,000 USC เป้า 0.5% คิดสัดส่วนเป็น 200,000 USC
@@ -281,7 +282,7 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
   function renderPorts() {
   PORTS.sort((a, b) => a.cap - b.cap);
   document.getElementById('ea-ports').innerHTML = PORTS.map(p => {
-    const prog = Math.min(100, p.today / p.target * 100), done = p.target > 0 && p.today >= p.target;
+    const prog = p.target > 0 ? Math.max(0, Math.min(100, p.today / p.target * 100)) : 0, done = p.target > 0 && p.today >= p.target;
     return `<article class="ea-card ea-pcard">
       <div class="ea-phead"><div><div class="ea-pname">PORT ${fmt(p.cap)} USC<span class="ea-pusd">(${usd(p.cap)})</span></div>
         <div class="ea-pmeta"><span>พอร์ตลูกค้าจริง</span> ${mask(p.acc)}<br>IRT Gold Lab V.2.0 · <span>เริ่ม</span> <span>${p.since}</span></div></div>
@@ -355,10 +356,10 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
     root.querySelectorAll('.ea-tab').forEach(x => x.classList.toggle('on', x.dataset.t === t));
     root.querySelectorAll('.ea-pane').forEach(x => x.classList.toggle('on', x.id === 'ea-p-' + t));
   }
+  /* ---------- ตัวเลขพอร์ตสด: ดึงภาพนิ่งที่ Admin กด "เผยแพร่" ล่าสุดจากเซิร์ฟเวอร์ Co-Pilot (?a=labpub) ---------- */
   const TH_M = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
   const thDate = ms => { const x = new Date(ms + 7 * 3600e3); return x.getUTCDate() + ' ' + TH_M[x.getUTCMonth()] + ' ' + String((x.getUTCFullYear() + 543) % 100); };
   const hhmm = ms => { const x = new Date(ms + 7 * 3600e3); return String(x.getUTCHours()).padStart(2, '0') + ':' + String(x.getUTCMinutes()).padStart(2, '0'); };
-  // ข้อมูลจาก Admin (Co-Pilot Server ?a=labpub): ภาพนิ่งที่กดเผยแพร่ล่าสุด
   function setPorts(snap) {
     if (!snap || !snap.ports || !snap.ports.length) return;
     PORTS.length = 0;
@@ -372,6 +373,14 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
   }
   window.IRT_EA = { connect: openConnect, tab: tab, setPorts: setPorts };
   if (location.hash === '#ports') tab('pt');
+  const LAB_API = 'https://script.google.com/macros/s/AKfycbzeG6ks9jtg7buh_2HEPjz17-taspcO-aKKAsqDFLujyVly9FyioWt3y66gEnRdZEll/exec';
+  function pullPorts() {
+    if (window.IRT_EA_AUTOFETCH === false || !window.fetch) return;   // หน้า lab.html ดึงเองอยู่แล้ว
+    fetch(LAB_API + '?a=labpub').then(r => r.json()).then(j => { if (j && j.ok && j.snap) setPorts(j.snap); }).catch(() => { /* ดึงไม่ได้ = ใช้ตัวเลขสำรองในไฟล์ */ });
+  }
+  pullPorts();
+  setInterval(() => { if (!document.hidden) pullPorts(); }, 300000);   // ทุก 5 นาที (ตอนเปิดหน้าอยู่)
+
   root.addEventListener('click', e => {
     const tb = e.target.closest('.ea-tab'); if (tb) { tab(tb.dataset.t); return; }
     const b = e.target.closest('[data-act]'); if (!b) return;
