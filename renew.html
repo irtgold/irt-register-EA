@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ต่ออายุ VPS · IRT GOLD LAB</title>
+<meta name="description" content="ต่ออายุ VPS และการใช้งาน IRT GOLD LAB — เลือกแพ็กเกจ สแกนจ่าย แนบสลิป ทีมงานต่ออายุให้">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#fff; --panel:#f7f8fa; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --brand:#1e3a5f; --ok:#15803d; --err:#b91c1c; --focus:#2563eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 'Sarabun', Tahoma, sans-serif; }
+  .wrap { max-width:520px; margin:0 auto; padding:28px 16px 80px; }
+  .brand { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .mark { width:40px; height:40px; border-radius:10px; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:700; font-size:13px; }
+  h1 { font-size:24px; margin:0; color:var(--brand); }
+  .sub { color:var(--muted); margin:4px 0 18px; }
+  label { display:block; font-weight:600; margin:18px 0 6px; }
+  label .req { color:var(--err); }
+  input[type=text], input[type=file] { width:100%; padding:11px 12px; border:1px solid #d1d5db; border-radius:10px; font:inherit; background:#fff; color:var(--ink); }
+  input:focus { outline:2px solid var(--focus); outline-offset:1px; border-color:transparent; }
+  .hint { font-size:13px; color:var(--muted); margin-top:4px; }
+  .plans { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; }
+  .plan { width:auto; margin:0; padding:12px 4px; border:2px solid var(--line); border-radius:14px; background:#fff; color:var(--ink); display:flex; flex-direction:column; align-items:center; gap:2px; font-family:inherit; cursor:pointer; }
+  .plan .pn { font-size:13.5px; font-weight:600; color:var(--muted); }
+  .plan .pp { font-size:22px; font-weight:700; color:var(--brand); }
+  .plan .ps { font-size:12px; color:var(--muted); }
+  .plan[aria-checked="true"] { border-color:var(--brand); background:#f1f5fb; box-shadow:0 0 0 3px #e3ecf7; }
+  .plan[aria-checked="true"] .ps { color:var(--ok); font-weight:600; }
+  .payqr { margin:12px 0 4px; text-align:center; border:1px solid var(--line); border-radius:14px; padding:12px; }
+  .payqr[hidden] { display:none; }
+  .payqr img { display:block; width:100%; max-width:280px; margin:8px auto 0; border-radius:10px; }
+  .payqr p { margin:10px 0 0; font-size:13.5px; color:#4b5563; }
+  .payqr b { color:#b3261e; }
+  .slipprev { margin-top:8px; display:flex; gap:10px; align-items:flex-end; }
+  .slipprev[hidden] { display:none; }
+  .slipprev img { max-height:160px; max-width:60%; border:1px solid var(--line); border-radius:10px; }
+  .slipprev button { width:auto; margin:0; padding:8px 14px; font-size:13.5px; background:#fff; color:#b3261e; border:1.5px solid #e0a3a0; border-radius:10px; font-family:inherit; cursor:pointer; }
+  #btn { width:100%; margin-top:24px; padding:14px; border:0; border-radius:12px; background:var(--brand); color:#fff; font:700 17px 'Sarabun', sans-serif; cursor:pointer; }
+  #btn:disabled { opacity:.6; cursor:wait; }
+  .err { color:var(--err); background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:10px 12px; margin-top:16px; display:none; }
+  .done { display:none; text-align:center; padding-top:24px; }
+  .done .big { font-size:48px; color:var(--ok); line-height:1; }
+  .done h2 { color:var(--brand); margin:12px 0 4px; }
+  .box { text-align:left; background:var(--panel); border-radius:12px; padding:14px 18px; margin-top:14px; }
+  .line { display:inline-block; margin-top:20px; background:#06c755; color:#fff; text-decoration:none; padding:12px 28px; border-radius:24px; font-weight:700; }
+  .fine { font-size:13px; color:var(--muted); margin-top:28px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="mark">IRT</div><h1>ต่ออายุ VPS</h1></div>
+  <p class="sub">IRT GOLD LAB · เลือกแพ็กเกจ สแกนจ่าย แนบสลิป ทีมงานตรวจแล้วต่ออายุให้</p>
+
+  <div id="formBox">
+    <form id="f" novalidate>
+      <label for="ident">เลขพอร์ต MT5 หรือ ID ของ XCELLA PRIME <span class="req">*</span></label>
+      <input type="text" id="ident" inputmode="numeric" placeholder="เช่น 810169" autocomplete="off">
+      <div class="hint">ใช้เลขที่เคยกรอกตอนลงทะเบียน</div>
+
+      <label>เลือกแพ็กเกจที่ต่อ <span class="req">*</span></label>
+      <div class="plans" id="plans" role="radiogroup" aria-label="แพ็กเกจ">
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="200" data-name="รายเดือน"><span class="pn">รายเดือน</span><span class="pp">฿200</span><span class="ps">จ่ายทีละเดือน</span></button>
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="1000" data-name="ราย 6 เดือน"><span class="pn">ราย 6 เดือน</span><span class="pp">฿1,000</span><span class="ps">ฟรี 1 เดือน</span></button>
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="2000" data-name="ราย 1 ปี"><span class="pn">ราย 1 ปี</span><span class="pp">฿2,000</span><span class="ps">ฟรี 2 เดือน</span></button>
+      </div>
+
+      <div class="payqr" id="payqr" hidden>
+        <div>สแกนจ่าย <b id="pqName"></b> · <b id="pqAmt"></b></div>
+        <img src="img/pay-qr.png?v=1" alt="QR พร้อมเพย์">
+        <p>สแกนด้วยแอปธนาคารใดก็ได้ แล้วใส่ยอดเงินเอง <b id="pqAmt2"></b> จ่ายเสร็จแคปสลิปมาแนบด้านล่าง</p>
+      </div>
+
+      <label for="slip">แนบสลิปโอนเงิน <span class="req">*</span></label>
+      <input type="file" id="slip" accept="image/*">
+      <div class="slipprev" id="slipPrev" hidden><img id="slipImg" alt="สลิปที่แนบ"><button type="button" id="slipDel">ลบรูป</button></div>
+
+      <div class="err" id="err" role="alert"></div>
+      <button type="submit" id="btn">ส่งคำขอต่ออายุ</button>
+    </form>
+  </div>
+
+  <div class="done" id="done">
+    <div class="big">✓</div>
+    <h2>ส่งคำขอต่ออายุแล้ว</h2>
+    <p>รหัสคำขอ <b id="rid"></b> · คุณ <b id="rname"></b></p>
+    <div class="box">
+      ทีมงานจะตรวจสลิปและต่ออายุให้ แล้วส่งอีเมลแจ้งวันที่ใช้งานได้ถึง<br>
+      <span style="color:var(--muted);font-size:14px">ปกติภายในวันทำการเดียวกัน ถ้าร้อนใจทักทีมงานทาง LINE ได้เลย</span>
+    </div>
+    <a class="line" href="https://lin.ee/sYM0jZJ" target="_blank" rel="noopener">สอบถามทีมงานทาง LINE</a>
+  </div>
+
+  <p class="fine">© IRT GOLD · Trading Education &amp; Software</p>
+</div>
+
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  var API_URL = 'https://script.google.com/macros/s/AKfycbzeG6ks9jtg7buh_2HEPjz17-taspcO-aKKAsqDFLujyVly9FyioWt3y66gEnRdZEll/exec';
+  var PLAN = '', SLIP = '';
+
+  var plans = document.querySelectorAll('#plans .plan');
+  function pick(b) {
+    for (var i = 0; i < plans.length; i++) plans[i].setAttribute('aria-checked', plans[i] === b ? 'true' : 'false');
+    var amt = '฿' + Number(b.getAttribute('data-price')).toLocaleString('en-US');
+    $('pqName').textContent = b.getAttribute('data-name'); $('pqAmt').textContent = amt; $('pqAmt2').textContent = amt;
+    $('payqr').hidden = false; PLAN = b.getAttribute('data-name') + ' ' + amt;
+  }
+  for (var i = 0; i < plans.length; i++) plans[i].addEventListener('click', function () { pick(this); });
+
+  function showErr(m) { var e = $('err'); e.textContent = m; e.style.display = m ? 'block' : 'none'; }
+  function idle() { $('btn').disabled = false; $('btn').textContent = 'ส่งคำขอต่ออายุ'; }
+
+  $('slip').addEventListener('change', function () {
+    SLIP = ''; $('slipPrev').hidden = true;
+    var f = this.files && this.files[0]; if (!f) return;
+    if (f.type.indexOf('image/') !== 0) { this.value = ''; return showErr('แนบได้เฉพาะรูปภาพ'); }
+    var url = URL.createObjectURL(f), im = new Image();
+    im.onload = function () {
+      var k = Math.min(1, 1100 / Math.max(im.width, im.height)), c = document.createElement('canvas');
+      c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+      var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+      SLIP = c.toDataURL('image/jpeg', 0.72);
+      $('slipImg').src = SLIP; $('slipPrev').hidden = false; URL.revokeObjectURL(url); showErr('');
+    };
+    im.onerror = function () { $('slip').value = ''; showErr('อ่านรูปไม่ได้ ลองรูปอื่น'); };
+    im.src = url;
+  });
+  $('slipDel').addEventListener('click', function () { SLIP = ''; $('slip').value = ''; $('slipPrev').hidden = true; });
+
+  $('f').addEventListener('submit', function (ev) {
+    ev.preventDefault(); showErr('');
+    var ident = $('ident').value.replace(/\D/g, '');
+    if (ident.length < 3) return showErr('กรุณากรอกเลขพอร์ต MT5 หรือ ID ของ XCELLA PRIME');
+    if (!PLAN) return showErr('กรุณาเลือกแพ็กเกจที่ต่อ');
+    if (!SLIP) return showErr('กรุณาแนบสลิปโอนเงิน');
+    $('btn').disabled = true; $('btn').textContent = 'กำลังส่ง...';
+    fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ a: 'renew', ident: ident, plan: PLAN, slip: SLIP }) })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        idle();
+        if (!res || !res.ok) return showErr((res && res.error) || 'ส่งไม่สำเร็จ ลองใหม่อีกครั้ง');
+        $('rid').textContent = res.id; $('rname').textContent = res.name || '';
+        $('formBox').style.display = 'none'; $('done').style.display = 'block'; window.scrollTo(0, 0);
+      })
+      .catch(function () { idle(); showErr('ส่งไม่สำเร็จ — เช็คอินเทอร์เน็ตแล้วลองใหม่ หรือทัก LINE ให้ทีมงานช่วย'); });
+  });
+</script>
+</body>
+</html>

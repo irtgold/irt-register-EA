@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>วิธีสมัคร XCELLA PRIME — IRT Gold Co-Pilot</title>
-<meta name="description" content="คู่มือสมัครบัญชีเทรด XCELLA PRIME แบบ CENT ทีละขั้นตอน พร้อมภาพจริงจากมือถือ สำหรับลูกค้า IRT Gold Co-Pilot">
+<title>วิธีสมัคร XCELLA PRIME — IRT GOLD LAB</title>
+<meta name="description" content="คู่มือสมัครบัญชีเทรด XCELLA PRIME แบบ CENT ทีละขั้นตอน พร้อมภาพจริงจากมือถือ สำหรับลูกค้า IRT GOLD LAB">
 <meta property="og:title" content="วิธีสมัคร XCELLA PRIME ทีละขั้นตอน">
 <meta property="og:description" content="9 ขั้นตอน ตั้งแต่สมัคร ยืนยันตัวตน ฝากเงิน จนได้เลขพอร์ต CENT พร้อมภาพประกอบทุกขั้น">
 <meta property="og:type" content="article">
@@ -31,10 +31,27 @@
   .box ul { margin: 0; padding-left: 20px; }
   .box li + li { margin-top: 4px; }
 
-  .toc { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin-bottom: 26px; }
-  .toc ol { margin: 6px 0 0; padding-left: 22px; }
-  .toc a { color: var(--brand); text-decoration: none; }
-  .toc a:hover { text-decoration: underline; }
+  /* แท็บขั้นตอน — เลื่อนซ้าย-ขวาได้บนมือถือ */
+  .tabs { position: sticky; top: 0; z-index: 5; background: var(--bg); margin: 0 -16px 18px; padding: 10px 16px 8px; border-bottom: 1px solid var(--line); }
+  .tabs-row { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .tabs-row::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; display: flex; align-items: center; gap: 7px; border: 1.5px solid var(--line); background: #fff; color: var(--muted);
+         border-radius: 999px; padding: 6px 13px 6px 7px; font: 600 14px/1.2 'Sarabun', Tahoma, sans-serif; cursor: pointer; }
+  .tab .tn { width: 24px; height: 24px; border-radius: 50%; background: var(--panel); border: 1px solid var(--line); display: grid; place-items: center; font-size: 13px; color: var(--muted); }
+  .tab.seen .tn { background: var(--ok-bg); border-color: #b7dfc7; color: var(--ok); }
+  .tab.on { border-color: var(--brand); color: var(--brand); background: #f1f5fb; }
+  .tab.on .tn { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .tabs-prog { height: 3px; background: var(--line); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .tabs-prog i { display: block; height: 100%; width: 0; background: var(--brand); transition: width .25s; }
+  .js .step { display: none; }
+  .js .step.on { display: block; }
+  .js .step { border-top: 0; padding-top: 4px; margin-top: 0; }
+  .stepnav { display: flex; gap: 10px; margin-top: 26px; }
+  .stepnav .btn { flex: 1; text-align: center; border: 0; cursor: pointer; font: 700 16px 'Sarabun', Tahoma, sans-serif; }
+  .stepnav .btn.ghost { background: #fff; color: var(--brand); border: 1.5px solid var(--line); }
+  .stepnav .btn.ghost[disabled] { opacity: .35; cursor: default; }
+  .js .done { display: none; }
+  .js .done.on { display: block; }
 
   .step { border-top: 2px solid var(--line); padding-top: 22px; margin-top: 30px; }
   .step > .n { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; font-size: 15px; }
@@ -60,6 +77,35 @@
   .kv dd { margin: 0; font-weight: 600; }
 
   .btn { display: inline-block; background: var(--xc); color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 10px; font-weight: 700; }
+  /* ปุ่มสมัคร: ป้ายสีส้มเด้งขึ้นลง + วงแสงกระพริบรอบปุ่ม ให้เห็นชัดว่าต้องกดตรงนี้ */
+  .cta { display: block; margin: 8px 0 8px; }
+  .cta .btn { display: block; text-align: center; font-size: 18px; padding: 15px 22px; border-radius: 12px; animation: ring 1.6s ease-out infinite; }
+  .hint-tag { position: relative; display: table; background: #dc2626; color: #fff; font-weight: 700; font-size: 16px;
+              padding: 5px 20px; border-radius: 999px; margin: 0 auto 14px; animation: hop 1s ease-in-out infinite; }
+  .hint-tag::after { content: ''; position: absolute; left: 50%; bottom: -7px; margin-left: -8px; border: 8px solid transparent; border-bottom: 0; border-top-color: #dc2626; }
+  @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(84,104,231,.55); } 70%, 100% { box-shadow: 0 0 0 14px rgba(84,104,231,0); } }
+  @media (prefers-reduced-motion: reduce) { .hint-tag, .cta .btn { animation: none; } }
+  .altlink { font-size: 14px; color: var(--muted); margin: 6px 0 12px; }
+  .altlink a { color: var(--xc); word-break: break-all; font-weight: 600; }
+  .howto { border: 1.5px solid var(--line); border-radius: 12px; margin: 14px 0; background: #fff; }
+  .howto summary { cursor: pointer; padding: 12px 16px; font-weight: 700; color: var(--brand); list-style: none; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  .howto summary::-webkit-details-marker { display: none; }
+  .howto summary::after { content: '+'; font-size: 22px; line-height: 1; color: var(--brand); }
+  .howto[open] summary::after { content: '\2212'; }
+  .howto[open] summary { border-bottom: 1px solid var(--line); }
+  .howto-body { padding: 4px 16px 14px; }
+  .two.bank { grid-template-columns: 1fr 1fr; }
+  .two.bank figure { margin: 8px 0; }
+  .two.bank img { border-radius: 10px; }
+  .speed { border: 2px solid var(--line-green); background: #f0fbf4; border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
+  .speed h3 { margin: 0 0 8px; font-size: 16px; color: #0b6b34; }
+  .speed ol { margin: 8px 0; }
+  .speed p { margin: 10px 0 0; }
+  .speed .btn { display: block; text-align: center; }
+  .speed .alt { font-size: 14px; color: var(--muted); }
+  .kycshots { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kycshots figure, .msgshot { margin: 10px 0 0; }
   .btn.line { background: var(--line-green); }
   .btn.navy { background: var(--brand); }
 
@@ -74,7 +120,7 @@
 <body>
 <div class="wrap">
 
-  <div class="brand"><div class="mark">IRT</div><b>IRT Gold Co-Pilot</b></div>
+  <div class="brand"><div class="mark">IRT</div><b>IRT GOLD LAB</b></div>
   <h1>วิธีสมัครบัญชีเทรด XCELLA PRIME</h1>
   <p class="lede">ทำตาม 9 ขั้นตอนนี้ ใช้เวลาประมาณ 15 นาที (ไม่รวมเวลารอตรวจเอกสาร) ภาพประกอบทุกขั้นถ่ายจากมือถือจริง</p>
 
@@ -88,26 +134,17 @@
     </ul>
   </div>
 
-  <div class="toc">
-    <b>9 ขั้นตอน</b>
-    <ol>
-      <li><a href="#s1">สมัครสมาชิก</a></li>
-      <li><a href="#s2">ยืนยันอีเมล</a></li>
-      <li><a href="#s3">เข้าสู่ระบบ + รหัส 6 หลัก</a></li>
-      <li><a href="#s4">ยอมรับเงื่อนไข</a></li>
-      <li><a href="#s5">ยืนยันตัวตน (KYC)</a></li>
-      <li><a href="#s6">ฝากเงินเข้า Wallet</a></li>
-      <li><a href="#s7">เปิดบัญชีเทรดแบบ CENT</a></li>
-      <li><a href="#s8">รับเลขพอร์ต MT5</a></li>
-      <li><a href="#s9">โอนเงินเข้าพอร์ต</a></li>
-    </ol>
-  </div>
+  <div class="tabs" id="tabs"><div class="tabs-row" id="tabsRow" role="tablist" aria-label="9 ขั้นตอน"></div><div class="tabs-prog"><i id="prog"></i></div></div>
 
   <!-- 1 -->
   <section class="step" id="s1">
     <span class="n">1</span><h2>สมัครสมาชิก</h2>
     <p>เปิดลิงก์สมัครของ IRT GOLD แล้วกรอกข้อมูลให้ครบ</p>
-    <p><a class="btn" id="brokerBtn" href="#" target="_blank" rel="noopener">เปิดลิงก์สมัคร XCELLA PRIME</a></p>
+    <div class="cta">
+      <span class="hint-tag">กดตรงนี้</span>
+      <a class="btn" id="brokerBtn" href="#" target="_blank" rel="noopener">เปิดลิงก์สมัคร XCELLA PRIME</a>
+    </div>
+    <p class="altlink">กดปุ่มไม่ได้? แตะที่ลิงก์นี้แทน: <a id="brokerLink" href="#" target="_blank" rel="noopener"></a></p>
     <div class="stop"><b>ต้องสมัครผ่านลิงก์นี้เท่านั้น</b> ถ้าสมัครเองจากหน้าเว็บโบรกโดยตรง ระบบจะไม่นับว่าเป็นลูกค้าของ IRT GOLD และใช้ EA ไม่ได้</div>
     <ol>
       <li><b>First Name / Last Name</b> — สะกดเป็นภาษาอังกฤษให้ตรงกับบัตรประชาชนเป๊ะ ๆ</li>
@@ -165,13 +202,48 @@
       <figure><a href="img/10-kyc-form.jpg?v=3" target="_blank" rel="noopener"><img src="img/10-kyc-form.jpg?v=3" alt="แบบฟอร์มกรอกข้อมูลส่วนตัว KYC" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · <b style="color:#d62020">ตัวหนังสือสีแดงคือตัวอย่าง</b> กรอกตามบัตรประชาชนของตัวเอง</figcaption></figure>
       <figure><a href="img/11-kyc-upload.jpg?v=3" target="_blank" rel="noopener"><img src="img/11-kyc-upload.jpg?v=3" alt="อัปโหลดเอกสารและสมุดบัญชีธนาคาร" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · อัปโหลดบัตรและสมุดบัญชี</figcaption></figure>
     </div>
+    <details class="howto">
+      <summary>ไม่มีสมุดบัญชี? ขอสมุดบัญชีออนไลน์ผ่านแอปธนาคาร</summary>
+      <div class="howto-body">
+        <p>ตัวอย่างจากแอป <b>Krungthai NEXT</b> ธนาคารอื่นก็ทำคล้ายกัน คือเข้าเมนูบัญชี → หา <b>สมุดบัญชี</b> (บางธนาคารเรียก e-Passbook หรือ รายละเอียดบัญชี) → กดบันทึกลงเครื่อง แล้วนำรูปมาอัปโหลดในช่อง Bank Book</p>
+        <ol>
+          <li>แตะเมนู <b>บัญชี</b> ด้านล่างของหน้าแรก</li>
+          <li>กดปุ่ม <b>เมนูอื่นๆ</b></li>
+          <li>เลือก <b>สมุดบัญชี</b></li>
+          <li>กด <b>บันทึกลงเครื่อง</b> จะได้รูปสมุดบัญชีในเครื่อง</li>
+        </ol>
+        <div class="two bank">
+        <figure><a href="img/bank-1.png?v=1" target="_blank" rel="noopener"><img src="img/bank-1.png?v=1" alt="1. แตะเมนูบัญชี" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 1. แตะเมนูบัญชี</figcaption></figure>
+        <figure><a href="img/bank-2.png?v=1" target="_blank" rel="noopener"><img src="img/bank-2.png?v=1" alt="2. กดเมนูอื่นๆ" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 2. กดเมนูอื่นๆ</figcaption></figure>
+        <figure><a href="img/bank-3.png?v=1" target="_blank" rel="noopener"><img src="img/bank-3.png?v=1" alt="3. เลือกสมุดบัญชี" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 3. เลือกสมุดบัญชี</figcaption></figure>
+        <figure><a href="img/bank-4.png?v=1" target="_blank" rel="noopener"><img src="img/bank-4.png?v=1" alt="4. กดบันทึกลงเครื่อง" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 4. กดบันทึกลงเครื่อง</figcaption></figure>
+        </div>
+        <div class="tip">ต้องเห็น <b>ชื่อบัญชี</b> และ <b>เลขบัญชี</b> ชัดเจนในรูป ชื่อต้องตรงกับบัตรประชาชน</div>
+      </div>
+    </details>
     <div class="warn"><b>ชื่อบัญชีธนาคารต้องเป็นชื่อเดียวกับที่สมัคร</b> โบรกไม่รับเงินฝากจากบัญชีคนอื่น ถ้าไม่ตรงจะฝากเงินไม่ผ่าน</div>
-    <div class="tip">ส่งเอกสารแล้วรอทีมงานโบรกตรวจสอบ ระหว่างรอทำขั้นตอนที่ 6 (ฝากเงิน) ต่อได้เลย</div>
+    <div class="tip">ส่งเอกสารแล้ว ไปขั้นตอนที่ 6 เพื่อ<b>แอด LINE Support ของโบรก</b> ให้ช่วยเร่งตรวจ KYC จะได้ฝากเงินได้เร็วขึ้น</div>
   </section>
 
   <!-- 6 -->
   <section class="step" id="s6">
     <span class="n">6</span><h2>ฝากเงินเข้า Wallet</h2>
+    <div class="stop"><b>ต้อง KYC ผ่านก่อน ถึงจะฝากเงินได้</b> ถ้าเอกสารยังไม่ผ่านจะกดฝากเงินไม่ได้</div>
+    <div class="speed">
+      <h3>ให้ฝากเงินได้เร็วขึ้น: แอด LINE Support ของโบรก</h3>
+      <ol>
+        <li>แอด LINE Support ของ <b>XCELLA Prime</b> (กดปุ่มด้านล่าง)</li>
+        <li>พิมพ์ว่า <b>แจ้ง KYC</b> แล้วพิมพ์<b>อีเมลที่สมัคร</b>ต่อท้าย</li>
+        <li>รอทีมงานโบรกตอบว่า KYC ผ่านแล้ว จึงเริ่มฝากเงิน</li>
+      </ol>
+      <p><a class="btn line" href="https://lin.ee/R5gIiPe" target="_blank" rel="noopener">แอด LINE Support โบรก</a></p>
+      <p class="alt">หาปุ่มเองได้ที่เว็บ XCELLA Prime: ในมือถือจะเป็น<b>ไอคอนแชทกลมๆ มุมขวาบน</b> ข้างปุ่ม Register (บนคอมเป็นคำว่า Support 24/7)</p>
+      <div class="two kycshots">
+        <figure><a href="img/kyc-1-chat-icon.jpg?v=1" target="_blank" rel="noopener"><img src="img/kyc-1-chat-icon.jpg?v=1" alt="หน้าเว็บ XCELLA Prime มีวงสีแดงที่ไอคอนแชทมุมขวาบน" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 1. เว็บ XCELLA Prime กดไอคอนแชทมุมขวาบน</figcaption></figure>
+        <figure><a href="img/kyc-2-line-support.jpg?v=1" target="_blank" rel="noopener"><img src="img/kyc-2-line-support.jpg?v=1" alt="หน้าแชท LINE Support ของ XCELLA Prime" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 2. เปิดแชท LINE Support ของโบรก</figcaption></figure>
+      </div>
+      <figure class="msgshot"><a href="img/kyc-3-message.jpg?v=1" target="_blank" rel="noopener"><img src="img/kyc-3-message.jpg?v=1" alt="ตัวอย่างข้อความแจ้ง KYC พร้อมอีเมล" loading="lazy"></a><figcaption>แตะรูปเพื่อขยาย · 3. พิมพ์ "แจ้ง KYC" แล้วตามด้วยอีเมลที่สมัคร (อีเมลในรูปเป็นตัวอย่าง ใช้อีเมลของตัวเอง)</figcaption></figure>
+    </div>
     <p>ไปที่เมนู <b>Finance → Deposit</b> แล้วเลือกช่องทาง <b>QR Code PromptPay</b></p>
     <dl class="kv">
       <dt>ฝากขั้นต่ำ</dt><dd>$20 (ประมาณ 700 บาท)</dd>
@@ -210,6 +282,8 @@
     <span class="n">8</span><h2>รับเลขพอร์ต MT5</h2>
     <p>กด <b>Send Request</b> เพื่อส่งคำขอเปิดบัญชี รอระบบอนุมัติสักครู่ แล้วบัญชีจะขึ้นมาในหน้าเดียวกัน พร้อม <b>เลขพอร์ต</b> และรหัสผ่านสำหรับเข้า MT5</p>
     <figure><a href="img/17-send-request.jpg?v=3" target="_blank" rel="noopener"><img src="img/17-send-request.jpg?v=3" alt="ส่งคำขอเปิดบัญชีและบัญชี MT5 ที่ได้รับ" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · บัญชีที่เปิดสำเร็จจะแสดงเลขพอร์ตและประเภท CENT-X</figcaption></figure>
+    <figure><a href="img/xcella-profile.png?v=2" target="_blank" rel="noopener"><img src="img/xcella-profile.png?v=2" alt="หน้า Dashboard แสดง ID ของ XCELLA" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · <b>ID ของ XCELLA</b> อยู่ในกรอบ Profile หน้า Dashboard (ตัวอย่าง)</figcaption></figure>
+    <figure><a href="img/xcella-mt5-card.png?v=5" target="_blank" rel="noopener"><img src="img/xcella-mt5-card.png?v=5" alt="การ์ดบัญชี MT5 แสดงเลขพอร์ต" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · <b>เลขพอร์ต MT5</b> คือตัวเลขใหญ่บนการ์ด (ตัวอย่าง)</figcaption></figure>
     <div class="tip"><b>จดเลขพอร์ตไว้</b> ต้องใช้กรอกตอนลงทะเบียนกับ IRT GOLD และใช้ตอนทีมงานติดตั้ง EA ให้</div>
   </section>
 
@@ -218,8 +292,8 @@
     <span class="n">9</span><h2>โอนเงินเข้าพอร์ต</h2>
     <p>เงินที่ฝากเข้ามาจะอยู่ใน <b>Wallet</b> ก่อน ยังเทรดไม่ได้ ต้องโอนเข้าพอร์ต MT5 อีกทอด</p>
     <p>ไปที่ <b>Finance → Internal Transfer</b> เลือก <b>Wallet to MT5</b> → เลือกเลขพอร์ตปลายทาง → ใส่จำนวนเงิน → กด <b>Confirm Now</b></p>
-    <figure><a href="img/18-transfer.jpg?v=3" target="_blank" rel="noopener"><img src="img/18-transfer.jpg?v=3" alt="โอนเงินจาก Wallet เข้าพอร์ต MT5" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · โอนจาก Wallet เข้าพอร์ต MT5</figcaption></figure>
-    <div class="tip">ยอดในพอร์ต CENT จะแสดงเป็นหน่วย <b>USC</b> — ฝาก $100 จะเห็นเป็น <b>10,000 USC</b> ไม่ใช่เงินเพิ่มนะครับ เป็นแค่หน่วยที่ต่างกัน</div>
+    <figure><a href="img/18-transfer.jpg?v=5" target="_blank" rel="noopener"><img src="img/18-transfer.jpg?v=5" alt="โอนเงินจาก Wallet เข้าพอร์ต MT5" loading="lazy" ></a><figcaption>แตะรูปเพื่อขยาย · โอนจาก Wallet เข้าพอร์ต MT5 (ยอดเงินในรูปเป็นตัวอย่าง)</figcaption></figure>
+    <div class="tip">ยอดในพอร์ต CENT จะแสดงเป็นหน่วย <b>USC</b> — ฝาก $1,000 จะเห็นเป็น <b>100,000 USC</b> ไม่ใช่เงินเพิ่มนะครับ เป็นแค่หน่วยที่ต่างกัน</div>
     <div class="warn">บัญชีที่มียอด 0 จะถูกโบรกปิดอัตโนมัติใน 90 วัน และบัญชีที่มียอดต่ำกว่า $5 จะถูกปิดใน 12 เดือน</div>
   </section>
 
@@ -227,9 +301,7 @@
     <h2>เสร็จแล้ว ขั้นตอนต่อไป</h2>
     <p>ส่ง <b>เลขพอร์ต MT5</b> กับ <b>ID ของ XCELLA</b> ให้ทีมงาน แล้วเราจะติดตั้ง EA ให้ถึงเครื่อง ไม่ต้องตั้งค่าอะไรเอง</p>
     <p style="margin-bottom:0">
-      <a class="btn navy" href="./">ไปหน้าลงทะเบียนรับ EA</a>
-      &nbsp;
-      <a class="btn" href="./vps.html">คู่มือเช่า VPS</a>
+      <a class="btn navy" href="./">ลงทะเบียนรับ EA ต่อ</a>
       &nbsp;
       <a class="btn line" id="lineBtn" href="#" target="_blank" rel="noopener">สอบถามแอดมิน</a>
     </p>
@@ -247,6 +319,56 @@
   $('lineBtn').href = LINE_URL;
   $('fabLine').href = LINE_URL;
   $('brokerBtn').href = BROKER_LINK;
+  $('brokerLink').href = BROKER_LINK;
+  $('brokerLink').textContent = BROKER_LINK.replace(/^https:\/\//, '');
+
+  /* ---------- แท็บขั้นตอน ---------- */
+  var TITLES = ['สมัครสมาชิก','ยืนยันอีเมล','เข้าสู่ระบบ','ยอมรับเงื่อนไข','ยืนยันตัวตน','ฝากเงิน','เปิดบัญชี CENT','รับเลขพอร์ต','โอนเงินเข้าพอร์ต'];
+  var steps = Array.prototype.slice.call(document.querySelectorAll('section.step'));
+  var done  = document.querySelector('.done');
+  var row   = $('tabsRow'), cur = -1, seen = {};
+  document.documentElement.className += ' js';
+
+  steps.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab');
+    b.innerHTML = '<span class="tn">' + (i + 1) + '</span><span>' + TITLES[i] + '</span>';
+    b.onclick = function () { go(i, true); };
+    row.appendChild(b);
+
+    var nav = document.createElement('div'); nav.className = 'stepnav';
+    nav.innerHTML = '<button type="button" class="btn ghost"' + (i === 0 ? ' disabled' : '') + '>ย้อนกลับ</button>'
+      + (i < steps.length - 1 ? '<button type="button" class="btn navy">ขั้นตอนที่ ' + (i + 2) + ' &rarr;</button>' : '');
+    var bs = nav.querySelectorAll('button');
+    bs[0].onclick = function () { go(i - 1, true); };
+    if (bs[1]) bs[1].onclick = function () { go(i + 1, true); };
+    s.appendChild(nav);
+  });
+
+  function go(i, scroll) {
+    if (i < 0 || i >= steps.length) return;
+    cur = i; seen[i] = 1;
+    steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    done.classList.toggle('on', i === steps.length - 1);
+    var tabs = row.children;
+    for (var k = 0; k < tabs.length; k++) {
+      tabs[k].classList.toggle('on', k === i);
+      tabs[k].classList.toggle('seen', k < i || (seen[k] && k !== i));
+      tabs[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
+    }
+    $('prog').style.width = ((i + 1) / steps.length * 100) + '%';
+    // เลื่อนเฉพาะแถบแท็บ ไม่ให้ทั้งหน้ากระโดด
+    row.scrollTo({ left: tabs[i].offsetLeft - (row.clientWidth - tabs[i].offsetWidth) / 2, behavior: 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', '#s' + (i + 1));
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  var m = /^#s([1-9])$/.exec(location.hash);
+  go(m ? +m[1] - 1 : 0, false);
+  // กันเบราว์เซอร์เลื่อนหน้าเองตอนโหลด (จำตำแหน่งเดิม/สลับขั้นตอน) ให้เริ่มที่หัวหน้าเสมอ
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function () { window.scrollTo(0, 0); });
 </script>
 </body>
 </html>

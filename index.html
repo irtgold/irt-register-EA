@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ลงทะเบียน IRT Gold Co-Pilot</title>
-<meta name="description" content="ลงทะเบียนรับ IRT Gold Co-Pilot — EA เทรดทองอัตโนมัติ ที่มีทีมงานช่วยดูแลพอร์ต · ใช้กับบัญชี CENT ของ XCELLA PRIME">
-<meta property="og:title" content="ลงทะเบียน IRT Gold Co-Pilot">
+<title>ลงทะเบียน IRT GOLD LAB</title>
+<meta name="description" content="ลงทะเบียนรับ IRT GOLD LAB — EA เทรดทองอัตโนมัติ ที่มีทีมงานช่วยดูแลพอร์ต · ใช้กับบัญชี CENT ของ XCELLA PRIME">
+<meta property="og:title" content="ลงทะเบียน IRT GOLD LAB">
 <meta property="og:description" content="EA เทรดทองอัตโนมัติ + ทีมงานช่วยดูแลพอร์ต · ใช้กับบัญชี CENT ของ XCELLA PRIME">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://irtgold.github.io/irt-register-EA/">
@@ -90,6 +90,127 @@
   .fab:hover { background: #05b34c; }
   .fab svg { width: 20px; height: 20px; fill: #fff; }
   @media (max-width: 420px) { .fab { padding: 11px 16px; font-size: 14px; } }
+
+  /* ── แท็บหลัก 3 ขั้น + ตัวเลือกทุนแบบปัดซ้าย-ขวา ── */
+  .vps-what { background: #f1f5fb; border: 1px solid #d6e0f0; border-radius: 12px; padding: 12px 14px; margin: 4px 0 12px; }
+  .vps-what p { margin: 4px 0 0; font-size: 15px; }
+  .vps-pic { margin: 0 0 10px; }
+  .vps-pic img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 14px; }
+  .vps-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 12px; }
+  .vps-vs > div { border-radius: 12px; padding: 12px 10px; text-align: center; border: 1px solid var(--line); }
+  .vps-vs svg { width: 56px; height: 42px; }
+  .vps-vs h4 { margin: 4px 0 6px; font-size: 16px; }
+  .vps-vs ul { margin: 0; padding: 0; list-style: none; font-size: 13px; text-align: left; display: grid; gap: 4px; }
+  .vps-vs li { padding-left: 14px; position: relative; }
+  .vps-vs li::before { position: absolute; left: 0; font-weight: 700; }
+  .vps-vs .no { background: #fef6f6; border-color: #f5d0d0; color: #b3261e; }
+  .vps-vs .no li::before { content: "×"; }
+  .vps-vs .yes { background: #f0faf4; border-color: #bfe3cc; color: #15803d; }
+  .vps-vs .yes li::before { content: "✓"; }
+  .vps-vs ul, .vps-vs li { color: #374151; }
+  .vps-vs .no li::before, .vps-vs .yes li::before { color: inherit; }
+  .vps-kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14.5px; margin: 0 0 6px; }
+  .vps-kv dt { color: var(--muted); }
+  .vps-kv dd { margin: 0; font-weight: 600; }
+  .vps-strip { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 0 10px; scrollbar-width: none; margin: 0 0 6px; }
+  .vps-strip::-webkit-scrollbar { display: none; }
+  .vps-strip figure { flex: 0 0 62%; scroll-snap-align: start; margin: 0; }
+  .vps-strip img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 12px; }
+  .vps-strip figcaption { font-size: 13px; color: var(--muted); text-align: center; margin-top: 6px; }
+  .risk { border: 2px solid #f0cf6b; background: #fffbea; border-radius: 14px; padding: 14px 16px; margin: 4px 0 8px; font-size: 14px; color: #4b5563; }
+  .risk-h { font-weight: 700; font-size: 17px; color: #92400e; margin-bottom: 6px; }
+  .risk-big { margin: 0; font-size: 15px; color: #1f2937; line-height: 1.6; }
+  .risk-big b { color: #b3261e; }
+  .risk ul { margin: 0; padding-left: 18px; }
+  .risk li + li { margin-top: 4px; }
+  .risk li b { color: #1f2937; }
+  .vps-do { background: #f0faf4; border: 1px solid #bfe3cc; border-radius: 12px; padding: 11px 14px; font-size: 14.5px; color: #1f2937; margin: 4px 0 0; }
+  .vps-do b { color: #15803d; }
+  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .plans .plan { width: auto; margin: 0; padding: 12px 4px; border: 2px solid var(--line); border-radius: 14px; background: #fff; color: var(--ink); display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'Sarabun', sans-serif; }
+  .plan .pn { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+  .plan .pp { font-size: 22px; font-weight: 700; color: var(--brand); font-variant-numeric: tabular-nums; }
+  .plan .ps { font-size: 12px; color: var(--muted); }
+  .plan[aria-checked="true"] { border-color: var(--brand); background: #f1f5fb; box-shadow: 0 0 0 3px #e3ecf7; }
+  .plan[aria-checked="true"] .pn { color: var(--brand); }
+  .plan[aria-checked="true"] .ps { color: var(--ok); font-weight: 600; }
+  .payqr { margin: 12px 0 4px; text-align: center; border: 1px solid var(--line); border-radius: 14px; padding: 12px; background: #fff; }
+  .payqr[hidden] { display: none; }
+  .pq-h { font-size: 15px; margin-bottom: 8px; }
+  .pq-h b { color: var(--brand); }
+  .payqr img { display: block; width: 100%; max-width: 280px; margin: 0 auto; border-radius: 10px; }
+  .payqr p { margin: 10px 0 0; font-size: 13.5px; color: #4b5563; }
+  .payqr p b { color: #b3261e; }
+  .pw { position: relative; }
+  .pw input { padding-right: 70px; }
+  .pw .pw-btn { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: auto; margin: 0; padding: 6px 12px; font: 600 14px 'Sarabun', sans-serif; background: var(--panel); color: var(--brand); border: 1px solid var(--line); border-radius: 8px; }
+  label.consent { display: flex; align-items: flex-start; gap: 10px; font-weight: 400; font-size: 14.5px; margin: 18px 0 0; padding: 12px 14px; border: 1.5px solid #f0cf6b; background: #fffbea; border-radius: 12px; cursor: pointer; }
+  label.consent input { width: 22px; height: 22px; flex: 0 0 22px; margin: 1px 0 0; accent-color: var(--brand); }
+  label.consent b { color: #92400e; }
+  .planpick { border: 1.5px dashed #e0a3a0; background: #fef6f6; color: #b3261e; border-radius: 12px; padding: 11px 14px; font-size: 14.5px; }
+  .planpick.ok { border: 1.5px solid #bfe3cc; background: #f0faf4; color: #15803d; font-weight: 600; }
+  .planpick a { color: inherit; text-decoration: underline; }
+  input[type=file] { width: 100%; padding: 10px; border: 1.5px solid var(--line); border-radius: 12px; background: #fff; font-family: inherit; font-size: 14.5px; }
+  .slipprev { margin-top: 8px; display: flex; gap: 10px; align-items: flex-end; }
+  .slipprev[hidden] { display: none; }
+  .slipprev img { max-height: 160px; max-width: 60%; border: 1px solid var(--line); border-radius: 10px; }
+  .slipprev button { width: auto; margin: 0; padding: 8px 14px; font-size: 13.5px; background: #fff; color: #b3261e; border: 1.5px solid #e0a3a0; border-radius: 10px; }
+  figure.ex { margin: 8px 0 4px; }
+  figure.ex img { display: block; width: 100%; max-width: 360px; border: 1px solid var(--line); border-radius: 12px; }
+  figure.ex figcaption { font-size: 13px; color: var(--muted); margin-top: 5px; }
+  .tp { color: #4f5fe0; font-weight: 700; }
+  svg.lock { width: 13px; height: 13px; vertical-align: -2px; }
+  .blk { margin: 0 0 26px; }
+  .check { list-style: none; margin: 8px 0 14px; padding: 0; display: grid; gap: 10px; }
+  .check li { position: relative; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px 12px 46px; background: #fff; }
+  .check li::before { content: "✓"; position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; border-radius: 50%; background: #e7f6ec; color: var(--ok); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .check b { display: block; }
+  .check span { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .xbtn.guide { display: block; text-align: center; margin: 0 0 16px; padding: 12px 16px; }
+  .help { text-align: center; margin: 0 0 18px; padding: 12px; background: var(--panel); border-radius: 12px; }
+  .help .d { color: var(--muted); font-size: 14px; }
+
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips .chip { flex: 0 0 auto; width: auto; margin: 0; padding: 8px 16px; border: 1.5px solid var(--line); border-radius: 999px; background: #fff; color: #4b5563; font: 700 16px 'Sarabun', sans-serif; font-variant-numeric: tabular-nums; }
+  .chips .chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .car { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; gap: 12px; margin: 0 -4px; padding: 4px; }
+  .car::-webkit-scrollbar { display: none; }
+  .slide { flex: 0 0 100%; scroll-snap-align: center; border: 1px solid var(--line); border-radius: 18px; padding: 18px 16px 16px; background: #fff; box-shadow: 0 2px 10px rgba(30,58,95,.06); min-width: 0; }
+  .s-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .s-cap { font-size: 28px; font-weight: 700; color: var(--brand); line-height: 1.1; }
+  .s-cap small { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 6px; }
+  .s-tag { font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 99px; background: var(--brand); color: #fff; }
+  .s-usc { color: var(--muted); font-size: 14px; margin: 2px 0 12px; }
+  .s-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .s-pct { font-size: 44px; font-weight: 700; line-height: 1; color: var(--ok); font-variant-numeric: tabular-nums; }
+  .s-lbl { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .s-net { text-align: right; font-size: 14px; color: #4b5563; font-variant-numeric: tabular-nums; }
+  .s-net b { display: block; font-size: 20px; color: var(--ok); }
+  .s-chart { width: 100%; height: auto; display: block; margin: 12px 0 2px; }
+  .s-ends { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .s-pd { display: flex; gap: 8px; margin: 8px 0 0; font-size: 13.5px; }
+  .s-pd span { flex: 1; text-align: center; border-radius: 10px; padding: 7px 4px; }
+  .s-pd .pf { background: #f0faf4; color: #15803d; }
+  .s-pd .df { background: #fef6f6; color: #b3261e; }
+  .s-pd b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .s-pd small { display: block; font-size: 11.5px; opacity: .85; }
+  .s-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+  .s-kpi div { background: var(--panel); border-radius: 12px; padding: 10px 6px; text-align: center; }
+  .s-kpi b { display: block; font-size: 18px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .s-kpi span { font-size: 12px; color: var(--muted); line-height: 1.3; display: block; }
+  .s-kpi .dd b { color: #b3261e; }
+  .s-sec { font-weight: 700; font-size: 14px; color: var(--brand); margin: 4px 0 6px; }
+  .s-bars { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; align-items: end; height: 96px; }
+  .s-bars div { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; font-size: 9.5px; letter-spacing: -.3px; color: var(--ok); font-weight: 700; }
+  .s-bars i { display: block; width: 100%; border-radius: 5px 5px 2px 2px; background: linear-gradient(180deg, #22a45d, #15803d); margin-top: 3px; }
+  .s-bars div.part i { background: #a7d8b9; }
+  .s-mon { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; font-size: 9.5px; color: var(--muted); text-align: center; margin-top: 3px; }
+  .s-warn { margin-top: 12px; font-size: 12.5px; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 8px 10px; }
+  .s-foot { font-size: 12px; color: var(--muted); margin: 12px 0 0; line-height: 1.5; }
+  .dots { display: flex; justify-content: center; gap: 7px; margin: 12px 0 16px; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: #d1d5db; transition: all .2s; }
+  .dots i.on { width: 22px; border-radius: 99px; background: var(--brand); }
   .snap { background:#fff7e6; border:2px dashed #f59e0b; border-radius:14px; padding:14px 16px; margin:18px 0; text-align:left; }
   .snap-h { font-weight:700; color:#b45309; margin-bottom:6px; }
   .snap p { margin:0; color:#78350f; line-height:1.6; }
@@ -97,125 +218,125 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><div class="mark">IRT</div><h1>IRT Gold Co-Pilot</h1></div>
+  <div class="brand"><div class="mark">IRT</div><h1>IRT GOLD LAB</h1></div>
   <p class="sub">ลงทะเบียนรับ EA เทรดทองอัตโนมัติ</p>
 
   <div id="formBox">
     <div class="only">ใช้ได้เฉพาะบัญชี <b>CENT</b> ของ <b>XCELLA PRIME</b> ที่สมัครผ่านลิงก์ของ IRT GOLD เท่านั้น</div>
 
-    <ol class="steps">
-      <li><div class="t">สมัคร XCELLA PRIME ผ่านลิงก์ IRT GOLD</div>
-        <a class="xbtn" id="brokerBtn" href="#" target="_blank" rel="noopener">สมัคร XCELLA PRIME</a></li>
-      <li><div class="t">เปิดบัญชีเทรด MT5 ประเภท CENT</div>
-        <div class="d">เมนู Platform → MT5 → แท็บ CENT → Send Request</div></li>
-      <li><div class="t">กรอกฟอร์มด้านล่าง</div>
-        <div class="d">ทีมงานตรวจสอบแล้วส่งไฟล์ EA + License Key ทางอีเมล</div>
-        <div class="d">มีข้อสงสัยหรือติดปัญหาตอนสมัคร ทักไลน์นี้ได้เลย</div>
-        <a class="xbtn line-btn" id="helpBtn" href="#" target="_blank" rel="noopener">แอดไลน์สอบถาม</a></li>
-    </ol>
-    <hr>
 
-    <h2 class="sec">เลือกขนาดพอร์ตที่เหมาะกับคุณ</h2>
-    <p class="sub2">ทุกระดับดูแลเหมือนกัน เป้าหมายและเพดานความเสี่ยงเป็น % เท่ากัน ต่างกันที่จำนวนเงินจริงที่ได้และเสีย</p>
-
-    <div class="tiers">
-      <div class="tier">
-        <h3>เริ่มต้น</h3>
-        <p class="cap">10,000 – 40,000 <small>USC</small></p>
-        <p class="usd">ฝาก $100 – $400</p>
-        <dl>
-          <dt>เป้าหมาย/เดือน</dt><dd class="up">+30% <span>(3,000 – 12,000)</span></dd>
-          <dt>เสี่ยงสูงสุด</dt><dd class="down">−40% <span>(4,000 – 16,000)</span></dd>
-          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
-        </dl>
-        <p class="who"><b>เหมาะกับ</b> คนที่ยังไม่เคยใช้ระบบเทรดอัตโนมัติ อยากลองด้วยเงินที่เสียได้ก่อน</p>
-        <ul class="pc">
-          <li class="p">เริ่มด้วยเงินน้อย เห็นระบบทำงานจริงก่อนค่อยเพิ่มทุน</li>
-          <li class="p">$100 หรือ $200 หรือ $300 ก็เริ่มได้ ไม่ต้องรอเก็บเงินก้อน</li>
-          <li class="m">กำไรเป็นตัวเงินน้อย เพราะคิดเป็น % ของทุนที่น้อย</li>
-          <li class="m">ต่ำกว่า 10,000 USC ขนาดไม้จะติดขั้นต่ำของโบรก ทำให้สัดส่วนความเสี่ยงเพี้ยนกว่าที่ตั้งไว้</li>
-        </ul>
-      </div>
-
-      <div class="tier best">
-        <span class="ribbon">แนะนำ</span>
-        <h3>มาตรฐาน</h3>
-        <p class="cap">50,000 – 90,000 <small>USC</small></p>
-        <p class="usd">ฝาก $500 – $900</p>
-        <dl>
-          <dt>เป้าหมาย/เดือน</dt><dd class="up">+30% <span>(15,000 – 27,000)</span></dd>
-          <dt>เสี่ยงสูงสุด</dt><dd class="down">−40% <span>(20,000 – 36,000)</span></dd>
-          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
-        </dl>
-        <p class="who"><b>เหมาะกับ</b> คนที่ลองมาแล้วหรือมั่นใจในระบบ อยากให้เงินทำงานจริงจังแต่ยังไม่ทุ่มหมดหน้าตัก</p>
-        <ul class="pc">
-          <li class="p">ขนาดไม้เดินได้ตามสัดส่วนที่ออกแบบไว้เต็มที่ ไม่ติดขั้นต่ำของโบรก</li>
-          <li class="p">กำไรต่อเดือนเป็นตัวเงินที่รู้สึกได้ แต่เงินต้นยังไม่ใหญ่เกินรับไหว</li>
-          <li class="m">ต้องรับภาพพอร์ตติดลบหลักหมื่น USC ระหว่างทางได้</li>
-        </ul>
-      </div>
-
-      <div class="tier">
-        <h3>มืออาชีพ</h3>
-        <p class="cap">100,000 <small>USC ขึ้นไป</small></p>
-        <p class="usd">ฝาก $1,000 ขึ้นไป</p>
-        <dl>
-          <dt>เป้าหมาย/เดือน</dt><dd class="up">+30% <span>(30,000 ขึ้นไป)</span></dd>
-          <dt>เสี่ยงสูงสุด</dt><dd class="down">−40% <span>(40,000 ขึ้นไป)</span></dd>
-          <dt>ขนาดไม้</dt><dd>ตามสัดส่วนทุน</dd>
-        </dl>
-        <p class="who"><b>เหมาะกับ</b> คนที่เทรดมาก่อน เข้าใจว่าพอร์ตติดลบระหว่างทางเป็นเรื่องปกติของการเทรดทอง</p>
-        <ul class="pc">
-          <li class="p">สัดส่วนขนาดไม้แม่นที่สุด ระบบทำงานได้เต็มประสิทธิภาพ</li>
-          <li class="p">กำไรต่อเดือนเป็นเงินก้อนจริงจัง</li>
-          <li class="m">เงินก้อนใหญ่ ตอนติดลบมูลค่าที่เห็นก็ใหญ่ตาม (40% = 40,000 USC ขึ้นไป)</li>
-          <li class="m">ไม่ควรเริ่มที่ระดับนี้ถ้ายังไม่เคยเห็นระบบทำงานด้วยตาตัวเอง</li>
-        </ul>
-      </div>
-    </div>
-
+    <section class="blk" id="pane0">
+      <h2 class="sec">ก่อนกรอกฟอร์ม ต้องมี 2 อย่าง</h2>
+      <ul class="check">
+        <li><b>สมัคร XCELLA PRIME ผ่านลิงก์ของ IRT GOLD</b><span>สมัครจากหน้าเว็บโบรกโดยตรงไม่นับ และใช้ EA ไม่ได้</span></li>
+        <li><b>มีบัญชีเทรด MT5 ประเภท CENT</b><span>ต้องมีเลขพอร์ต MT5 และ ID ของ XCELLA PRIME ไว้กรอกในฟอร์ม</span></li>
+      </ul>
     <div class="trust">
       <div><b>เงินอยู่ในบัญชีเทรดของคุณเอง</b> ทีมงานไม่มีสิทธิ์ถอนเงินออกจากพอร์ต คุณถอนเองได้ตลอดเวลา</div>
       <div><b>ไม่ต้องทำอะไรเลย</b> ทีมงานเข้าไปติดตั้งให้ถึงเครื่อง เปิดทิ้งไว้อย่างเดียว</div>
       <div><b>หยุดเมื่อไหร่ก็ได้</b> แจ้งทีมงานปิดระบบได้ทันที ไม่มีสัญญาผูกมัด</div>
     </div>
+    </section>
 
-    <div class="facts">
-      <b>อ่านก่อนตัดสินใจ</b> — ตัวเลขข้างบนคือ <b>เป้าหมายการทำงาน ไม่ใช่การรับประกันผลตอบแทน</b>
-      <ul>
-        <li>เป้าหมายกำไร <b>30% ของทุนต่อเดือน</b> · บางเดือนได้มากกว่า บางเดือนได้น้อยกว่า และบางเดือนขาดทุนได้</li>
-        <li>เพดานความเสี่ยงที่ตั้งไว้คือ <b>40% ของทุน</b> — พอร์ต 10,000 อาจเห็นลงไปถึง 6,000 ระหว่างทางก่อนกลับมา ถ้ารับตรงนี้ไม่ได้ ไม่ควรเริ่ม</li>
-        <li>ทุกระดับใช้ % เดียวกัน เพราะขนาดไม้คิดตามสัดส่วนทุน — <b>ทุนมากไม่ได้แปลว่าปลอดภัยกว่า</b> แค่ตัวเลขกำไรและขาดทุนใหญ่ตามกัน</li>
-        <li>การเทรดทองมีความเสี่ยงสูง <b>ควรใช้เงินที่เสียได้เท่านั้น</b> ห้ามใช้เงินกู้หรือเงินที่ต้องใช้ในชีวิตประจำวัน</li>
-      </ul>
-    </div>
+    <!-- 2 ผลย้อนหลังตามขนาดทุน -->
+    <section class="blk" id="pane1">
+      <h2 class="sec">ผลย้อนหลัง ตามขนาดทุนของคุณ</h2>
+      <p class="sub2">ปัดซ้าย-ขวา หรือแตะตัวเลขด้านบนเพื่อเปลี่ยนขนาดทุน</p>
+      <div class="chips" id="chips" role="tablist"></div>
+      <div class="car" id="car"></div>
+      <div class="dots" id="dots"></div>
+      <div class="risk">
+        <div class="risk-h">การลงทุนมีความเสี่ยง</div>
+        <p class="risk-big">ผลย้อนหลังไม่สามารถรับประกันผลในอนาคตได้ ระหว่างทางพอร์ตเคยย่อลงสูงสุดประมาณ <b><span id="riskPct"></span>%</b> ของพอร์ตตอนนั้น (ถ้าเริ่มด้วยทุน <span id="riskCap"></span> คิดเป็นเงินประมาณ <b>$<span id="riskUsc"></span></b>) ขอให้พิจารณาว่าระดับนี้เหมาะกับคุณหรือไม่ ก่อนเริ่มใช้งานนะครับ</p>
+      </div>
+    </section>
+
+    <section class="blk" id="vps">
+      <h2 class="sec">ก่อนรัน EA ต้องมี VPS</h2>
+      <p class="sub2">EA จะทำงานได้ต่อเมื่อมีเครื่องที่เปิดค้างไว้ตลอดเวลา ซึ่งก็คือ VPS</p>
+
+      <div class="vps-what">
+        <b>VPS คืออะไร?</b>
+        <p>คือ <b>คอมพิวเตอร์ที่เช่าไว้ เปิดทิ้งไว้ตลอด 24 ชั่วโมงบนอินเทอร์เน็ต</b> ให้ EA ทำงานแทนคอมที่บ้านของเรา ไม่ต้องเปิดคอมค้างทั้งวัน ไม่ต้องกลัวไฟดับหรือเน็ตหลุด</p>
+      </div>
+
+      <figure class="vps-pic"><a href="img/vps-vs.jpg?v=2" target="_blank" rel="noopener"><img src="img/vps-vs.jpg?v=2" alt="เปรียบเทียบคอมที่บ้านกับ VPS: คอมที่บ้านปิดเครื่อง ไฟดับ เน็ตหลุด EA หยุด ส่วน VPS เปิดตลอด 24 ชั่วโมง EA ทำงานต่อเนื่อง" loading="lazy"></a></figure>
+      <div class="vps-vs">
+        <div class="no">
+          <svg viewBox="0 0 64 48" aria-hidden="true"><rect x="8" y="5" width="48" height="31" rx="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M24 43h16M32 36v7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M24 14l16 14M40 14L24 28" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+          <h4>คอมที่บ้าน</h4>
+          <ul><li>ปิดเครื่องหรือเครื่อง sleep = EA หยุด</li><li>ไฟดับ เน็ตหลุด = พลาดไม้</li></ul>
+        </div>
+        <div class="yes">
+          <svg viewBox="0 0 64 48" aria-hidden="true"><rect x="10" y="4" width="44" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="10" y="19" width="44" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="10" y="34" width="44" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="17" cy="10" r="2" fill="currentColor"/><circle cx="17" cy="25" r="2" fill="currentColor"/><circle cx="17" cy="39" r="2" fill="currentColor"/></svg>
+          <h4>VPS</h4>
+          <ul><li>เปิดตลอด 24 ชั่วโมง</li><li>ไฟไม่ดับ เน็ตไม่หลุด EA ทำงานต่อเนื่อง</li></ul>
+        </div>
+      </div>
+
+      <div class="vps-do">เราดำเนินการให้ทั้งหมด <b>สมัคร VPS และติดตั้ง EA ให้เอง</b> คุณแค่เลือกแพ็กเกจแล้วสแกน QR จ่ายเงิน</div>
+
+      <div class="s-sec" style="margin:14px 0 8px">เลือกแพ็กเกจ VPS</div>
+      <div class="plans" id="plans" role="radiogroup" aria-label="แพ็กเกจ VPS">
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="200" data-name="รายเดือน"><span class="pn">รายเดือน</span><span class="pp">฿200</span><span class="ps">จ่ายทีละเดือน</span></button>
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="1000" data-name="ราย 6 เดือน"><span class="pn">ราย 6 เดือน</span><span class="pp">฿1,000</span><span class="ps">ฟรี 1 เดือน</span></button>
+        <button type="button" class="plan" role="radio" aria-checked="false" data-price="2000" data-name="ราย 1 ปี"><span class="pn">ราย 1 ปี</span><span class="pp">฿2,000</span><span class="ps">ฟรี 2 เดือน</span></button>
+      </div>
+
+      <div class="payqr" id="payqr" hidden>
+        <div class="pq-h">สแกนจ่าย <b id="pqName"></b> · <b id="pqAmt"></b></div>
+        <img src="img/pay-qr.png?v=1" alt="QR พร้อมเพย์ สำหรับชำระค่า VPS">
+        <p>สแกนด้วยแอปธนาคารใดก็ได้ แล้วใส่ยอดเงินเอง <b id="pqAmt2"></b> จ่ายเสร็จส่งสลิปให้ทีมงานทาง LINE</p>
+      </div>
+    </section>
 
     <hr>
+    <h2 class="sec">กรอกฟอร์มลงทะเบียน</h2>
 
+    <!-- 3 กรอกฟอร์ม -->
+    <section class="blk" id="pane2">
     <form id="f" autocomplete="on" novalidate>
       <label for="name">ชื่อ-นามสกุล <span class="req">*</span></label>
-      <input type="text" id="name" autocomplete="name" required>
+      <input type="text" id="name" autocomplete="name" placeholder="เช่น สมชาย ใจดี" required>
 
       <label for="phone">เบอร์โทร <span class="req">*</span></label>
-      <input type="tel" id="phone" autocomplete="tel" inputmode="tel" required>
+      <input type="tel" id="phone" autocomplete="tel" inputmode="tel" placeholder="เช่น 0812345678" required>
 
       <label for="xid">ID ของ XCELLA PRIME <span class="req">*</span></label>
       <input type="text" id="xid" inputmode="numeric" placeholder="เช่น 12345" required>
       <div class="hint">ล็อกอิน secure.xcellaprime.com → หน้า DASHBOARD → Profile → ตัวเลขหลังคำว่า ID</div>
+      <figure class="ex"><a href="img/xcella-profile.png?v=2" target="_blank" rel="noopener"><img src="img/xcella-profile.png?v=2" alt="ตัวอย่างหน้า Profile ที่เห็น ID"></a><figcaption>ตัวอย่าง: <b>ID</b> อยู่ใต้ชื่อในกรอบ Profile (แตะรูปเพื่อขยาย)</figcaption></figure>
 
       <label for="email">อีเมล <span class="req">*</span> <small>(รับไฟล์ EA + License Key)</small></label>
-      <input type="email" id="email" autocomplete="email" required>
-
-      <label for="account">เลขพอร์ต MT5 <span class="req">*</span> <small>(บัญชี CENT)</small></label>
-      <input type="text" id="account" inputmode="numeric" required>
+      <input type="email" id="email" autocomplete="email" placeholder="เช่น somchai@gmail.com" required>
 
       <label for="capital">จำนวนเงินในพอร์ต <span class="req">*</span> <small>(USC)</small></label>
       <input type="text" id="capital" inputmode="decimal" placeholder="เช่น 10000" required>
       <div class="hint">ดูยอด Balance ใน MT5 · บัญชี CENT ฝาก $100 = 10,000 USC</div>
 
+      <label for="account">เลขพอร์ต MT5 <span class="req">*</span> <small>(บัญชี CENT)</small></label>
+      <input type="text" id="account" inputmode="numeric" placeholder="เช่น 810169" required>
+      <figure class="ex"><a href="img/xcella-mt5-card.png?v=5" target="_blank" rel="noopener"><img src="img/xcella-mt5-card.png?v=5" alt="ตัวอย่างการ์ด MT5 ที่เห็นเลขพอร์ต"></a><figcaption>ตัวอย่าง: <b>เลขพอร์ต</b> คือตัวเลขใหญ่บนการ์ด MT5 (แตะรูปเพื่อขยาย)</figcaption></figure>
+
+      <label for="mt5pass">รหัสผ่านพอร์ต MT5 <span class="req">*</span> <small>(<b class="tp">Trading Password <svg class="lock" viewBox="0 0 16 16" aria-label="กุญแจสีน้ำเงิน"><rect x="3" y="7" width="10" height="7.5" rx="1.6" fill="#4f5fe0"/><path d="M5.2 7V5.2a2.8 2.8 0 0 1 5.6 0V7" fill="none" stroke="#4f5fe0" stroke-width="1.7"/></svg></b> กุญแจสีน้ำเงิน)</small></label>
+      <div class="pw"><input type="password" id="mt5pass" autocomplete="off" spellcheck="false" placeholder="รหัสที่ตั้งตอนเปิดบัญชี MT5" required><button type="button" id="pwShow" class="pw-btn" aria-label="แสดงรหัส">แสดง</button></div>
+      <div class="hint">ดูที่การ์ด MT5 ในเว็บ XCELLA บรรทัด <b>Trading Password</b> (กุญแจสีน้ำเงิน) กดที่กุญแจเพื่อดูรหัส · ไม่ใช่ Investor Password (กุญแจสีเหลือง) · ทีมงานใช้ล็อกอินติดตั้ง EA บน VPS ให้</div>
+
+      <label class="consent"><input type="checkbox" id="consent"> <span>ฉันยินยอมให้ทีมงาน <b>ใช้เลขพอร์ตและรหัสผ่านนี้เฉพาะเพื่อติดตั้ง EA บน VPS เท่านั้น</b> และไม่นำไปใช้อย่างอื่น</span></label>
+
+      <label>แพ็กเกจ VPS ที่เลือก <span class="req">*</span></label>
+      <div class="planpick" id="planPick">ยังไม่ได้เลือก — เลื่อนขึ้นไปเลือกแพ็กเกจ VPS ด้านบน <a href="#plans">เลือกเลย</a></div>
+
+      <label for="slip">แนบสลิปโอนเงินค่า VPS <span class="req">*</span></label>
+      <input type="file" id="slip" accept="image/*">
+      <div class="slipprev" id="slipPrev" hidden><img id="slipImg" alt="สลิปที่แนบ"><button type="button" id="slipDel">ลบรูป</button></div>
+      <div class="hint">สแกน QR จ่ายค่า VPS แล้วแคปสลิปมาแนบที่นี่ (รูปจะถูกย่อให้อัตโนมัติ)</div>
+
+
       <div class="err" id="err" role="alert"></div>
       <button type="submit" id="btn">ส่งข้อมูลลงทะเบียน</button>
     </form>
+    </section>
   </div>
 
   <div class="done" id="done">
@@ -253,10 +374,139 @@
 
   var $ = function (id) { return document.getElementById(id); };
   $('lineBtn2').href = LINE_URL;
-  $('helpBtn').href = LINE_URL;
   $('fabLine').href = LINE_URL;
-  if (BROKER_LINK) $('brokerBtn').href = BROKER_LINK;
-  else { $('brokerBtn').href = LINE_URL; $('brokerBtn').textContent = 'แอด LINE รับลิงก์สมัคร'; $('brokerBtn').className = 'xbtn line-btn'; }
+
+
+  /* ── ผลย้อนหลังตามขนาดทุน (ทดสอบจริงที่ทุน 30,000 USC แล้วคิดตามสัดส่วน) ── */
+  var BT = {"base":200000,"net":219717,"dd":24.6,"win":89.8,"trades":945,"months":[["ม.ค.",10.6],["ก.พ.",10],["มี.ค.",11.3],["เม.ย.",10.3],["พ.ค.",10.7],["มิ.ย.",11],["ก.ค.",12],["ส.ค.",10.7],["ก.ย.",11.1],["ต.ค.",11.2],["พ.ย.*",1]],"curve":[0.0,0.5,0.8,2.0,2.2,2.4,2.3,3.6,2.4,-1.5,5.5,5.9,6.4,6.0,8.0,7.7,9.0,8.4,10.1,9.5,9.3,8.2,12.0,12.5,13.0,11.6,14.5,10.7,12.0,16.0,14.4,16.8,17.3,16.9,18.6,18.9,19.4,19.0,21.1,21.6,20.4,22.4,22.9,23.7,24.2,23.5,24.6,25.4,26.3,27.3,24.0,26.9,27.5,29.3,29.8,5.6,9.9,24.8,29.9,28.2,29.7,32.2,32.7,33.7,32.9,35.2,29.6,36.2,34.1,32.8,31.6,37.3,39.4,37.8,37.9,40.0,32.1,21.9,30.2,43.2,43.7,44.2,44.6,45.2,45.6,45.2,46.6,45.8,48.1,48.8,42.8,48.5,49.3,50.3,51.3,51.9,52.0,50.7,53.1,53.4,53.1,55.3,54.6,56.1,55.2,57.5,58.0,58.5,56.2,49.8,60.5,59.8,61.3,61.8,62.3,61.1,63.3,63.9,63.2,64.9,65.6,64.5,66.3,66.9,67.9,53.0,68.5,69.6,70.1,68.9,71.3,72.1,71.5,73.1,73.6,72.3,74.6,53.8,75.9,76.0,76.9,77.4,77.9,78.9,79.4,72.4,77.3,79.8,74.5,80.8,77.4,83.0,83.5,84.0,84.3,70.7,86.1,86.2,87.1,87.6,85.4,87.9,88.2,89.5,86.8,90.6,91.6,77.2,58.7,49.7,62.6,82.1,92.6,95.2,82.6,96.2,96.7,96.2,88.7,98.4,99.2,99.4,97.8,100.4,101.3,100.9,99.8,101.4,103.3,101.9,100.3,105.3,105.8,106.3,106.8,102.6,101.0,96.1,108.8,109.9],"ddAbs":0.4753};
+  var CAPS = [100, 300, 500, 1000, 2000];     // ดอลลาร์ · 1 USD = 100 USC (บัญชี CENT)
+  var cur = 2;                                  // เปิดมาที่ $500
+  var fmt = function (n, d) { return Number(n).toLocaleString('en-US', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); };
+
+  function chart(id) {
+    var W = 320, H = 120, p = 6, n = BT.curve.length, d = '';
+    var hi = Math.max.apply(null, BT.curve), lo = Math.min(0, Math.min.apply(null, BT.curve)), rg = hi - lo;
+    var Y = function (v) { return H - p - ((v - lo) / rg) * (H - 2 * p - 8); };
+    BT.curve.forEach(function (v, i) {
+      d += (i ? 'L' : 'M') + (p + i * (W - 2 * p) / (n - 1)).toFixed(1) + ' ' + Y(v).toFixed(1);
+    });
+    var ex = W - p, ey = Y(BT.curve[n - 1]), y0 = Y(0);
+    return '<svg class="s-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="กราฟ Equity จริงจากการทดสอบย้อนหลัง">'
+      + '<defs><linearGradient id="g' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15803d" stop-opacity=".28"/><stop offset="1" stop-color="#15803d" stop-opacity="0"/></linearGradient></defs>'
+      + '<line x1="' + p + '" y1="' + y0.toFixed(1) + '" x2="' + (W - p) + '" y2="' + y0.toFixed(1) + '" stroke="#cbd5e1" stroke-dasharray="3 3"/>'
+      + '<path d="' + d + 'L' + (W - p) + ' ' + y0.toFixed(1) + 'L' + p + ' ' + y0.toFixed(1) + 'Z" fill="url(#g' + id + ')"/>'
+      + '<path d="' + d + '" fill="none" stroke="#15803d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'
+      + '<circle cx="' + ex + '" cy="' + ey.toFixed(1) + '" r="5" fill="#15803d" stroke="#fff" stroke-width="2"/></svg>';
+  }
+
+  function slide(usd, i) {
+    var usc = usd * 100, k = usc / BT.base, net = BT.net * k, pct = BT.net / BT.base * 100;
+    var mx = Math.max.apply(null, BT.months.map(function (m) { return m[1]; }));
+    var part = function (m) { return m[0].indexOf('*') > -1; };
+    var bars = BT.months.map(function (m) {
+      return '<div' + (part(m) ? ' class="part"' : '') + '>+' + fmt(m[1], 0) + '%<i style="height:' + Math.max(8, m[1] / mx * 70) + 'px"></i></div>';
+    }).join('');
+    var mon = BT.months.map(function (m) { return '<span>' + m[0] + '</span>'; }).join('');
+    return '<div class="slide" data-i="' + i + '">'
+      + '<div class="s-top"><div class="s-cap">$' + fmt(usd) + '<small>' + fmt(usc) + ' USC</small></div>' + (usd === 500 ? '<span class="s-tag">แนะนำ</span>' : '') + '</div>'
+      + '<div class="s-usc">ผลทดสอบย้อนหลัง 1 ม.ค. – 4 พ.ย. 69</div>'
+      + '<div class="s-hero"><div><div class="s-pct">+' + fmt(pct) + '%</div><div class="s-lbl">กำไรรวมจากทุนตั้งต้น</div></div>'
+      + '<div class="s-net"><b>+' + fmt(net) + ' USC</b>≈ $' + fmt(net / 100) + '</div></div>'
+      + chart(i)
+      + '<div class="s-ends"><span>เริ่ม $' + fmt(usd) + '</span><span>ปลายทาง $' + fmt(usd + net / 100) + '</span></div>'
+      + '<div class="s-pd"><span class="pf"><small>Profit รวม 1 ม.ค. – 4 พ.ย.</small><b>+$' + fmt(net / 100) + '</b><small>รวมทุน $' + fmt(usd + net / 100) + '</small></span><span class="df"><small>Max DD ระหว่างทาง</small><b>−$' + fmt(usd * BT.ddAbs) + '</b></span></div>'
+      + '<div class="s-kpi"><div class="dd"><b>−' + BT.dd + '%</b><span>ติดลบลอยสูงสุด<br>ของพอร์ตตอนนั้น</span></div>'
+      + '<div><b>' + BT.win + '%</b><span>อัตราชนะ</span></div>'
+      + '<div><b>' + fmt(BT.trades) + '</b><span>จำนวนไม้</span></div></div>'
+      + '<div class="s-sec">กำไรรายเดือน (% ของทุน)</div><div class="s-bars">' + bars + '</div><div class="s-mon">' + mon + '</div>'
+      + (usd < 500 ? '<div class="s-warn">ทุนน้อย ผลจริงอาจต่างจากตัวเลขนี้ เพราะโบรกกำหนดขนาดไม้ขั้นต่ำ ทำให้สัดส่วนความเสี่ยงเพี้ยนจากที่ตั้งไว้</div>' : '')
+      + '<p class="s-foot">* พ.ย. = 1–4 พ.ย. · กราฟคือ Equity จริงจาก MT5 Strategy Tester (ราคา Tick 100%) รวมไม้ที่ยังค้าง ทดสอบที่ทุน 30,000 USC แล้วคิดตามสัดส่วน · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p>'
+      + '</div>';
+  }
+
+  var car = $('car'), chips = $('chips'), dots = $('dots');
+  CAPS.forEach(function (u, i) {
+    car.insertAdjacentHTML('beforeend', slide(u, i));
+    chips.insertAdjacentHTML('beforeend', '<button type="button" class="chip" data-s="' + i + '">$' + fmt(u) + '</button>');
+    dots.insertAdjacentHTML('beforeend', '<i></i>');
+  });
+  function mark() {
+    var cs = chips.children, ds = dots.children;
+    for (var i = 0; i < cs.length; i++) { cs[i].classList.toggle('on', i === cur); ds[i].classList.toggle('on', i === cur); }
+    var usd = CAPS[cur];
+    $('riskPct').textContent = BT.dd;
+    $('riskCap').textContent = '$' + fmt(usd);
+    $('riskUsc').textContent = fmt(usd * BT.ddAbs);
+    chips.scrollTo({ left: cs[cur].offsetLeft - (chips.clientWidth - cs[cur].offsetWidth) / 2, behavior: 'smooth' });
+  }
+  function gotoSlide(i, instant) {
+    cur = i; mark();
+    var s = car.children[i];
+    if (s) car.scrollTo({ left: s.offsetLeft - car.offsetLeft - 4, behavior: instant ? 'auto' : 'smooth' });
+  }
+  chips.addEventListener('click', function (e) { var b = e.target.closest('.chip'); if (b) gotoSlide(+b.getAttribute('data-s')); });
+  var tmr;
+  car.addEventListener('scroll', function () {
+    clearTimeout(tmr);
+    tmr = setTimeout(function () {
+      var w = car.children[0].offsetWidth + 12, i = Math.max(0, Math.min(CAPS.length - 1, Math.round(car.scrollLeft / w)));
+      if (i !== cur) { cur = i; mark(); }
+    }, 60);
+  });
+  mark();
+  gotoSlide(cur, true);
+  /* เปิดลิงก์มาแล้วเจอส่วน "ผลย้อนหลัง" ก่อนเสมอ (ยกเว้นลิงก์ที่ระบุ #จุดหมาย) */
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  function toIntro() {
+    if (location.hash) return;
+    var s = $('pane1'); if (s) window.scrollTo(0, s.getBoundingClientRect().top + window.pageYOffset - 12);
+  }
+  window.addEventListener('load', function () {
+    gotoSlide(cur, true); toIntro();
+    setTimeout(toIntro, 150); setTimeout(toIntro, 600);
+  });
+
+
+  /* ── เลือกแพ็กเกจ VPS → โชว์ QR พร้อมยอดที่ต้องกรอก ── */
+  var PLAN = '', SLIP = '';
+  (function () {
+    var plans = document.querySelectorAll('#plans .plan'), box = $('payqr');
+    function pick(b) {
+      for (var i = 0; i < plans.length; i++) plans[i].setAttribute('aria-checked', plans[i] === b ? 'true' : 'false');
+      var amt = '฿' + Number(b.getAttribute('data-price')).toLocaleString('en-US');
+      $('pqName').textContent = b.getAttribute('data-name');
+      $('pqAmt').textContent = amt;
+      $('pqAmt2').textContent = amt;
+      box.hidden = false;
+      PLAN = b.getAttribute('data-name') + ' ' + amt;
+      var pp = $('planPick'); pp.className = 'planpick ok'; pp.textContent = '✓ ' + PLAN;
+    }
+    for (var i = 0; i < plans.length; i++) plans[i].addEventListener('click', function () { pick(this); });
+  })();
+
+  /* ── แนบสลิป: ย่อรูปเป็น JPEG ไม่เกิน 1100px ก่อนส่ง ── */
+  $('slip').addEventListener('change', function () {
+    SLIP = ''; $('slipPrev').hidden = true;
+    var f = this.files && this.files[0]; if (!f) return;
+    if (f.type.indexOf('image/') !== 0) { this.value = ''; return showErr('แนบได้เฉพาะรูปภาพ'); }
+    var url = URL.createObjectURL(f), im = new Image();
+    im.onload = function () {
+      var k = Math.min(1, 1100 / Math.max(im.width, im.height)), c = document.createElement('canvas');
+      c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+      var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+      SLIP = c.toDataURL('image/jpeg', 0.72);
+      $('slipImg').src = SLIP; $('slipPrev').hidden = false; URL.revokeObjectURL(url); showErr('');
+    };
+    im.onerror = function () { $('slip').value = ''; showErr('อ่านรูปไม่ได้ ลองรูปอื่น'); };
+    im.src = url;
+  });
+  $('slipDel').addEventListener('click', function () { SLIP = ''; $('slip').value = ''; $('slipPrev').hidden = true; });
+
+  $('pwShow').addEventListener('click', function () {
+    var p = $('mt5pass'), show = p.type === 'password';
+    p.type = show ? 'text' : 'password';
+    this.textContent = show ? 'ซ่อน' : 'แสดง';
+  });
 
   function showErr(msg) { var e = $('err'); e.textContent = msg; e.style.display = msg ? 'block' : 'none'; }
   function idle() { $('btn').disabled = false; $('btn').textContent = 'ส่งข้อมูลลงทะเบียน'; }
@@ -265,8 +515,12 @@
     ev.preventDefault();
     showErr('');
     var data = { a: 'register', name: $('name').value.trim(), phone: $('phone').value.trim(), xid: $('xid').value.trim(),
-                 email: $('email').value.trim(), account: $('account').value.trim(), capital: $('capital').value.trim() };
-    if (!data.name || !data.phone || !data.xid || !data.email || !data.account || !data.capital) return showErr('กรุณากรอกช่องที่มี * ให้ครบ');
+                 email: $('email').value.trim(), account: $('account').value.trim(), capital: $('capital').value.trim(),
+                 mt5pass: $('mt5pass').value, consent: $('consent').checked, plan: PLAN, slip: SLIP };
+    if (!data.name || !data.phone || !data.xid || !data.email || !data.account || !data.capital || !data.mt5pass) return showErr('กรุณากรอกช่องที่มี * ให้ครบ');
+    if (!data.plan) { $('plans').scrollIntoView({ block: 'center' }); return showErr('กรุณาเลือกแพ็กเกจ VPS (เลื่อนขึ้นไปด้านบน)'); }
+    if (!data.slip) return showErr('กรุณาแนบสลิปโอนเงินค่า VPS');
+    if (!data.consent) return showErr('กรุณาติ๊กยินยอมให้ใช้เลขพอร์ตและรหัสผ่านเพื่อติดตั้ง EA บน VPS');
     if (data.phone.replace(/\D/g, '').length < 9) return showErr('เบอร์โทรไม่ครบ');
     if (!/^\d{3,12}$/.test(data.xid.replace(/\s/g, ''))) return showErr('ID ของ XCELLA PRIME ต้องเป็นตัวเลข');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return showErr('อีเมลไม่ถูกต้อง');
