@@ -115,6 +115,19 @@
   .fab { position: fixed; right: 14px; bottom: 14px; background: var(--line-green); color: #fff; text-decoration: none;
          padding: 12px 20px; border-radius: 26px; font-weight: 700; box-shadow: 0 6px 20px rgba(6,199,85,.35); }
   .fine { font-size: 13px; color: var(--muted); text-align: center; margin-top: 30px; }
+  .vgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 4px; }
+  .vcard { min-width: 0; }
+  .vthumb { position: relative; display: block; width: 100%; margin: 0; padding: 0; aspect-ratio: 9 / 16; border: 1px solid #e5e7eb; border-radius: 14px; overflow: hidden; background: #0b1630; cursor: pointer; }
+  .vthumb img, .vthumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+  .vplay { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(255,255,255,.92); box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+  .vplay::after { content: ""; position: absolute; left: 21px; top: 16px; border-left: 17px solid #1e3a5f; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+  .vdur { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; padding: 1px 7px; border-radius: 6px; }
+  .vcap { margin-top: 7px; font-size: 13.5px; line-height: 1.4; }
+  .vcap b { display: block; color: #1e3a5f; }
+  .vcap span { color: #6b7280; }
+  .vbox { margin: 0 0 20px; }
+  .vbox h2 { font-size: 17px; margin: 0 0 2px; color: #1e3a5f; }
+  .vsub { color: #6b7280; font-size: 14px; margin: 0 0 12px; }
 </style>
 </head>
 <body>
@@ -132,6 +145,27 @@
       <li>อีเมลที่เปิดดูได้ทันที และเบอร์โทร</li>
       <li>เงินฝากขั้นต่ำ <b>$20</b> (ประมาณ 700 บาท)</li>
     </ul>
+  </div>
+
+  <div class="vbox" id="videos">
+    <h2>ดูวิดีโอสอนก่อนก็ได้</h2>
+    <p class="vsub">2 ตอนสั้น ทำตามได้ทีละขั้น (ข้อมูลในคลิปเป็นข้อมูลสมมติ)</p>
+    <div class="vgrid">
+        <div class="vcard">
+          <button type="button" class="vthumb" data-vid="8ggoVIkjEWI" aria-label="เล่นวิดีโอตอนที่ 1: สมัครสมาชิก · ยืนยันอีเมล · ยืนยันตัวตน (KYC)">
+            <img src="https://i.ytimg.com/vi/8ggoVIkjEWI/hqdefault.jpg" alt="" loading="lazy">
+            <span class="vplay" aria-hidden="true"></span><span class="vdur">1:25</span>
+          </button>
+          <div class="vcap"><b>ตอนที่ 1</b><span>สมัครสมาชิก · ยืนยันอีเมล · ยืนยันตัวตน (KYC)</span></div>
+        </div>
+        <div class="vcard">
+          <button type="button" class="vthumb" data-vid="MQ8P6FhQbbA" aria-label="เล่นวิดีโอตอนที่ 2: ฝากเงิน · เปิดบัญชี CENT · รับเลขพอร์ต MT5">
+            <img src="https://i.ytimg.com/vi/MQ8P6FhQbbA/hqdefault.jpg" alt="" loading="lazy">
+            <span class="vplay" aria-hidden="true"></span><span class="vdur">1:14</span>
+          </button>
+          <div class="vcap"><b>ตอนที่ 2</b><span>ฝากเงิน · เปิดบัญชี CENT · รับเลขพอร์ต MT5</span></div>
+        </div>
+    </div>
   </div>
 
   <div class="tabs" id="tabs"><div class="tabs-row" id="tabsRow" role="tablist" aria-label="9 ขั้นตอน"></div><div class="tabs-prog"><i id="prog"></i></div></div>
@@ -369,6 +403,17 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
   window.addEventListener('load', function () { window.scrollTo(0, 0); });
+
+  /* ── วิดีโอสอน: โหลดตัวเล่น YouTube ตอนกดเล่นเท่านั้น (ไม่ทำให้หน้าหนัก) ── */
+  document.querySelectorAll('.vthumb').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/' + b.getAttribute('data-vid') + '?autoplay=1&rel=0&playsinline=1';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true; f.title = 'วิดีโอสอนสมัคร XCELLA PRIME';
+      b.innerHTML = ''; b.appendChild(f); b.style.cursor = 'default';
+    }, { once: true });
+  });
+
 </script>
 </body>
 </html>
