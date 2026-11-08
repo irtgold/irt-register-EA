@@ -33,6 +33,8 @@
   .payqr { margin:12px 0 4px; text-align:center; border:1px solid var(--line); border-radius:14px; padding:12px; }
   .payqr[hidden] { display:none; }
   .payqr img { display:block; width:100%; max-width:280px; margin:8px auto 0; border-radius:10px; }
+  .qrdl { display: inline-flex; align-items: center; gap: 6px; margin: 10px 0 0; padding: 8px 18px; border: 1.5px solid #1e3a5f; border-radius: 10px; color: #1e3a5f; background: #fff; font-weight: 600; font-size: 14px; text-decoration: none; }
+  .qrhint { font-size: 12px; color: #6b7280; margin-top: 6px; }
   .payqr p { margin:10px 0 0; font-size:13.5px; color:#4b5563; }
   .payqr b { color:#b3261e; }
   .slipprev { margin-top:8px; display:flex; gap:10px; align-items:flex-end; }
@@ -71,6 +73,9 @@
       <div class="payqr" id="payqr" hidden>
         <div>สแกนจ่าย <b id="pqName"></b> · <b id="pqAmt"></b></div>
         <img src="img/pay-qr.png?v=1" alt="QR พร้อมเพย์">
+        <a class="qrdl" href="img/pay-qr.png?v=1" download="IRT-GOLD-LAB_QR-PromptPay.png"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 20h14"/></svg>ดาวน์โหลด QR</a>
+        <div class="qrhint">ถ้ากดแล้วไม่ดาวน์โหลด ให้แตะค้างที่รูป QR แล้วเลือกบันทึกรูป</div>
+
         <p>สแกนด้วยแอปธนาคารใดก็ได้ แล้วใส่ยอดเงินเอง <b id="pqAmt2"></b> จ่ายเสร็จแคปสลิปมาแนบด้านล่าง</p>
       </div>
 
