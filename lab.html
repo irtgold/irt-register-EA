@@ -125,6 +125,30 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
 .ea-bottom { margin-top: auto; padding-top: 6px; }
 .ea-bottom .ea-btn.soft { width: 100%; margin-top: 10px; padding: 11px 14px; font-size: 14px; }
 .ea-foot, .ea-note { font-size: 12px; color: var(--ink-3); margin: 16px 0 0; line-height: 1.6; }
+/* ปฏิทินเป้า */
+.ea-acts { flex-wrap: wrap; } .ea-acts .ea-btn.cal { flex-basis: 100%; }
+.ea-calbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.ea-calbar b { font-size: 16px; color: var(--ink); }
+.ea-calbar .ea-btn { min-width: 42px; font-size: 18px; line-height: 1; padding: 7px 12px; }
+.ea-calbar .ea-btn[disabled] { opacity: .35; cursor: default; }
+.ea-calsum { display: flex; gap: 8px 18px; flex-wrap: wrap; font-size: 13px; color: var(--ink-3); margin-bottom: 12px; }
+.ea-calsum b { color: var(--ink); } .ea-calsum b.up { color: var(--up); } .ea-calsum b.dn { color: var(--dn); }
+.ea-cal { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.ea-cal .h { text-align: center; font-size: 12px; font-weight: 700; color: var(--ink-3); padding-bottom: 2px; }
+.ea-cd { border: 1px solid var(--line); border-radius: 10px; min-height: 62px; padding: 6px 7px 5px; display: flex; flex-direction: column; justify-content: space-between; background: var(--soft); }
+.ea-cd b { font-size: 12px; color: var(--ink-3); font-weight: 700; }
+.ea-cd span { font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; text-align: right; }
+.ea-cd.hit { background: var(--up-bg); border-color: rgba(21,128,61,.35); } .ea-cd.hit span { color: var(--up); }
+.ea-cd.part { background: rgba(224,163,26,.14); border-color: rgba(224,163,26,.45); } .ea-cd.part span { color: #b7791f; }
+.ea-cd.loss { background: var(--dn-bg); border-color: rgba(198,40,40,.35); } .ea-cd.loss span { color: var(--dn); }
+.ea-cd.zero span { color: var(--ink-3); font-weight: 600; }
+.ea-cd.e { background: transparent; border-color: transparent; }
+.ea-cd.f { background: transparent; border-style: dashed; opacity: .55; }
+.ea-cd.lv { outline: 2px dashed var(--gold); outline-offset: -2px; }
+.ea-callg { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 12px; color: var(--ink-3); }
+.ea-callg i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--line); background: var(--soft); }
+@media (max-width: 560px) { .ea-cd { min-height: 54px; padding: 5px 4px; } .ea-cd span { font-size: 11.5px; } .ea-cd b { font-size: 11px; } }
+
 /* หน้าต่างซ้อน */
 .ea-ov { position: fixed; inset: 0; background: rgba(8,15,30,.6); display: none; align-items: flex-start; justify-content: center; padding: 32px 16px; overflow: auto; z-index: 3000; }
 .ea-ov.on { display: flex; }
@@ -296,7 +320,7 @@ window.IRT_EA_AUTOFETCH = false;
         ${cell('กำไรตั้งแต่เริ่ม', sgn(p.total, 2), 'USC', 'up')}${cell('ไม้ที่ปิดแล้ว', fmt(p.closedAll), 'ไม้')}
         ${cell('ไม้วันนี้', p.trades.length, 'ไม้')}${cell('ไม้ที่เปิดอยู่', String(p.basket || 0), 'ไม้')}
       </div>
-      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button></div>
+      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button><button class="ea-btn cal" data-act="cal" data-id="${p.id}"><span>ปฏิทินเป้า (จ.–ศ.)</span></button></div>
       <button class="ea-btn soft" data-act="connect">${IC.plug}<span>อยากได้แบบนี้ · เชื่อมต่อพอร์ตของฉัน</span></button></div></article>`;
   }).join('');
   }
@@ -329,6 +353,66 @@ window.IRT_EA_AUTOFETCH = false;
       <div class="ea-tw"><table><tr><th>เปิด</th><th>ปิด</th><th>ฝั่ง</th><th class="r">Lot</th><th class="r">ราคาเปิด → ปิด</th><th class="r">กำไร</th></tr>
       ${p.trades.slice().reverse().map(t => `<tr><td>${t[0]}</td><td>${t[1]}</td><td><span class="ea-tag ${t[2] === 'BUY' ? 'b' : 's'}">${t[2]}</span></td><td class="r">${t[3].toFixed(2)}</td><td class="r">${t[4].toFixed(2)} → ${t[5].toFixed(2)}</td><td class="r ${t[6] >= 0 ? 'up' : 'dn'}">${sgn(t[6], 2)}</td></tr>`).join('')}</table></div>
       <p class="ea-note">ครบเป้าแล้ว EA หยุดออกไม้จนถึงวันใหม่ · ข้อมูลจริงจากพอร์ตลูกค้า (ซ่อนชื่อและเลขพอร์ต) · วันนี้ = ตั้งแต่ 22:00 ของเมื่อวาน</p></div>`);
+  }
+
+  /* ---------- ปฏิทินเป้า (จันทร์–ศุกร์) ---------- */
+  let CAL_CUT = 0;
+  const CAL_MF = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+  const CAL_DN = ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.'];
+  const calKey = (y, m, d) => y * 10000 + (m + 1) * 100 + d;
+  const calYM = k => ({ y: Math.floor(k / 10000), m: Math.floor(k / 100) % 100 - 1 });
+  function calData(p) {
+    const m = {};
+    (p.days || []).forEach(d => { m[d[0]] = { pf: d[1], tgt: d[2] }; });
+    let live = 0;
+    if (CAL_CUT) {                                                       // วันนี้ = รอบที่ตัด 22:00 ถัดจาก cutoff ล่าสุด
+      const x = new Date(CAL_CUT + 31 * 3600e3);
+      live = calKey(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate());
+      const w = x.getUTCDay();
+      if (w >= 1 && w <= 5) m[live] = { pf: p.today, tgt: p.target, live: true };
+    }
+    return { m: m, live: live };
+  }
+  function calState(c) {
+    if (!c) return '';
+    if (c.tgt > 0 ? c.pf >= c.tgt * 0.995 : c.pf > 0) return 'hit';
+    if (c.pf > 0) return 'part';
+    if (c.pf < 0) return 'loss';
+    return 'zero';
+  }
+  const calAmt = v => v === 0 ? '–' : (v > 0 ? '+' : '−') + fmt(Math.abs(v));
+  function openCal(id, ym) {
+    const p = PORTS.find(x => x.id === id); if (!p) return;
+    const d = calData(p), keys = Object.keys(d.m).map(Number).sort((a, b) => a - b);
+    if (!keys.length) {
+      show(mh('target', 'ปฏิทินเป้า · PORT ' + fmt(p.cap) + ' USC', 'จันทร์–ศุกร์') + '<div class="ea-mb"><p class="ea-note">ยังไม่มีประวัติรายวันของพอร์ตนี้ ข้อมูลจะขึ้นหลังเผยแพร่รอบถัดไป</p></div>');
+      return;
+    }
+    const lo = calYM(keys[0]), hi = calYM(keys[keys.length - 1]);
+    const cur = ym || calYM(d.live && d.m[d.live] ? d.live : keys[keys.length - 1]);
+    const idx = o => o.y * 12 + o.m, ci = idx(cur);
+    const first = new Date(Date.UTC(cur.y, cur.m, 1)), last = new Date(Date.UTC(cur.y, cur.m + 1, 0)).getUTCDate();
+    const cells = []; let hits = 0, nd = 0, sum = 0;
+    for (let day = 1; day <= last; day++) {
+      const dow = new Date(Date.UTC(cur.y, cur.m, day)).getUTCDay();
+      if (dow === 0 || dow === 6) continue;
+      if (!cells.length) for (let k = 1; k < dow; k++) cells.push('<div class="ea-cd e"></div>');
+      const key = calKey(cur.y, cur.m, day), c = d.m[key], st = calState(c);
+      if (c) { sum += c.pf; if (!c.live || st === 'hit') { nd++; if (st === 'hit') hits++; } }
+      const fut = !c && d.live && key > d.live;
+      cells.push('<div class="ea-cd ' + (fut ? 'f' : st) + (c && c.live ? ' lv' : '') + '"' + (c && c.tgt > 0 ? ' title="เป้า ' + fmt(c.tgt, 2) + ' USC"' : '') + '><b>' + day + '</b><span>' + (c ? calAmt(c.pf) : '') + '</span></div>');
+    }
+    const head = CAL_DN.map(n => '<div class="h">' + n + '</div>').join('');
+    show(mh('target', 'ปฏิทินเป้า · PORT ' + fmt(p.cap) + ' USC <span class="ea-pusd inl">(' + usd(p.cap) + ')</span>', '<span>พอร์ตลูกค้าจริง</span> ' + mask(p.acc) + ' · จันทร์–ศุกร์ · ไม่แสดงเสาร์–อาทิตย์') +
+      '<div class="ea-mb"><div class="ea-calbar"><button class="ea-btn" data-cn="-1"' + (ci <= idx(lo) ? ' disabled' : '') + ' aria-label="เดือนก่อน">‹</button><b>' + CAL_MF[cur.m] + ' ' + (cur.y + 543) + '</b><button class="ea-btn" data-cn="1"' + (ci >= idx(hi) ? ' disabled' : '') + ' aria-label="เดือนถัดไป">›</button></div>' +
+      '<div class="ea-calsum"><span>ครบเป้า <b>' + hits + '/' + nd + '</b> วัน</span><span>กำไรเดือนนี้ <b class="' + (sum >= 0 ? 'up' : 'dn') + '">' + sgn(sum, 2) + ' USC</b></span></div>' +
+      '<div class="ea-cal">' + head + cells.join('') + '</div>' +
+      '<div class="ea-callg"><span><i style="background:var(--up-bg);border-color:rgba(21,128,61,.4)"></i>ครบเป้า</span><span><i style="background:rgba(224,163,26,.18);border-color:rgba(224,163,26,.5)"></i>กำไรแต่ยังไม่ถึงเป้า</span><span><i style="background:var(--dn-bg);border-color:rgba(198,40,40,.4)"></i>ขาดทุน</span><span><i></i>ไม่มีไม้</span><span><i style="border:2px dashed var(--gold)"></i>วันนี้ (ยังไม่ตัดรอบ)</span></div>' +
+      '<p class="ea-note">ตัวเลขในช่อง = กำไร/ขาดทุนของวันนั้น (USC) · เป้าต่อวันคิดจากยอดต้นวัน · นับรอบตัด 22:00 · ข้อมูลจริงจากพอร์ตลูกค้า (ซ่อนชื่อและเลขพอร์ต) · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p></div>');
+    if (ov) ov.querySelectorAll('[data-cn]').forEach(b => b.addEventListener('click', () => {
+      const n = ci + Number(b.dataset.cn);
+      openCal(id, { y: Math.floor(n / 12), m: n % 12 });
+    }));
   }
 
   function openBT(cap) {
@@ -364,7 +448,8 @@ window.IRT_EA_AUTOFETCH = false;
     if (!snap || !snap.ports || !snap.ports.length) return;
     PORTS.length = 0;
     snap.ports.forEach((p, i) => PORTS.push({ id: 'p' + i, acc: String(p.tail), cap: p.cap, bal: p.bal, today: p.today, target: p.target, total: p.total,
-      closedAll: p.closedAll, basket: p.basket || 0, since: thDate(p.reg), trades: p.trades || [] }));
+      closedAll: p.closedAll, basket: p.basket || 0, since: thDate(p.reg), trades: p.trades || [], days: p.days || [] }));
+    CAL_CUT = snap.cutoff || 0;
     UPDATED_DATE = thDate(snap.at); UPDATED = hhmm(snap.at);
     renderPorts();
     const b = document.getElementById('ea-asof'); if (b) b.textContent = UPDATED_DATE + ' ' + UPDATED;
@@ -387,6 +472,7 @@ window.IRT_EA_AUTOFETCH = false;
     const a = b.dataset.act;
     if (a === 'ports') { tab('pt'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     else if (a === 'port') openPort(b.dataset.id);
+    else if (a === 'cal') openCal(b.dataset.id);
     else if (a === 'bt') openBT(Number(b.dataset.cap) || 0);
     else if (a === 'connect') openConnect();
   });
