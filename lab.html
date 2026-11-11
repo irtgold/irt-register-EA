@@ -145,6 +145,8 @@ body{color:var(--ink);font-family:"IBM Plex Sans Thai","Sarabun",system-ui,sans-
 .ea-cd.e { background: transparent; border-color: transparent; }
 .ea-cd.f { background: transparent; border-style: dashed; opacity: .55; }
 .ea-cd.lv { outline: 2px dashed var(--gold); outline-offset: -2px; }
+.ea-calbox { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.ea-calbox .ea-note { margin-top: 10px; }
 .ea-callg { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 12px; color: var(--ink-3); }
 .ea-callg i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--line); background: var(--soft); }
 @media (max-width: 560px) { .ea-cd { min-height: 54px; padding: 5px 4px; } .ea-cd span { font-size: 11.5px; } .ea-cd b { font-size: 11px; } }
@@ -302,6 +304,7 @@ window.IRT_EA_AUTOFETCH = false;
     }).join('');
   }
 
+  const CAL_OPEN = {};                                                 // id -> {y,m} | true (การ์ดที่กางปฏิทินอยู่)
   const cell = (l, v, u, c) => `<div class="ea-cell"><span>${l}</span><b class="${c || ''}">${v}${u ? ' <span>' + u + '</span>' : ''}</b></div>`;
   function renderPorts() {
   PORTS.sort((a, b) => a.cap - b.cap);
@@ -320,7 +323,8 @@ window.IRT_EA_AUTOFETCH = false;
         ${cell('กำไรตั้งแต่เริ่ม', sgn(p.total, 2), 'USC', 'up')}${cell('ไม้ที่ปิดแล้ว', fmt(p.closedAll), 'ไม้')}
         ${cell('ไม้วันนี้', p.trades.length, 'ไม้')}${cell('ไม้ที่เปิดอยู่', String(p.basket || 0), 'ไม้')}
       </div>
-      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button><button class="ea-btn cal" data-act="cal" data-id="${p.id}"><span>ปฏิทินเป้า (จ.–ศ.)</span></button></div>
+      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button><button class="ea-btn cal" data-act="cal" data-id="${p.id}" aria-expanded="${CAL_OPEN[p.id] ? 'true' : 'false'}"><span>${CAL_OPEN[p.id] ? 'ซ่อนปฏิทินเป้า ▲' : 'ปฏิทินเป้า (จ.–ศ.) ▼'}</span></button></div>
+      ${calBox(p)}
       <button class="ea-btn soft" data-act="connect">${IC.plug}<span>อยากได้แบบนี้ · เชื่อมต่อพอร์ตของฉัน</span></button></div></article>`;
   }).join('');
   }
@@ -381,17 +385,13 @@ window.IRT_EA_AUTOFETCH = false;
     return 'zero';
   }
   const calAmt = v => v === 0 ? '–' : (v > 0 ? '+' : '−') + fmt(Math.abs(v));
-  function openCal(id, ym) {
-    const p = PORTS.find(x => x.id === id); if (!p) return;
+  function calBody(p, ym) {
     const d = calData(p), keys = Object.keys(d.m).map(Number).sort((a, b) => a - b);
-    if (!keys.length) {
-      show(mh('target', 'ปฏิทินเป้า · PORT ' + fmt(p.cap) + ' USC', 'จันทร์–ศุกร์') + '<div class="ea-mb"><p class="ea-note">ยังไม่มีประวัติรายวันของพอร์ตนี้ ข้อมูลจะขึ้นหลังเผยแพร่รอบถัดไป</p></div>');
-      return;
-    }
+    if (!keys.length) return '<p class="ea-note">ยังไม่มีประวัติรายวันของพอร์ตนี้ ข้อมูลจะขึ้นหลังเผยแพร่รอบถัดไป</p>';
     const lo = calYM(keys[0]), hi = calYM(keys[keys.length - 1]);
-    const cur = ym || calYM(d.live && d.m[d.live] ? d.live : keys[keys.length - 1]);
+    const cur = ym && ym.y ? ym : calYM(d.live && d.m[d.live] ? d.live : keys[keys.length - 1]);
     const idx = o => o.y * 12 + o.m, ci = idx(cur);
-    const first = new Date(Date.UTC(cur.y, cur.m, 1)), last = new Date(Date.UTC(cur.y, cur.m + 1, 0)).getUTCDate();
+    const last = new Date(Date.UTC(cur.y, cur.m + 1, 0)).getUTCDate();
     const cells = []; let hits = 0, nd = 0, sum = 0;
     for (let day = 1; day <= last; day++) {
       const dow = new Date(Date.UTC(cur.y, cur.m, day)).getUTCDay();
@@ -403,16 +403,17 @@ window.IRT_EA_AUTOFETCH = false;
       cells.push('<div class="ea-cd ' + (fut ? 'f' : st) + (c && c.live ? ' lv' : '') + '"' + (c && c.tgt > 0 ? ' title="เป้า ' + fmt(c.tgt, 2) + ' USC"' : '') + '><b>' + day + '</b><span>' + (c ? calAmt(c.pf) : '') + '</span></div>');
     }
     const head = CAL_DN.map(n => '<div class="h">' + n + '</div>').join('');
-    show(mh('target', 'ปฏิทินเป้า · PORT ' + fmt(p.cap) + ' USC <span class="ea-pusd inl">(' + usd(p.cap) + ')</span>', '<span>พอร์ตลูกค้าจริง</span> ' + mask(p.acc) + ' · จันทร์–ศุกร์ · ไม่แสดงเสาร์–อาทิตย์') +
-      '<div class="ea-mb"><div class="ea-calbar"><button class="ea-btn" data-cn="-1"' + (ci <= idx(lo) ? ' disabled' : '') + ' aria-label="เดือนก่อน">‹</button><b>' + CAL_MF[cur.m] + ' ' + (cur.y + 543) + '</b><button class="ea-btn" data-cn="1"' + (ci >= idx(hi) ? ' disabled' : '') + ' aria-label="เดือนถัดไป">›</button></div>' +
+    return '<div class="ea-calbar"><button class="ea-btn" data-cn="-1" data-id="' + p.id + '" data-y="' + cur.y + '" data-m="' + cur.m + '"' + (ci <= idx(lo) ? ' disabled' : '') + ' aria-label="เดือนก่อน">‹</button><b>' + CAL_MF[cur.m] + ' ' + (cur.y + 543) + '</b><button class="ea-btn" data-cn="1" data-id="' + p.id + '" data-y="' + cur.y + '" data-m="' + cur.m + '"' + (ci >= idx(hi) ? ' disabled' : '') + ' aria-label="เดือนถัดไป">›</button></div>' +
       '<div class="ea-calsum"><span>ครบเป้า <b>' + hits + '/' + nd + '</b> วัน</span><span>กำไรเดือนนี้ <b class="' + (sum >= 0 ? 'up' : 'dn') + '">' + sgn(sum, 2) + ' USC</b></span></div>' +
       '<div class="ea-cal">' + head + cells.join('') + '</div>' +
       '<div class="ea-callg"><span><i style="background:var(--up-bg);border-color:rgba(21,128,61,.4)"></i>ครบเป้า</span><span><i style="background:rgba(224,163,26,.18);border-color:rgba(224,163,26,.5)"></i>กำไรแต่ยังไม่ถึงเป้า</span><span><i style="background:var(--dn-bg);border-color:rgba(198,40,40,.4)"></i>ขาดทุน</span><span><i></i>ไม่มีไม้</span><span><i style="border:2px dashed var(--gold)"></i>วันนี้ (ยังไม่ตัดรอบ)</span></div>' +
-      '<p class="ea-note">ตัวเลขในช่อง = กำไร/ขาดทุนของวันนั้น (USC) · เป้าต่อวันคิดจากยอดต้นวัน · นับรอบตัด 22:00 · ข้อมูลจริงจากพอร์ตลูกค้า (ซ่อนชื่อและเลขพอร์ต) · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p></div>');
-    if (ov) ov.querySelectorAll('[data-cn]').forEach(b => b.addEventListener('click', () => {
-      const n = ci + Number(b.dataset.cn);
-      openCal(id, { y: Math.floor(n / 12), m: n % 12 });
-    }));
+      '<p class="ea-note">ตัวเลขในช่อง = กำไร/ขาดทุนของวันนั้น (USC) · เป้าต่อวันคิดจากยอดต้นวัน · นับรอบตัด 22:00 · จันทร์–ศุกร์ ไม่แสดงเสาร์–อาทิตย์ · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p>';
+  }
+  function calBox(p) { return CAL_OPEN[p.id] ? '<div class="ea-calbox">' + calBody(p, CAL_OPEN[p.id]) + '</div>' : ''; }
+  function toggleCal(id) { if (CAL_OPEN[id]) delete CAL_OPEN[id]; else CAL_OPEN[id] = true; renderPorts(); }
+  function stepCal(b) {
+    const n = Number(b.dataset.y) * 12 + Number(b.dataset.m) + Number(b.dataset.cn);
+    CAL_OPEN[b.dataset.id] = { y: Math.floor(n / 12), m: n % 12 }; renderPorts();
   }
 
   function openBT(cap) {
@@ -468,11 +469,12 @@ window.IRT_EA_AUTOFETCH = false;
 
   root.addEventListener('click', e => {
     const tb = e.target.closest('.ea-tab'); if (tb) { tab(tb.dataset.t); return; }
+    const cn = e.target.closest('[data-cn]'); if (cn) { if (!cn.disabled) stepCal(cn); return; }
     const b = e.target.closest('[data-act]'); if (!b) return;
     const a = b.dataset.act;
     if (a === 'ports') { tab('pt'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     else if (a === 'port') openPort(b.dataset.id);
-    else if (a === 'cal') openCal(b.dataset.id);
+    else if (a === 'cal') toggleCal(b.dataset.id);
     else if (a === 'bt') openBT(Number(b.dataset.cap) || 0);
     else if (a === 'connect') openConnect();
   });
