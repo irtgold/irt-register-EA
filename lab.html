@@ -328,7 +328,6 @@ window.IRT_EA_AUTOFETCH = false;
       <button class="ea-btn soft" data-act="connect">${IC.plug}<span>อยากได้แบบนี้ · เชื่อมต่อพอร์ตของฉัน</span></button></div></article>`;
   }).join('');
   }
-  renderPorts();
 
   /* ---------- หน้าต่างซ้อน ---------- */
   let ov = null;
@@ -414,6 +413,8 @@ window.IRT_EA_AUTOFETCH = false;
     const n = Number(b.dataset.y) * 12 + Number(b.dataset.m) + Number(b.dataset.cn);
     CAL_OPEN[b.dataset.id] = { y: Math.floor(n / 12), m: n % 12 }; renderPorts();
   }
+
+  renderPorts();
 
   function openBT(cap) {
     cap = cap || BT.cap; const k = cap / BT.cap, net = BT.net * k, mx = Math.max.apply(null, BT.months.map(m => m[1]));
