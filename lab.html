@@ -323,7 +323,7 @@ window.IRT_EA_AUTOFETCH = false;
         ${cell('กำไรตั้งแต่เริ่ม', sgn(p.total, 2), 'USC', 'up')}${cell('ไม้ที่ปิดแล้ว', fmt(p.closedAll), 'ไม้')}
         ${cell('ไม้วันนี้', p.trades.length, 'ไม้')}${cell('ไม้ที่เปิดอยู่', String(p.basket || 0), 'ไม้')}
       </div>
-      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button><button class="ea-btn cal" data-act="cal" data-id="${p.id}" aria-expanded="${CAL_OPEN[p.id] ? 'true' : 'false'}"><span>${CAL_OPEN[p.id] ? 'ซ่อนปฏิทินเป้า ▲' : 'ปฏิทินเป้า (จ.–ศ.) ▼'}</span></button></div>
+      <div class="ea-bottom"><div class="ea-acts"><button class="ea-btn gold" data-act="port" data-id="${p.id}"><span>ดูพอร์ตวันนี้</span></button><button class="ea-btn" data-act="bt" data-cap="${p.cap}"><span>Backtest</span></button></div>
       ${calBox(p)}
       <button class="ea-btn soft" data-act="connect">${IC.plug}<span>อยากได้แบบนี้ · เชื่อมต่อพอร์ตของฉัน</span></button></div></article>`;
   }).join('');
@@ -409,8 +409,7 @@ window.IRT_EA_AUTOFETCH = false;
       '<div class="ea-callg"><span><i style="background:var(--up-bg);border-color:rgba(21,128,61,.4)"></i>ครบเป้า</span><span><i style="background:rgba(224,163,26,.18);border-color:rgba(224,163,26,.5)"></i>กำไรแต่ยังไม่ถึงเป้า</span><span><i style="background:var(--dn-bg);border-color:rgba(198,40,40,.4)"></i>ขาดทุน</span><span><i></i>ไม่มีไม้</span><span><i style="border:2px dashed var(--gold)"></i>วันนี้ (ยังไม่ตัดรอบ)</span></div>' +
       '<p class="ea-note">ตัวเลขในช่อง = กำไร/ขาดทุนของวันนั้น (USC) · เป้าต่อวันคิดจากยอดต้นวัน · นับรอบตัด 22:00 · จันทร์–ศุกร์ ไม่แสดงเสาร์–อาทิตย์ · ผลในอดีตไม่ได้รับประกันผลในอนาคต</p>';
   }
-  function calBox(p) { return CAL_OPEN[p.id] ? '<div class="ea-calbox">' + calBody(p, CAL_OPEN[p.id]) + '</div>' : ''; }
-  function toggleCal(id) { if (CAL_OPEN[id]) delete CAL_OPEN[id]; else CAL_OPEN[id] = true; renderPorts(); }
+  function calBox(p) { return '<div class="ea-calbox">' + calBody(p, CAL_OPEN[p.id]) + '</div>'; }
   function stepCal(b) {
     const n = Number(b.dataset.y) * 12 + Number(b.dataset.m) + Number(b.dataset.cn);
     CAL_OPEN[b.dataset.id] = { y: Math.floor(n / 12), m: n % 12 }; renderPorts();
@@ -474,7 +473,6 @@ window.IRT_EA_AUTOFETCH = false;
     const a = b.dataset.act;
     if (a === 'ports') { tab('pt'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     else if (a === 'port') openPort(b.dataset.id);
-    else if (a === 'cal') toggleCal(b.dataset.id);
     else if (a === 'bt') openBT(Number(b.dataset.cap) || 0);
     else if (a === 'connect') openConnect();
   });
