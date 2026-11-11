@@ -362,11 +362,12 @@ window.IRT_EA_AUTOFETCH = false;
   let CAL_CUT = 0;
   const CAL_MF = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
   const CAL_DN = ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.'];
+  const CAL_START = { 30000: 20261104, 100000: 20261026, 200000: 20261026 };   // วันแรกที่ใช้ Daily Target / IRT LAB 2.0 ของแต่ละพอร์ต (ก่อนหน้านี้ไม่นับ)
   const calKey = (y, m, d) => y * 10000 + (m + 1) * 100 + d;
   const calYM = k => ({ y: Math.floor(k / 10000), m: Math.floor(k / 100) % 100 - 1 });
   function calData(p) {
     const m = {};
-    (p.days || []).forEach(d => { m[d[0]] = { pf: d[1], tgt: d[2] }; });
+    (p.days || []).forEach(d => { if (d[0] >= (CAL_START[p.cap] || 0)) m[d[0]] = { pf: d[1], tgt: d[2] }; });
     let live = 0;
     if (CAL_CUT) {                                                       // วันนี้ = รอบที่ตัด 22:00 ถัดจาก cutoff ล่าสุด
       const x = new Date(CAL_CUT + 31 * 3600e3);
